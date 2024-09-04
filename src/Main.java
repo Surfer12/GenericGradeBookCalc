@@ -1,8 +1,16 @@
 import java.util.Scanner;
 import java.util.function.Supplier;
 
+/**
+ * Main class to run the GradeBook application.
+ */
 public class Main {
 
+    /**
+     * The main method to start the GradeBook application.
+     *
+     * @param args Command line arguments
+     */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -13,13 +21,19 @@ public class Main {
             // Input handlers for name, score, and positive integers
             System.out.println("Initializing input handlers...");
 
+            // Validator for name input
             InputValidator<String> nameValidator = new InputValidator<>(new NameValidator(), "name");
+            // Handler for name input from console
             InputHandler<String> nameInputHandler = new ConsoleInputHandler<>(scanner, nameValidator);
 
+            // Validator for score input
             InputValidator<Integer> scoreValidator = new InputValidator<>(new ScoreValidator(), "score");
+            // Handler for score input from console
             InputHandler<Integer> scoreInputHandler = new ConsoleInputHandler<>(scanner, scoreValidator);
 
+            // Validator for positive integer input
             InputValidator<Integer> positiveIntValidator = new InputValidator<>(new PositiveIntegerValidator(), "positive integer");
+            // Handler for positive integer input from console
             InputHandler<Integer> countInputHandler = new ConsoleInputHandler<>(scanner, positiveIntValidator);
 
             // Student factory for creating new student instances
@@ -46,6 +60,7 @@ public class Main {
 
             System.out.println("GradeBook ran successfully.");
         } catch (Exception e) {
+            // Handle any exceptions that occur during the execution
             System.err.println("An error occurred: " + e.getMessage());
             e.printStackTrace();
         } finally {
