@@ -12,9 +12,8 @@ public class Main {
      * @param args Command line arguments
      */
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
 
-        try {
+        try (Scanner scanner = new Scanner(System.in)) {
             // Debug: Start of the program
             System.out.println("Program started.");
 
@@ -37,7 +36,7 @@ public class Main {
             InputHandler<Integer> countInputHandler = new ConsoleInputHandler<>(scanner, positiveIntValidator);
 
             // Student factory for creating new student instances
-            Supplier<Student<Integer>> studentFactory = () -> new Student<>();
+            Supplier<Student<Integer>> studentFactory = Student::new;
             System.out.println("Student factory created.");
 
             // Create and initialize the GradeBook with all necessary components
@@ -66,7 +65,6 @@ public class Main {
         } finally {
             // Close the scanner to free up resources
             System.out.println("Closing scanner.");
-            scanner.close();
         }
     }
 }

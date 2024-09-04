@@ -33,9 +33,8 @@ public class InputValidator<T> {
      *
      * @param input the input string to parse
      * @return the parsed value of type T
-     * @throws Exception if the input cannot be parsed
      */
-    public T parse(String input) throws Exception {
+    public T parse(String input) {
         return validator.parse(input);
     }
 
