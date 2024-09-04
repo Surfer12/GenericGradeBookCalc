@@ -11,8 +11,23 @@ public class GradeBook<S extends Student<Integer>> {
     private final ClassAverageCalculator<S> classAverageCalculator;
     private final Supplier<S> studentFactory;
 
-    // Constructor remains the same
-    // ...
+    public GradeBook(StudentRegistry<S> studentRegistry,
+                     InputHandler<String> nameInputHandler,
+                     InputHandler<Integer> countInputHandler,
+                     GradeEntrySystem<S, Integer> gradeEntrySystem,
+                     GradeCalculator<S> gradeCalculator,
+                     GradebookDisplay<S> gradebookDisplay,
+                     ClassAverageCalculator<S> classAverageCalculator,
+                     Supplier<S> studentFactory) {
+        this.studentRegistry = studentRegistry;
+        this.nameInputHandler = nameInputHandler;
+        this.countInputHandler = countInputHandler;
+        this.gradeEntrySystem = gradeEntrySystem;
+        this.gradeCalculator = gradeCalculator;
+        this.gradebookDisplay = gradebookDisplay;
+        this.classAverageCalculator = classAverageCalculator;
+        this.studentFactory = studentFactory;
+    }
 
     public void run() {
         int studentCount = getStudentCount();
@@ -59,8 +74,7 @@ public class GradeBook<S extends Student<Integer>> {
     }
 
     private void displayResults(List<S> students) {
-        gradebookDisplay.displayGradebook(students);
-        double classAverage = classAverageCalculator.calculateClassAverage(students);
-        System.out.printf("Class Average: %.2f%n", classAverage);
+        gradebookDisplay.display(students);
+        System.out.printf("Class Average: %.2f%n", classAverageCalculator.calculateAverage(students));
     }
 }
