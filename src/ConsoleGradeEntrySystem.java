@@ -5,7 +5,7 @@
  * @param <S> the type of student in the grade entry system
  * @param <G> the type of grade in the grade entry system
  */
-public class ConsoleGradeEntrySystem<S extends Student<Integer>, G> implements GradeEntrySystem<S, Integer> {
+public class ConsoleGradeEntrySystem<S extends Student<Integer>> implements GradeEntrySystem<S, Integer> {
     private final InputHandler<Integer> scoreInputHandler;
 
     /**
