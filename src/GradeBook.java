@@ -66,8 +66,8 @@ public class GradeBook<S extends Student<Integer>> {
     }
 
     private void displayResults(List<S> students) {
-        gradebookDisplay.displayGradebook(students);
-        double classAverage = classAverageCalculator.calculateClassAverage(students);
+        new ConsoleGradebookDisplay<S>().display(students);
+        double classAverage = classAverageCalculator.calculateAverage(students);
         System.out.printf("Class Average: %.2f%n", classAverage);
     }
 }

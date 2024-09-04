@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class SimpleStudentRegistry<S extends Student> implements StudentRegistry<S> {
+public class SimpleStudentRegistry<S extends Student<?>> implements StudentRegistry<S> {
     private final List<S> students = new ArrayList<>();
 
     @Override
@@ -14,6 +14,3 @@ public class SimpleStudentRegistry<S extends Student> implements StudentRegistry
         return new ArrayList<>(students);
     }
 }
-
-
-

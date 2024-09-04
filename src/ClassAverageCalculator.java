@@ -1,5 +1,5 @@
 import java.util.List;
 
-public interface ClassAverageCalculator<S extends Student> {
-    double calculateClassAverage(List<S> students);
+public interface ClassAverageCalculator<S extends Student<?>> {
+    double calculateAverage(List<S> students);
 }

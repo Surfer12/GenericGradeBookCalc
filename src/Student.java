@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class Student<G> {
     private final List<G> grades;
@@ -13,6 +14,11 @@ public class Student<G> {
     public Student(String name) {
         this();
         this.name = name;
+    }
+
+    public Student(String name, List<G> grades) {
+        this.name = name;
+        this.grades = new ArrayList<>(grades);
     }
 
     public String getName() {
@@ -47,7 +53,6 @@ public class Student<G> {
         return grades.size();
     }
 
-    // This method might need to be adjusted depending on the type G
     public int getTotalScore() {
         if (grades.isEmpty() || !(grades.get(0) instanceof Number)) {
             return 0;

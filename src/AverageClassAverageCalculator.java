@@ -1,15 +1,14 @@
 import java.util.List;
 
-public class AverageClassAverageCalculator<S extends Student> implements ClassAverageCalculator<S> {
+public class AverageClassAverageCalculator<S extends Student<?>> implements ClassAverageCalculator<S> {
     @Override
-    public double calculateClassAverage(List<S> students) {
-        if (students.isEmpty()) {
-            return 0.0;
-        }
+    public double calculateAverage(List<S> students) {
         double total = 0;
+        int count = 0;
         for (S student : students) {
-            total += student.getAverage();
+            total += student.getGrades().stream().mapToDouble(g -> ((Number) g).doubleValue()).sum();
+            count += student.getGrades().size();
         }
-        return total / students.size();
+        return count == 0 ? 0 : total / count;
     }
 }
