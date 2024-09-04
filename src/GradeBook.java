@@ -58,8 +58,7 @@ public class GradeBook<S extends Student<Integer>> {
     public void run() {
         int studentCount = getStudentCount();
         List<S> students = registerStudents(studentCount);
-        int assignmentCount = getAssignmentCount();
-        enterGrades(students, assignmentCount);
+        enterGrades(students);
         calculateGrades(students);
         displayResults(students);
     }
@@ -84,42 +83,38 @@ public class GradeBook<S extends Student<Integer>> {
         return countInputHandler.getInput("Enter the number of assignments: ");
     }
 
-    /**
-     * Registers the specified number of students by prompting for their names.
-     * <p>
-     * \*\*Parameters\*\*
-     * \- \`count\` \- the number of students to register.
-     * <p>
-     * \*\*Returns\*\*
-     * \- a list of registered students.
-     */
-    private List<S> registerStudents(int count) {
-        for (int i = 0; i < count; i++) {
-            String name = nameInputHandler.getInput("Enter the name of student " + (i + 1) + ": ");
-            S student = studentFactory.get();
-            student.setName(name);
-            studentRegistry.addStudent(student);
-        }
-        return studentRegistry.getAllStudents();
+ /**
+ * Registers the specified number of students by prompting for their names and the number of assignments.
+ *
+ * @param count the number of students to register
+ * @return a list of registered students
+ */
+private List<S> registerStudents(int count) {
+    for (int i = 0; i < count; i++) {
+        String name = nameInputHandler.getInput("Enter the name of student " + (i + 1) + ": ");
+        int assignmentCount = countInputHandler.getInput("Enter the number of assignments for " + name + ": ");
+        S student = studentFactory.get();
+        student.setName(name);
+        student.setAssignmentCount(assignmentCount);
+        studentRegistry.addStudent(student);
     }
+    return studentRegistry.getAllStudents();
+}
 
-    /**
-     * Enters grades for each student for the specified number of assignments.
-     * <p>
-     * \*\*Parameters\*\*
-     * \- \`students\` \- the list of students.
-     * \- \`assignmentCount\` \- the number of assignments.
-     */
-    private void enterGrades(List<S> students, int assignmentCount) {
-        for (S student : students) {
-            System.out.println("Entering grades for " + student.getName() + ":");
-            for (int i = 0; i < assignmentCount; i++) {
-                int grade = gradeEntrySystem.enterGradeForAssignment(student, i + 1);
-                student.addGrade(grade);
-            }
+/**
+ * Enters grades for each student for the number of assignments stored in each student.
+ *
+ * @param students the list of students
+ */
+private void enterGrades(List<S> students) {
+    for (S student : students) {
+        System.out.println("Entering grades for " + student.getName() + ":");
+        for (int i = 0; i < student.getAssignmentCount(); i++) {
+            int grade = gradeEntrySystem.enterGradeForAssignment(student, i + 1);
+            student.addGrade(grade);
         }
     }
-
+}
     /**
      * Calculates the average grade for each student.
      * <p>

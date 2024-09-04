@@ -10,9 +10,13 @@ public class Student<G> {
     private final List<G> grades;
     private String name;
     private double average;
+    /**
+ * The number of assignments for the student.
+ */
+private int assignmentCount;
 
     /**
-     * Default constructor that initializes an empty list of grades.
+     * Default constructor that initializes the student with an empty list of grades.
      */
     public Student() {
         this.grades = new ArrayList<>();
@@ -110,6 +114,23 @@ public class Student<G> {
     public int getNumAssignments() {
         return grades.size();
     }
+/**
+ * Sets the number of assignments for the student.
+ *
+ * @param assignmentCount the number of assignments
+ */
+public void setAssignmentCount(int assignmentCount) {
+    this.assignmentCount = assignmentCount;
+}
+
+/**
+ * Gets the number of assignments for the student.
+ *
+ * @return the number of assignments
+ */
+public int getAssignmentCount() {
+    return assignmentCount;
+}
 
     /**
      * Gets the total score of all grades.
