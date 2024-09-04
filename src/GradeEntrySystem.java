@@ -1,3 +1,3 @@
-public interface GradeEntrySystem<S extends Student<?>, G> {
-    void enterGradesForStudent(S student);
+public interface GradeEntrySystem<S extends Student<G>, G> {
+    G enterGradeForAssignment(S student, int assignmentNumber);
 }

@@ -1,6 +1,5 @@
 import java.util.List;
 import java.util.function.Supplier;
-import java.util.ArrayList;
 
 public class GradeBook<S extends Student<Integer>> {
     private final StudentRegistry<S> studentRegistry;
@@ -8,37 +7,28 @@ public class GradeBook<S extends Student<Integer>> {
     private final InputHandler<Integer> countInputHandler;
     private final GradeEntrySystem<S, Integer> gradeEntrySystem;
     private final GradeCalculator<S> gradeCalculator;
+    private final GradebookDisplay<S> gradebookDisplay;
     private final ClassAverageCalculator<S> classAverageCalculator;
     private final Supplier<S> studentFactory;
 
-    public GradeBook(
-            StudentRegistry<S> studentRegistry,
-            InputHandler<String> nameInputHandler,
-            InputHandler<Integer> countInputHandler,
-            GradeEntrySystem<S, Integer> gradeEntrySystem,
-            GradeCalculator<S> gradeCalculator,
-            GradebookDisplay<S> gradebookDisplay,
-            ClassAverageCalculator<S> classAverageCalculator,
-            Supplier<S> studentFactory) {
-        this.studentRegistry = studentRegistry;
-        this.nameInputHandler = nameInputHandler;
-        this.countInputHandler = countInputHandler;
-        this.gradeEntrySystem = gradeEntrySystem;
-        this.gradeCalculator = gradeCalculator;
-        this.classAverageCalculator = classAverageCalculator;
-        this.studentFactory = studentFactory;
-    }
+    // Constructor remains the same
+    // ...
 
- public void run() {
-    int studentCount = getStudentCount();
-    List<S> students = registerStudents(studentCount);
-    enterGrades(students); // Ensure this is called after assignment count is set
-    calculateGrades(students);
-    displayResults(students);
-}
+    public void run() {
+        int studentCount = getStudentCount();
+        List<S> students = registerStudents(studentCount);
+        int assignmentCount = getAssignmentCount();
+        enterGrades(students, assignmentCount);
+        calculateGrades(students);
+        displayResults(students);
+    }
 
     private int getStudentCount() {
         return countInputHandler.getInput("Enter the number of students: ");
+    }
+
+    private int getAssignmentCount() {
+        return countInputHandler.getInput("Enter the number of assignments: ");
     }
 
     private List<S> registerStudents(int count) {
@@ -51,9 +41,13 @@ public class GradeBook<S extends Student<Integer>> {
         return studentRegistry.getAllStudents();
     }
 
-    private void enterGrades(List<S> students) {
+    private void enterGrades(List<S> students, int assignmentCount) {
         for (S student : students) {
-            gradeEntrySystem.enterGradesForStudent(student);
+            System.out.println("Entering grades for " + student.getName() + ":");
+            for (int i = 0; i < assignmentCount; i++) {
+                int grade = gradeEntrySystem.enterGradeForAssignment(student, i + 1);
+                student.addGrade(grade);
+            }
         }
     }
 
@@ -65,8 +59,8 @@ public class GradeBook<S extends Student<Integer>> {
     }
 
     private void displayResults(List<S> students) {
-        new ConsoleGradebookDisplay<S>().display(students);
-        double classAverage = classAverageCalculator.calculateAverage(students);
+        gradebookDisplay.displayGradebook(students);
+        double classAverage = classAverageCalculator.calculateClassAverage(students);
         System.out.printf("Class Average: %.2f%n", classAverage);
     }
 }
