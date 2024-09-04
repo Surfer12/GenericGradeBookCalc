@@ -1,3 +1,4 @@
+import java.util.List;
 public class ConsoleGradebookDisplay<S extends Student> implements GradebookDisplay<S> {
     private static final String HEADER = "| Student  | Grades               | Avg  |";
     private static final String SEPARATOR = "-----------------------------------------";

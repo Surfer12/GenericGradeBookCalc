@@ -1,19 +1,20 @@
-public class ConsoleGradeEntrySystem<S extends Student> implements GradeEntrySystem<S, Integer> {
-    private final InputHandler<Integer> scoreInputHandler;
+import java.util.List;
 
-    public ConsoleGradeEntrySystem(InputHandler<Integer> scoreInputHandler) {
+public class ConsoleGradeEntrySystem<S extends Student<G>, G> implements GradeEntrySystem<S, G> {
+    private final InputHandler<G> scoreInputHandler;
+
+    public ConsoleGradeEntrySystem(InputHandler<G> scoreInputHandler) {
         this.scoreInputHandler = scoreInputHandler;
     }
 
     @Override
     public void enterGradesForStudent(S student) {
         System.out.println("Entering grades for " + student.getName() + ":");
-        List<Integer> grades = scoreInputHandler.getMultipleInputs(
+        List<G> grades = scoreInputHandler.getMultipleInputs(
                 "Enter grade (or type 'STOP' to finish): ",
-                "STOP"
-        );
+                "STOP");
 
-        for (Integer grade : grades) {
+        for (G grade : grades) {
             student.addGrade(grade);
         }
     }

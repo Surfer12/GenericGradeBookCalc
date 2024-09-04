@@ -2,8 +2,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Student<G> {
-    private String name;
     private final List<G> grades;
+    private String name;
     private double average;
 
     public Student() {
@@ -53,7 +53,7 @@ public class Student<G> {
             return 0;
         }
         return grades.stream()
-            .mapToInt(g -> ((Number) g).intValue())
-            .sum();
+                .mapToInt(g -> ((Number) g).intValue())
+                .sum();
     }
 }

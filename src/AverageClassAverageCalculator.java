@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class AverageClassAverageCalculator<S extends Student> implements ClassAverageCalculator<S> {
     @Override
     public double calculateClassAverage(List<S> students) {

@@ -1,4 +1,7 @@
-public class GradeBook<S extends Student> {
+import java.util.List;
+import java.util.function.Supplier;
+
+public class GradeBook<S extends Student<Integer>> {
     private final StudentRegistry<S> studentRegistry;
     private final InputHandler<String> nameInputHandler;
     private final InputHandler<Integer> countInputHandler;
@@ -28,38 +31,43 @@ public class GradeBook<S extends Student> {
     }
 
     public void run() {
-        enterStudentNames();
-        enterStudentGrades();
-        calculateAverages();
-        displayResults();
+        int studentCount = getStudentCount();
+        List<S> students = registerStudents(studentCount);
+        enterGrades(students);
+        calculateGrades(students);
+        displayResults(students);
     }
 
-    private void enterStudentNames() {
-        int numStudents = countInputHandler.getInput("Enter the number of students: ");
-        for (int i = 0; i < numStudents; i++) {
+    private int getStudentCount() {
+        return countInputHandler.getInput("Enter the number of students: ");
+    }
+
+    private List<S> registerStudents(int count) {
+        for (int i = 0; i < count; i++) {
             String name = nameInputHandler.getInput("Enter the name of student " + (i + 1) + ": ");
             S student = studentFactory.get();
             student.setName(name);
             studentRegistry.addStudent(student);
         }
+        return studentRegistry.getAllStudents();
     }
 
-    private void enterStudentGrades() {
-        for (S student : studentRegistry.getAllStudents()) {
+    private void enterGrades(List<S> students) {
+        for (S student : students) {
             gradeEntrySystem.enterGradesForStudent(student);
         }
     }
 
-    private void calculateAverages() {
-        for (S student : studentRegistry.getAllStudents()) {
+    private void calculateGrades(List<S> students) {
+        for (S student : students) {
             double average = gradeCalculator.calculateAverage(student);
             student.setAverage(average);
         }
     }
 
-    private void displayResults() {
-        gradebookDisplay.displayGradebook(studentRegistry.getAllStudents());
-        double classAverage = classAverageCalculator.calculateClassAverage(studentRegistry.getAllStudents());
+    private void displayResults(List<S> students) {
+        gradebookDisplay.displayGradebook(students);
+        double classAverage = classAverageCalculator.calculateClassAverage(students);
         System.out.printf("Class Average: %.2f%n", classAverage);
     }
 }

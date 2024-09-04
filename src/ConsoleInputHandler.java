@@ -16,12 +16,15 @@ public class ConsoleInputHandler<T> implements InputHandler<T> {
         while (true) {
             System.out.print(prompt);
             String input = scanner.nextLine();
-            if (inputValidator.isValid(input)) {
-                try {
-                    return inputValidator.parse(input);
-                } catch (Exception e) {
-                    System.out.println("Error parsing input. Please try again.");
+            try {
+                T value = inputValidator.parse(input);
+                if (inputValidator.isValid(value)) {
+                    return value;
+                } else {
+                    System.out.println("Invalid input. Please enter a valid " + inputValidator.getTypeName() + ".");
                 }
+            } catch (Exception e) {
+                System.out.println("Error parsing input: " + e.getMessage());
             }
         }
     }
@@ -35,12 +38,15 @@ public class ConsoleInputHandler<T> implements InputHandler<T> {
             if (input.equalsIgnoreCase(stopCommand)) {
                 break;
             }
-            if (inputValidator.isValid(input)) {
-                try {
-                    inputs.add(inputValidator.parse(input));
-                } catch (Exception e) {
-                    System.out.println("Error parsing input. Please try again.");
+            try {
+                T value = inputValidator.parse(input);
+                if (inputValidator.isValid(value)) {
+                    inputs.add(value);
+                } else {
+                    System.out.println("Invalid input. Please try again.");
                 }
+            } catch (Exception e) {
+                System.out.println("Error parsing input: " + e.getMessage());
             }
         }
         return inputs;

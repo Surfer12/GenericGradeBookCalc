@@ -7,22 +7,21 @@ public class InputValidator<T> {
         this.typeName = typeName;
     }
 
-    public boolean isValid(String input) {
-        try {
-            T value = validator.parse(input);
-            return validator.isValid(value);
-        } catch (Exception e) {
-            System.out.println("Invalid input. Please enter a valid " + typeName + ".");
-            return false;
-        }
+    public boolean isValid(T value) {
+        return validator.isValid(value);
     }
 
     public T parse(String input) throws Exception {
         return validator.parse(input);
     }
 
+    public String getTypeName() {
+        return typeName;
+    }
+
     public interface Validator<T> {
         T parse(String input) throws Exception;
+
         boolean isValid(T value);
     }
 }
