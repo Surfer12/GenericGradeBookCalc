@@ -20,7 +20,7 @@ public class InputValidator<T> {
     }
 
     public interface Validator<T> {
-        T parse(String input) throws Exception;
+        T parse(String input);
 
         boolean isValid(T value);
     }

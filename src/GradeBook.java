@@ -7,7 +7,6 @@ public class GradeBook<S extends Student<Integer>> {
     private final InputHandler<Integer> countInputHandler;
     private final GradeEntrySystem<S, Integer> gradeEntrySystem;
     private final GradeCalculator<S> gradeCalculator;
-    private final GradebookDisplay<S> gradebookDisplay;
     private final ClassAverageCalculator<S> classAverageCalculator;
     private final Supplier<S> studentFactory;
 
@@ -25,7 +24,6 @@ public class GradeBook<S extends Student<Integer>> {
         this.countInputHandler = countInputHandler;
         this.gradeEntrySystem = gradeEntrySystem;
         this.gradeCalculator = gradeCalculator;
-        this.gradebookDisplay = gradebookDisplay;
         this.classAverageCalculator = classAverageCalculator;
         this.studentFactory = studentFactory;
     }
@@ -33,6 +31,7 @@ public class GradeBook<S extends Student<Integer>> {
     public void run() {
         int studentCount = getStudentCount();
         List<S> students = registerStudents(studentCount);
+        promptForAssignmentCount(students);
         enterGrades(students);
         calculateGrades(students);
         displayResults(students);
@@ -52,11 +51,25 @@ public class GradeBook<S extends Student<Integer>> {
         return studentRegistry.getAllStudents();
     }
 
-    private void enterGrades(List<S> students) {
-        for (S student : students) {
-            gradeEntrySystem.enterGradesForStudent(student);
-        }
+// src/GradeBook.java
+private void promptForAssignmentCount(List<S> students) {
+    for (S student : students) {
+        int assignmentCount = countInputHandler.getInput("Enter the number of assignments for " + student.getName() + ": ");
+        student.setAssignmentCount(assignmentCount);
     }
+}
+
+private void enterGrades(List<S> students) {
+    for (S student : students) {
+        List<Integer> grades =
+                countInputHandler.getMultipleInputs("Enter grade for " + student.getName() + " " + "assignment" + student.getNumAssignments() +
+                        "(or" +
+                        " " +
+                "type " +
+                "'stop' to finish): ", "stop");
+        student.setGrades(grades);
+    }
+}
 
     private void calculateGrades(List<S> students) {
         for (S student : students) {

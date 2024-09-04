@@ -1,23 +1,57 @@
-import java.util.List;
+import java.util.Scanner;
+import java.util.function.Supplier;
 
 public class Main {
+
     public static void main(String[] args) {
-        SimpleStudentRegistry<Student<Integer>> registry = new SimpleStudentRegistry<>();
+        Scanner scanner = new Scanner(System.in);
+
         try {
-            // Add students to the registry
-            registry.addStudent(new Student<>("John Doe", List.of(90, 85, 92)));
-            registry.addStudent(new Student<>("Jane Smith", List.of(88, 79, 95)));
+            // Debug: Start of the program
+            System.out.println("Program started.");
 
-            // Display students
-            GradebookDisplay<Student<Integer>> display = new ConsoleGradebookDisplay<>();
-            display.display(registry.getAllStudents());
+            // Input handlers for name, score, and positive integers
+            System.out.println("Initializing input handlers...");
 
-            // Calculate average
-            ClassAverageCalculator<Student<Integer>> calculator = new AverageClassAverageCalculator<>();
-            double average = calculator.calculateAverage(registry.getAllStudents());
-            System.out.println("Class Average: " + average);
+            InputValidator<String> nameValidator = new InputValidator<>(new NameValidator(), "name");
+            InputHandler<String> nameInputHandler = new ConsoleInputHandler<>(scanner, nameValidator);
+
+            InputValidator<Integer> scoreValidator = new InputValidator<>(new ScoreValidator(), "score");
+            InputHandler<Integer> scoreInputHandler = new ConsoleInputHandler<>(scanner, scoreValidator);
+
+            InputValidator<Integer> positiveIntValidator = new InputValidator<>(new PositiveIntegerValidator(), "positive integer");
+            InputHandler<Integer> countInputHandler = new ConsoleInputHandler<>(scanner, positiveIntValidator);
+
+            // Student factory for creating new student instances
+            Supplier<Student<Integer>> studentFactory = () -> new Student<>();
+            System.out.println("Student factory created.");
+
+            // Create and initialize the GradeBook with all necessary components
+            System.out.println("Creating GradeBook...");
+            GradeBook<Student<Integer>> gradeBook = new GradeBook<>(
+                    new SimpleStudentRegistry<>(),
+                    nameInputHandler,
+                    countInputHandler,
+                    new ConsoleGradeEntrySystem<>(scoreInputHandler),
+                    new SimpleGradeCalculator<>(),
+                    new ConsoleGradebookDisplay<>(),
+                    new AverageClassAverageCalculator<>(),
+                    studentFactory
+            );
+
+            System.out.println("GradeBook created. Running GradeBook...");
+
+            // Run the gradebook system
+            gradeBook.run();
+
+            System.out.println("GradeBook ran successfully.");
         } catch (Exception e) {
-            e.printStackTrace(); // Consider using a logging framework
+            System.err.println("An error occurred: " + e.getMessage());
+            e.printStackTrace();
+        } finally {
+            // Close the scanner to free up resources
+            System.out.println("Closing scanner.");
+            scanner.close();
         }
     }
 }

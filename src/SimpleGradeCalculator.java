@@ -1,4 +1,4 @@
-public class SimpleGradeCalculator<S extends Student> implements GradeCalculator<S> {
+public class SimpleGradeCalculator<S extends Student<?>> implements GradeCalculator<S> {
     @Override
     public double calculateAverage(S student) {
         if (student.getNumAssignments() == 0) {
