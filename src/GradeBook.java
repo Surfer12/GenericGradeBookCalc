@@ -1,5 +1,6 @@
 import java.util.List;
 import java.util.function.Supplier;
+import java.util.ArrayList;
 
 public class GradeBook<S extends Student<Integer>> {
     private final StudentRegistry<S> studentRegistry;
@@ -28,14 +29,13 @@ public class GradeBook<S extends Student<Integer>> {
         this.studentFactory = studentFactory;
     }
 
-    public void run() {
-        int studentCount = getStudentCount();
-        List<S> students = registerStudents(studentCount);
-        promptForAssignmentCount(students);
-        enterGrades(students);
-        calculateGrades(students);
-        displayResults(students);
-    }
+ public void run() {
+    int studentCount = getStudentCount();
+    List<S> students = registerStudents(studentCount);
+    enterGrades(students); // Ensure this is called after assignment count is set
+    calculateGrades(students);
+    displayResults(students);
+}
 
     private int getStudentCount() {
         return countInputHandler.getInput("Enter the number of students: ");
@@ -51,25 +51,11 @@ public class GradeBook<S extends Student<Integer>> {
         return studentRegistry.getAllStudents();
     }
 
-// src/GradeBook.java
-private void promptForAssignmentCount(List<S> students) {
-    for (S student : students) {
-        int assignmentCount = countInputHandler.getInput("Enter the number of assignments for " + student.getName() + ": ");
-        student.setAssignmentCount(assignmentCount);
+    private void enterGrades(List<S> students) {
+        for (S student : students) {
+            gradeEntrySystem.enterGradesForStudent(student);
+        }
     }
-}
-
-private void enterGrades(List<S> students) {
-    for (S student : students) {
-        List<Integer> grades =
-                countInputHandler.getMultipleInputs("Enter grade for " + student.getName() + " " + "assignment" + student.getNumAssignments() +
-                        "(or" +
-                        " " +
-                "type " +
-                "'stop' to finish): ", "stop");
-        student.setGrades(grades);
-    }
-}
 
     private void calculateGrades(List<S> students) {
         for (S student : students) {

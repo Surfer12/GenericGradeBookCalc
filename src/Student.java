@@ -1,8 +1,9 @@
+// src/Student.java
 import java.util.ArrayList;
 import java.util.List;
 
 public class Student<G> {
-    private final List<G> grades;
+    private List<G> grades;
     private String name;
     private double average;
 
@@ -53,19 +54,11 @@ public class Student<G> {
     }
 
     public int getTotalScore() {
-        if (grades.isEmpty() || !(grades.getFirst() instanceof Number)) {
+        if (grades.isEmpty() || !(grades.get(0) instanceof Number)) {
             return 0;
         }
         return grades.stream()
                 .mapToInt(g -> ((Number) g).intValue())
                 .sum();
-    }
-    public void setGrades(List<G> grades) {
-        this.grades.clear();
-        this.grades.addAll(grades);
-    }
-    public void setAssignmentCount(int count) {
-        // This method can be used to initialize the grades list with a specific size if needed
-        // For now, it does nothing as the grades list is dynamically sized
     }
 }
