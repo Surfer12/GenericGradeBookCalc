@@ -64,6 +64,8 @@ public class GradeBook<S extends Student<Integer>> {
         displayResults(students);
     }
 
+
+
     //Prompt after gradebook is run to request if any additional students need to be added
     public void addStudents() {
         int studentCount = getStudentCount();
@@ -75,7 +77,7 @@ public class GradeBook<S extends Student<Integer>> {
 
     // Create a method to remove a student from the gradebook
     public void removeStudent() {
-        //Prompt user to enter the name of the student to remove
+        //Prompt the user to enter the name of the student to remove
         String name = nameInputHandler.getInput("Enter the name of the student to remove: ");
         //Remove the student from the student registry
         studentRegistry.removeStudent(name);
@@ -113,7 +115,6 @@ public Optional<S> promptUpdateGrade() {
 Chaining Operations: Returning the Optional<S> allows for further operations to be chained on the result. This can be useful if additional processing or checks are needed on the updated student.
 Error Handling: By returning an Optional, the method clearly indicates whether the student was found and updated. This can be useful for error handling and logging purposes.
 Consistency: If other methods in the class return Optional values, it maintains consistency in the API design.*/
-
 
     /**
      * Prompts for and returns the number of students.
