@@ -16,7 +16,7 @@ public interface StudentRegistry<S extends Student<?>, G> {
         return new ArrayList<>(getStudents());
     }
 
-@SuppressWarnings("unused")
+    @SuppressWarnings("unused")
     default Optional<S> removeStudent(String name) {
         Optional<S> studentToRemove = getStudents().stream()
                 .filter(s -> s.getName().equals(name))
@@ -36,9 +36,9 @@ public interface StudentRegistry<S extends Student<?>, G> {
                 .filter(s -> s.getName().equals(name))
                 .findFirst();
     }
-    // After
+
     @SuppressWarnings("unused")
-    default Optional<S> updateGrade(String name, int assignmentNumber, G grade) {
+    default Optional<S> updateGrade(String name, int assignmentNumber, Number grade) {
         return getStudents().stream()
                 .filter(s -> s.getName().equals(name))
                 .findFirst()
@@ -47,12 +47,5 @@ public interface StudentRegistry<S extends Student<?>, G> {
                     System.out.println("Grade updated for student: " + name);
                     return student;
                 });
-    }
-
-    public void updateIndividualGrade(String name, int assignmentNumber, Number grade) {
-        students.stream()
-                .filter(s -> s.getName().equals(name))
-                .findFirst()
-                .ifPresent(s -> s.updateIndividualGrade(assignmentNumber, grade));
     }
 }
