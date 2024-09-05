@@ -3,7 +3,7 @@ import java.util.Optional;
 import java.util.function.Supplier;
 
 
-public class GradeBook<S extends Student<G>, G> extends AbstractGradeBook<S, G> {
+public abstract class GradeBook<S extends Student<G>, G> extends AbstractGradeBook<S, G> {
     public GradeBook(StudentRegistry<S, G> studentRegistry,
                      InputHandler<String> nameInputHandler,
                      InputHandler<Integer> countInputHandler,
@@ -43,12 +43,12 @@ public class GradeBook<S extends Student<G>, G> extends AbstractGradeBook<S, G> 
     @Override
     public Optional<S> promptUpdateGrade() {
         String name = nameInputHandler.getInput("Enter the name of the student to update: ");
-        Optional<S> student = studentRegistry.getStudent(name);
-        int assignmentNumber = countInputHandler.getInput("Enter the assignment number to update: ");
-        G grade = gradeEntrySystem.enterGradeForAssignment(student.get(), assignmentNumber);
-        student.ifPresent(s -> s.updateIndividualGrade(name, assignmentNumber, (Number) grade));
-        List<S> students = studentRegistry.getAllStudents();
-        displayResults(students);
-        return student;
-    }
+            Optional<S> student = studentRegistry.getStudent(name);
+            int assignmentNumber = countInputHandler.getInput("Enter the assignment number to update: ");
+            G grade = gradeEntrySystem.enterGradeForAssignment(student.get(), assignmentNumber);
+            student.ifPresent(s -> s.updateGrade(name, assignmentNumber, (Number) grade));
+            List<S> students = studentRegistry.getAllStudents();
+            displayResults(students);
+            return student;
+        }
     }
