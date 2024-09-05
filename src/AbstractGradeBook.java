@@ -42,6 +42,12 @@ public abstract class AbstractGradeBook<S extends Student<G>, G> {
         return countInputHandler.getInput("Enter the number of students: (or type 'unknown'): ");
     }
 
+    protected int getNewStudentCount() {
+        return countInputHandler.getInput("Enter the number of new students to add: (or type " +
+                "'unknown')" +
+                ": ");
+    }
+
     protected int getAssignmentCount() {
         return countInputHandler.getInput("Enter the number of assignments: ");
     }

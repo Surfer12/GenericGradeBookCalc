@@ -26,7 +26,11 @@ public interface StudentRegistry<S extends Student<?>, G> {
             System.out.println("Student removed: " + student.getName());
         });
         if (studentToRemove.isEmpty()) {
-            System.out.println("Student not found.");
+            if (!name.equalsIgnoreCase("STOP")) {
+            System.out.println("Student not found .");
+            } else {
+                return Optional.empty();
+        }
         }
         return studentToRemove;
     }

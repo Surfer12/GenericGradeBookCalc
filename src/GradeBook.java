@@ -21,11 +21,14 @@ public abstract class GradeBook<S extends Student<G>, G> extends AbstractGradeBo
         enterGrades(students);
         calculateGrades(students);
         displayResults(students);
+        removeStudent();
+        addStudents();
+        promptUpdateGrade();
     }
 
     @Override
     public void addStudents() {
-        int studentCount = getStudentCount();
+        int studentCount = getNewStudentCount();
         List<S> students = registerStudents(studentCount);
         enterGrades(students);
         calculateGrades(students);
@@ -34,7 +37,11 @@ public abstract class GradeBook<S extends Student<G>, G> extends AbstractGradeBo
 
     @Override
     public void removeStudent() {
-        String name = nameInputHandler.getInput("Enter the name of the student to remove: ");
+        String name = nameInputHandler.getInput("Enter the name of the student to remove: " +
+                "('STOP' to remove none.) ");
+        if(name.equalsIgnoreCase("STOP")) {
+            System.out.println("No students removed.");
+        }
         studentRegistry.removeStudent(name);
         List<S> students = studentRegistry.getAllStudents();
         displayResults(students);
@@ -42,9 +49,19 @@ public abstract class GradeBook<S extends Student<G>, G> extends AbstractGradeBo
 
     @Override
     public Optional<S> promptUpdateGrade() {
-        String name = nameInputHandler.getInput("Enter the name of the student to update: ");
+        String name = nameInputHandler.getInput("Enter the name of the student to update their " +
+                "grade: "+
+                "('STOP' to update none of the student's individual grades.) ");
+        if(name.equalsIgnoreCase("STOP")) {
+            System.out.println("No student grade(s) have been updated.");
+        }
         Optional<S> student = studentRegistry.getStudent(name);
-        int assignmentNumber = countInputHandler.getInput("Enter the assignment number to update: ");
+        int assignmentNumber = countInputHandler.getInput("Enter the assignment number to " +
+                "update: " +
+                "('STOP' to update none of the individual assignments) ");
+        if(name.equalsIgnoreCase("STOP")) {
+            System.out.println("No individual student assignment has been updated.");
+        }
         G grade = gradeEntrySystem.enterGradeForAssignment(student.get(), assignmentNumber);
         student.ifPresent(s -> s.updateGrade(name, assignmentNumber, (Number) grade));
         List<S> students = studentRegistry.getAllStudents();
