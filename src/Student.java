@@ -117,21 +117,21 @@ public class Student<G> {
     }
 
     /**
-     * Sets the number of assignments for the student.
-     *
-     * @param assignmentCount the number of assignments
-     */
-    public void setAssignmentCount(int assignmentCount) {
-        this.assignmentCount = assignmentCount;
-    }
-
-    /**
      * Gets the number of assignments for the student.
      *
      * @return the number of assignments
      */
     public int getAssignmentCount() {
         return assignmentCount;
+    }
+
+    /**
+     * Sets the number of assignments for the student.
+     *
+     * @param assignmentCount the number of assignments
+     */
+    public void setAssignmentCount(int assignmentCount) {
+        this.assignmentCount = assignmentCount;
     }
 
     /**
@@ -146,5 +146,12 @@ public class Student<G> {
         return grades.stream()
                 .mapToInt(g -> ((Number) g).intValue())
                 .sum();
+    }
+
+    public void updateGrade(int assignmentNumber, int grade) {
+        if (assignmentNumber < 1 || assignmentNumber > grades.size()) {
+            throw new IllegalArgumentException("Invalid assignment number.");
+        }
+        grades.set(assignmentNumber - 1, (G) Integer.valueOf(grade));
     }
 }

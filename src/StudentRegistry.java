@@ -23,7 +23,7 @@ public interface StudentRegistry<S extends Student<?>> {
      */
     List<S> getAllStudents();
 
- /**
+    /**
      * Removes a student from the registry by their name.
      *
      * @param name the name of the student to be removed
@@ -38,4 +38,6 @@ public interface StudentRegistry<S extends Student<?>> {
      * @return an Optional containing the student if found, otherwise an empty Optional
      */
     Optional<S> getStudent(String name);
-
+    // update grade
+    Optional<S> updateGrade(String name, int assignmentNumber, int grade);
+}

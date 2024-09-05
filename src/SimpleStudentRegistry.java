@@ -31,24 +31,25 @@ public class SimpleStudentRegistry<S extends Student<?>> implements StudentRegis
     public List<S> getAllStudents() {
         return new ArrayList<>(students);
     }
-/**
- * Removes a student from the registry by their name.
- *
- * @param name the name of the student to be removed
- * @return an Optional containing the removed student if found, otherwise an empty Optional
- */
-@Override
-public Optional<S> removeStudent(String name) {
-    for (int i = 0; i < students.size(); i++) {
-        if (students.get(i).getName().equals(name)) {
-            S removedStudent = students.remove(i);
-            System.out.println("Student removed: " + removedStudent.getName());
-            return Optional.of(removedStudent);
+
+    /**
+     * Removes a student from the registry by their name.
+     *
+     * @param name the name of the student to be removed
+     * @return an Optional containing the removed student if found, otherwise an empty Optional
+     */
+    @Override
+    public Optional<S> removeStudent(String name) {
+        for (int i = 0; i < students.size(); i++) {
+            if (students.get(i).getName().equals(name)) {
+                S removedStudent = students.remove(i);
+                System.out.println("Student removed: " + removedStudent.getName());
+                return Optional.of(removedStudent);
+            }
         }
+        System.out.println("Student not found.");
+        return Optional.empty();
     }
-    System.out.println("Student not found.");
-    return Optional.empty();
-}
 
 
     /**
@@ -63,15 +64,31 @@ public Optional<S> removeStudent(String name) {
      .findFirst();
      The findFirst method returns an Optional containing the first element of the stream that matches the filter criteria. If no elements match, it returns an empty Optional. */
 
-/**
- * Retrieves a student from the registry by their name.
- *
- * @param name the name of the student to be retrieved
- * @return an Optional containing the student if found, otherwise an empty Optional
- */
-@Override
-public Optional<S> getStudent(String name) {
-    return students.stream()
-            .filter(s -> s.getName().equals(name))
-            .findFirst();
+    /**
+     * Retrieves a student from the registry by their name.
+     *
+     * @param name the name of the student to be retrieved
+     * @return an Optional containing the student if found, otherwise an empty Optional
+     */
+    @Override
+    public Optional<S> getStudent(String name) {
+        return students.stream()
+                .filter(s -> s.getName().equals(name))
+                .findFirst();
+    }
+
+// Create a method to update a student's grade
+    @Override
+    public Optional<S> updateGrade(String name, int assignmentNumber, int grade) {
+        Optional<S> student = getStudent(name);
+        if (student.isPresent()) {
+            student.get().updateGrade(assignmentNumber, grade);
+            System.out.println("Grade updated for student: " + name);
+            return Optional.of(student.get());
+        } else {
+            System.out.println("Student not found.");
+            return Optional.empty();
+        }
+    }
 }
+
