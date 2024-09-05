@@ -71,12 +71,7 @@ public Optional<S> removeStudent(String name) {
  */
 @Override
 public Optional<S> getStudent(String name) {
-    Optional<S> student = students.stream()
-                                  .filter(s -> s.getName().equals(name))
-                                  .findFirst();
-    if (student.isEmpty()) {
-        System.out.println("Student not found.");
-    }
-    return student;
-}
+    return students.stream()
+            .filter(s -> s.getName().equals(name))
+            .findFirst();
 }
