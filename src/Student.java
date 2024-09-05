@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * The Student class represents a student with a name, a list of grades, and an average score.
@@ -11,9 +12,9 @@ public class Student<G> {
     private String name;
     private double average;
     /**
- * The number of assignments for the student.
- */
-private int assignmentCount;
+     * The number of assignments for the student.
+     */
+    private int assignmentCount;
 
     /**
      * Default constructor that initializes the student with an empty list of grades.
@@ -114,23 +115,24 @@ private int assignmentCount;
     public int getNumAssignments() {
         return grades.size();
     }
-/**
- * Sets the number of assignments for the student.
- *
- * @param assignmentCount the number of assignments
- */
-public void setAssignmentCount(int assignmentCount) {
-    this.assignmentCount = assignmentCount;
-}
 
-/**
- * Gets the number of assignments for the student.
- *
- * @return the number of assignments
- */
-public int getAssignmentCount() {
-    return assignmentCount;
-}
+    /**
+     * Sets the number of assignments for the student.
+     *
+     * @param assignmentCount the number of assignments
+     */
+    public void setAssignmentCount(int assignmentCount) {
+        this.assignmentCount = assignmentCount;
+    }
+
+    /**
+     * Gets the number of assignments for the student.
+     *
+     * @return the number of assignments
+     */
+    public int getAssignmentCount() {
+        return assignmentCount;
+    }
 
     /**
      * Gets the total score of all grades.

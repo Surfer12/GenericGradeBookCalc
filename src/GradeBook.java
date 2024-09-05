@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Supplier;
 
 /**
@@ -63,14 +64,57 @@ public class GradeBook<S extends Student<Integer>> {
         displayResults(students);
     }
 
+    //Prompt after gradebook is run to request if any additional students need to be added
+    public void addStudents() {
+        int studentCount = getStudentCount();
+        List<S> students = registerStudents(studentCount);
+        enterGrades(students);
+        calculateGrades(students);
+        displayResults(students);
+    }
+
+    // Create a method to remove a student from the gradebook
+    public void removeStudent() {
+        //Prompt user to enter the name of the student to remove
+        String name = nameInputHandler.getInput("Enter the name of the student to remove: ");
+        //Remove the student from the student registry
+        studentRegistry.removeStudent(name);
+        //Get the list of students
+        List<S> students = studentRegistry.getAllStudents();
+        //Display the results
+        displayResults(students);
+    }
+
+    // Create a method to update a student's grade
+
+    public void updateGrade() {
+        //Prompt user to enter the name of the student to update
+        String name = nameInputHandler.getInput("Enter the name of the student to update: ");
+        //Get the student from the student registry
+        Optional<S> student = studentRegistry.getStudent(name);
+        //Prompt user to enter the assignment number to update
+        int assignmentNumber = countInputHandler.getInput("Enter the assignment number to update: ");
+        //Prompt user to enter the new grade
+        int grade = countInputHandler.getInput("Enter the new grade: ");
+        //Update the grade
+        student.updateGrade(assignmentNumber, grade);
+        //Get the list of students
+        List<S> students = studentRegistry.getAllStudents();
+        //Display the results
+        displayResults(students);
+    }
+
+
     /**
      * Prompts for and returns the number of students.
      * <p>
      * \*\*Returns\*\*
      * \- the number of students as an integer.
      */
+    // Accepts 'unknown' string as a command during addition of students to create an arraylist
+    // of standard size to store the students that are then added to the student registry
     private int getStudentCount() {
-        return countInputHandler.getInput("Enter the number of students: ");
+        return countInputHandler.getInput("Enter the number of students: (or type 'unknown'): ");
     }
 
     /**

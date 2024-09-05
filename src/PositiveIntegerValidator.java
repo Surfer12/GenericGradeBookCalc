@@ -13,6 +13,9 @@ public class PositiveIntegerValidator implements InputValidator.Validator<Intege
      */
     @Override
     public Integer parse(String input) throws NumberFormatException {
+        if("unknown".equalsIgnoreCase(input)) {
+            return 10; // default size for ArrayLis if total student count is unknown
+        }
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {

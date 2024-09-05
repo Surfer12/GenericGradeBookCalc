@@ -58,6 +58,7 @@ public class Main {
             gradeBook.run();
 
             System.out.println("GradeBook ran successfully.");
+
         } catch (Exception e) {
             // Handle any exceptions that occur during the execution
             System.err.println("An error occurred: " + e.getMessage());
