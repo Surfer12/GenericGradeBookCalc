@@ -1,43 +1,50 @@
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Supplier;
+import java.util.Collections;
 
 public abstract class GradeBook<S extends Student<G>, G> extends AbstractGradeBook<S, G> {
     public GradeBook(StudentRegistry<S, G> studentRegistry,
                      InputHandler<String> nameInputHandler,
                      InputHandler<Integer> countInputHandler,
+                        InputHandler<Integer> assignmentCountInputHandler,
                      GradeEntrySystem<S, G> gradeEntrySystem,
                      GradeCalculator<S> gradeCalculator,
                      GradebookDisplay<S> gradebookDisplay,
                      ClassAverageCalculator<S> classAverageCalculator,
                      Supplier<S> studentFactory) {
-        super(studentRegistry, nameInputHandler, countInputHandler, gradeEntrySystem, gradeCalculator, gradebookDisplay, classAverageCalculator, studentFactory);
+        super(studentRegistry, nameInputHandler, countInputHandler,
+                assignmentCountInputHandler, gradeEntrySystem,
+                gradeCalculator, gradebookDisplay, classAverageCalculator, studentFactory);
     }
 
-    @Override
-    public void run() {
-        int studentCount = getStudentCount();
-        List<S> students = registerStudents(studentCount);
-        enterGrades(students);
-        calculateGrades(students);
-        displayResults(students);
-        removeStudent();
-        addStudents();
-        promptUpdateGrade();
+ @Override
+public void run() {
+    int studentCount = getStudentCount();
+    List<S> students = registerStudents(studentCount);
+    enterGrades(students);
+    calculateGrades(students);
+    displayResults(students);
+    removeStudent();
+    List<S> newStudents = addStudents();
+    if (!newStudents.isEmpty()) {
+        enterGrades(newStudents);
+        calculateGrades(newStudents);
+        displayResults(newStudents);
     }
+    promptUpdateGrade();
+}
 
-    @Override
-    public void addStudents() {
-        int studentCount = getNewStudentCount();
-        if (studentCount == 0) {
-            System.out.println("No new students added.");
-            return;
-        }
-        List<S> students = registerStudents(studentCount);
-        enterGrades(students);
-        calculateGrades(students);
-        displayResults(students);
+@Override
+public List<S> addStudents() {
+    int studentCount = getNewStudentCount();
+    if (studentCount == 0) {
+        System.out.println("No new students added.");
+        return Collections.emptyList();
     }
+    List<S> students = registerStudents(studentCount);
+    return students;
+}
 
     @Override
     public void removeStudent() {

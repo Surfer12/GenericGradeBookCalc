@@ -6,6 +6,7 @@ public abstract class AbstractGradeBook<S extends Student<G>, G> {
     protected final StudentRegistry<S, G> studentRegistry;
     protected final InputHandler<String> nameInputHandler;
     protected final InputHandler<Integer> countInputHandler;
+    protected final InputHandler<Integer> assignmentCountInputHandler;
     protected final GradeEntrySystem<S, G> gradeEntrySystem;
     protected final GradeCalculator<S> gradeCalculator;
     protected final GradebookDisplay<S> gradebookDisplay;
@@ -15,6 +16,7 @@ public abstract class AbstractGradeBook<S extends Student<G>, G> {
     public AbstractGradeBook(StudentRegistry<S, G> studentRegistry,
                              InputHandler<String> nameInputHandler,
                              InputHandler<Integer> countInputHandler,
+                                InputHandler<Integer> assignmentCountInputHandler,
                              GradeEntrySystem<S, G> gradeEntrySystem,
                              GradeCalculator<S> gradeCalculator,
                              GradebookDisplay<S> gradebookDisplay,
@@ -23,6 +25,7 @@ public abstract class AbstractGradeBook<S extends Student<G>, G> {
         this.studentRegistry = studentRegistry;
         this.nameInputHandler = nameInputHandler;
         this.countInputHandler = countInputHandler;
+        this.assignmentCountInputHandler = assignmentCountInputHandler;
         this.gradeEntrySystem = gradeEntrySystem;
         this.gradeCalculator = gradeCalculator;
         this.gradebookDisplay = gradebookDisplay;
@@ -32,7 +35,7 @@ public abstract class AbstractGradeBook<S extends Student<G>, G> {
 
     public abstract void run();
 
-    public abstract void addStudents();
+    public abstract List<S> addStudents();
 
     public abstract void removeStudent();
 
@@ -42,10 +45,10 @@ public abstract class AbstractGradeBook<S extends Student<G>, G> {
         return countInputHandler.getInput("Enter the number of students: (or type 'unknown'): ");
     }
 
-    protected int getNewStudentCount() {
-        String input = nameInputHandler.getInput("Enter the number of new students to add: (or type 'unknown' if not known (Default 10 Students). ('STOP' to enter no new students)");
-        return handleNewStudentCount(input);
-    }
+protected int getNewStudentCount() {
+    String input = assignmentCountInputHandler.getInput("Enter the number of new students to add: (or type 'unknown' if not known (Default 10 Students). ('STOP' to enter no new students)").trim();
+    return handleNewStudentCount(input);
+}
 
     protected int handleNewStudentCount(String input) {
         if (input.equalsIgnoreCase("STOP")) {

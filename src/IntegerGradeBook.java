@@ -6,6 +6,7 @@ public class IntegerGradeBook extends GradeBook<Student<Integer>, Integer> {
         super(new SimpleStudentRegistry<>(),
               new ConsoleInputHandler<>(new Scanner(System.in), new InputValidator<>(new NameValidator(), "name")),
               new ConsoleInputHandler<>(new Scanner(System.in), new InputValidator<>(new PositiveIntegerValidator(), "positive integer")),
+                new ConsoleInputHandler<>(new Scanner(System.in), new InputValidator<>(new PositiveIntegerValidator(), "positive integer")),
               new ConsoleGradeEntrySystem<>(new ConsoleInputHandler<>(new Scanner(System.in), new InputValidator<>(new ScoreValidator(), "score"))),
               new SimpleGradeCalculator<>(),
               new ConsoleGradebookDisplay<>(),
