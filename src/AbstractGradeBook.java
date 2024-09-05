@@ -46,8 +46,8 @@ public abstract class AbstractGradeBook<S extends Student<G>, G> {
     }
 
 protected int getNewStudentCount() {
-    String input = assignmentCountInputHandler.getInput("Enter the number of new students to add: (or type 'unknown' if not known (Default 10 Students). ('STOP' to enter no new students)").trim();
-    return handleNewStudentCount(input);
+    String input = String.valueOf(assignmentCountInputHandler.getInput("Enter the number of new students to add: (or type 'unknown' if not known (Default 10 Students). ('STOP' to enter no new students)"));
+    return handleNewStudentCount(input.trim());
 }
 
     protected int handleNewStudentCount(String input) {

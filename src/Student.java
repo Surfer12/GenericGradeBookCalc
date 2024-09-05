@@ -107,7 +107,13 @@ public class Student<G> implements StudentRegistry<Student<?>, G> {
         return grades.toString();
     }
 
-
+    public void updateGrade(int assignmentNumber, G newGrade) {
+        if (assignmentNumber > 0 && assignmentNumber <= grades.size()) {
+            grades.set(assignmentNumber - 1, newGrade);
+        } else {
+            System.out.println("Invalid assignment number.");
+        }
+    }
 
     /**
      * Gets the number of assignments (grades).
