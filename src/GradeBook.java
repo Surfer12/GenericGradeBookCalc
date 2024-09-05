@@ -18,25 +18,35 @@ public abstract class GradeBook<S extends Student<G>, G> extends AbstractGradeBo
                 gradeCalculator, gradebookDisplay, classAverageCalculator, studentFactory);
     }
 
-@Override
-public void run() {
-    int studentCount = getStudentCount();
-    List<S> students = registerStudents(studentCount);
-    enterGrades(students);
-    calculateGrades(students);
-    displayResults(students);
-}
+    @Override
+    public void run() {
+        int studentCount = getStudentCount();
+        List<S> students = registerStudents(studentCount);
+        enterGrades(students); // Enter grades for initial students
+        calculateGrades(students);
+        displayResults(students);
 
-@Override
-public List<S> addStudents() {
-    int studentCount = getNewStudentCount();
-    if (studentCount == 0) {
-        System.out.println("No new students added.");
-        return Collections.emptyList();
+        removeStudent();
+        promptUpdateGrade();
+
+        List<S> newStudents = addStudents();
+        if (!newStudents.isEmpty()) {
+            calculateGrades(newStudents);
+            displayResults(newStudents);
+        }
     }
-    List<S> students = registerStudents(studentCount);
-    return students;
-}
+
+    @Override
+    public List<S> addStudents() {
+        int studentCount = getNewStudentCount();
+        if (studentCount == 0) {
+            System.out.println("No new students added.");
+            return Collections.emptyList();
+        }
+        List<S> newStudents = registerStudents(studentCount);
+        enterGrades(newStudents); // Only enter grades for new students
+        return newStudents;
+    }
 
     @Override
     public void removeStudent() {
