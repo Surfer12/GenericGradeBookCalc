@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.Scanner;
 import java.util.function.Supplier;
 
@@ -22,21 +21,12 @@ public class Main {
         InputValidator<Integer> positiveIntValidator = new InputValidator<>(new PositiveIntegerValidator(), "positive integer");
         InputHandler<Integer> countInputHandler = new ConsoleInputHandler<>(scanner, positiveIntValidator);
 
-        // Create a DoubleGradeBook
-        Supplier<Student<Double>> studentFactory = Student::new;
-        DoubleGradeBook doubleGradeBook = new DoubleGradeBook(
-                new SimpleStudentRegistry<>(),
-                nameInputHandler,
-                countInputHandler,
-                new ConsoleGradeEntrySystem<Student<Double>>(scoreInputHandler),
-                new SimpleGradeCalculator<>(),
-                new ConsoleGradebookDisplay<>(),
-                new AverageClassAverageCalculator<>(),
-                studentFactory
-        );
+        // Create an IntegerGradeBook
+        Supplier<Student<Integer>> studentFactory = Student::new;
+        IntegerGradeBook integerGradeBook = new IntegerGradeBook(studentFactory);
 
-        // Run the DoubleGradeBook
-        doubleGradeBook.run();
+        // Run the IntegerGradeBook
+        integerGradeBook.run();
 
         // Close the scanner
         scanner.close();

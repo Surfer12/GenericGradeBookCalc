@@ -2,7 +2,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-
 public abstract class GradeBook<S extends Student<G>, G> extends AbstractGradeBook<S, G> {
     public GradeBook(StudentRegistry<S, G> studentRegistry,
                      InputHandler<String> nameInputHandler,
@@ -14,7 +13,6 @@ public abstract class GradeBook<S extends Student<G>, G> extends AbstractGradeBo
                      Supplier<S> studentFactory) {
         super(studentRegistry, nameInputHandler, countInputHandler, gradeEntrySystem, gradeCalculator, gradebookDisplay, classAverageCalculator, studentFactory);
     }
-
 
     @Override
     public void run() {
@@ -33,6 +31,7 @@ public abstract class GradeBook<S extends Student<G>, G> extends AbstractGradeBo
         calculateGrades(students);
         displayResults(students);
     }
+
     @Override
     public void removeStudent() {
         String name = nameInputHandler.getInput("Enter the name of the student to remove: ");
@@ -40,15 +39,16 @@ public abstract class GradeBook<S extends Student<G>, G> extends AbstractGradeBo
         List<S> students = studentRegistry.getAllStudents();
         displayResults(students);
     }
+
     @Override
     public Optional<S> promptUpdateGrade() {
         String name = nameInputHandler.getInput("Enter the name of the student to update: ");
-            Optional<S> student = studentRegistry.getStudent(name);
-            int assignmentNumber = countInputHandler.getInput("Enter the assignment number to update: ");
-            G grade = gradeEntrySystem.enterGradeForAssignment(student.get(), assignmentNumber);
-            student.ifPresent(s -> s.updateGrade(name, assignmentNumber, (Number) grade));
-            List<S> students = studentRegistry.getAllStudents();
-            displayResults(students);
-            return student;
-        }
+        Optional<S> student = studentRegistry.getStudent(name);
+        int assignmentNumber = countInputHandler.getInput("Enter the assignment number to update: ");
+        G grade = gradeEntrySystem.enterGradeForAssignment(student.get(), assignmentNumber);
+        student.ifPresent(s -> s.updateGrade(name, assignmentNumber, (Number) grade));
+        List<S> students = studentRegistry.getAllStudents();
+        displayResults(students);
+        return student;
     }
+}

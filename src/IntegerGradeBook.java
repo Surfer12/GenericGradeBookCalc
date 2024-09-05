@@ -1,7 +1,8 @@
-import java.util.function.Supplier;
 import java.util.Scanner;
-public class DoubleGradeBook extends GradeBook<Student<Double>, Double> {
-    public DoubleGradeBook(Supplier<Student<Double>> studentFactory) {
+import java.util.function.Supplier;
+
+public class IntegerGradeBook extends GradeBook<Student<Integer>, Integer> {
+    public IntegerGradeBook(Supplier<Student<Integer>> studentFactory) {
         super(new SimpleStudentRegistry<>(),
               new ConsoleInputHandler<>(new Scanner(System.in), new InputValidator<>(new NameValidator(), "name")),
               new ConsoleInputHandler<>(new Scanner(System.in), new InputValidator<>(new PositiveIntegerValidator(), "positive integer")),

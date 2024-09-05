@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class SimpleStudentRegistry<S extends Student<?>> implements StudentRegistry<S, Number> {
+public class SimpleStudentRegistry<S extends Student<G>, G> implements StudentRegistry<S, G> {
     private final List<S> students = new ArrayList<>();
 
     @Override
