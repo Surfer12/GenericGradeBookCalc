@@ -96,8 +96,10 @@ protected int getNewStudentCount() {
         }
     }
 
-    protected void displayResults(List<S> students) {
-        gradebookDisplay.display(students);
-        System.out.printf("Class Average: %.2f%n", classAverageCalculator.calculateAverage(students));
-    }
+
+public void displayResults(List<S> students) {
+    gradebookDisplay.display(students);
+    double classAverage = classAverageCalculator.calculateAverage(students);
+    System.out.printf("Class Average: %.2f%n", classAverage);
+}
 }
