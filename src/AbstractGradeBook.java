@@ -42,11 +42,19 @@ public abstract class AbstractGradeBook<S extends Student<G>, G> {
         return countInputHandler.getInput("Enter the number of students: (or type 'unknown'): ");
     }
 
-    protected int getNewStudentCount() {
-        return countInputHandler.getInput("Enter the number of new students to add: (or type " +
-                "'unknown')" +
-                ": ");
+protected int getNewStudentCount() {
+    String input = nameInputHandler.getInput("Enter the number of new students to add: (or type 'unknown' if not known (Default 10 Students). ('STOP' to enter no new students)");
+    if (input.equalsIgnoreCase("STOP")) {
+        System.out.println("No new students will be added.");
+        return 0;
     }
+    try {
+        return Integer.parseInt(input);
+    } catch (NumberFormatException e) {
+        System.out.println("Invalid input. Defaulting to 10 students.");
+        return 10;
+    }
+}
 
     protected int getAssignmentCount() {
         return countInputHandler.getInput("Enter the number of assignments: ");
