@@ -1,43 +1,58 @@
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * The StudentRegistry interface defines methods for adding a student to the registry and
- * retrieving all students as well as removing a student and grabbing a student object by name .
- *
- * @param <S> the type of Student
- */
-public interface StudentRegistry<S extends Student<?>> {
+public interface StudentRegistry<S extends Student<?>, G> {
 
-    /**
-     * Adds a student to the registry.
-     *
-     * @param student the student to be added
-     */
-    void addStudent(S student);
+    default List<S> getStudents() {
+        return new ArrayList<>();
+    }
 
-    /**
-     * Retrieves all students from the registry.
-     *
-     * @return a list of all students
-     */
-    List<S> getAllStudents();
+    default void addStudent(S student) {
+        getStudents().add(student);
+    }
 
-    /**
-     * Removes a student from the registry by their name.
-     *
-     * @param name the name of the student to be removed
-     * @return an Optional containing the removed student if found, otherwise an empty Optional
-     */
-    Optional<S> removeStudent(String name);
+    default List<S> getAllStudents() {
+        return new ArrayList<>(getStudents());
+    }
 
-    /**
-     * Retrieves a student from the registry by their name.
-     *
-     * @param name the name of the student to be retrieved
-     * @return an Optional containing the student if found, otherwise an empty Optional
-     */
-    Optional<S> getStudent(String name);
-    // update grade
-    Optional<S> updateGrade(String name, int assignmentNumber, int grade);
+@SuppressWarnings("unused")
+    default Optional<S> removeStudent(String name) {
+        Optional<S> studentToRemove = getStudents().stream()
+                .filter(s -> s.getName().equals(name))
+                .findFirst();
+        studentToRemove.ifPresent(student -> {
+            getStudents().remove(student);
+            System.out.println("Student removed: " + student.getName());
+        });
+        if (studentToRemove.isEmpty()) {
+            System.out.println("Student not found.");
+        }
+        return studentToRemove;
+    }
+
+    default Optional<S> getStudent(String name) {
+        return getStudents().stream()
+                .filter(s -> s.getName().equals(name))
+                .findFirst();
+    }
+    // After
+    @SuppressWarnings("unused")
+    default Optional<S> updateGrade(String name, int assignmentNumber, G grade) {
+        return getStudents().stream()
+                .filter(s -> s.getName().equals(name))
+                .findFirst()
+                .map(student -> {
+                    student.updateGrade(name, assignmentNumber, grade);
+                    System.out.println("Grade updated for student: " + name);
+                    return student;
+                });
+    }
+
+    public void updateIndividualGrade(String name, int assignmentNumber, Number grade) {
+        students.stream()
+                .filter(s -> s.getName().equals(name))
+                .findFirst()
+                .ifPresent(s -> s.updateIndividualGrade(assignmentNumber, grade));
+    }
 }

@@ -41,7 +41,7 @@ public class Main {
 
             // Create and initialize the GradeBook with all necessary components
             System.out.println("Creating GradeBook...");
-            GradeBook<Student<Integer>> gradeBook = new GradeBook<>(
+            GradeBook<Student<Integer>, Integer> gradeBook = new GradeBook<>(
                     new SimpleStudentRegistry<>(),
                     nameInputHandler,
                     countInputHandler,

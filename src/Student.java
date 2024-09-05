@@ -7,7 +7,7 @@ import java.util.Optional;
  *
  * @param <G> the type of grades, which should extend Number
  */
-public class Student<G> {
+public class Student<G> implements StudentRegistry<Student<?>, G> {
     private final List<G> grades;
     private String name;
     private double average;
@@ -146,12 +146,5 @@ public class Student<G> {
         return grades.stream()
                 .mapToInt(g -> ((Number) g).intValue())
                 .sum();
-    }
-
-    public void updateGrade(int assignmentNumber, int grade) {
-        if (assignmentNumber < 1 || assignmentNumber > grades.size()) {
-            throw new IllegalArgumentException("Invalid assignment number.");
-        }
-        grades.set(assignmentNumber - 1, (G) Integer.valueOf(grade));
     }
 }
