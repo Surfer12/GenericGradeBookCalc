@@ -7,7 +7,7 @@ public abstract class GradeBook<S extends Student<G>, G> extends AbstractGradeBo
     public GradeBook(StudentRegistry<S, G> studentRegistry,
                      InputHandler<String> nameInputHandler,
                      InputHandler<Integer> countInputHandler,
-                        InputHandler<Integer> assignmentCountInputHandler,
+                     InputHandler<Integer> assignmentCountInputHandler,
                      GradeEntrySystem<S, G> gradeEntrySystem,
                      GradeCalculator<S> gradeCalculator,
                      GradebookDisplay<S> gradebookDisplay,
@@ -26,14 +26,12 @@ public abstract class GradeBook<S extends Student<G>, G> extends AbstractGradeBo
         calculateGrades(students);
         displayResults(students);
 
-        removeStudent();
-        promptUpdateGrade();
+       /* Using this project to learn about Java generics and how to use them effectively so
+        these methods are commented out for now.*/
 
-        List<S> newStudents = addStudents();
-        if (!newStudents.isEmpty()) {
-            calculateGrades(newStudents);
-            displayResults(newStudents);
-        }
+        /*removeStudent();
+        promptUpdateGrade();
+        /*addNewStudents();*/
     }
 
     @Override
@@ -44,15 +42,23 @@ public abstract class GradeBook<S extends Student<G>, G> extends AbstractGradeBo
             return Collections.emptyList();
         }
         List<S> newStudents = registerStudents(studentCount);
-        enterGrades(newStudents); // Only enter grades for new students
         return newStudents;
+    }
+
+    public void addNewStudents() {
+        List<S> newStudents = addStudents();
+        if (!newStudents.isEmpty()) {
+            enterGrades(newStudents); // Only enter grades for new students
+            calculateGrades(newStudents);
+            displayResults(newStudents);
+        }
     }
 
     @Override
     public void removeStudent() {
         String name = nameInputHandler.getInput("Enter the name of the student to remove: " +
                 "('STOP' to remove none.) ");
-        if(name.equalsIgnoreCase("STOP")) {
+        if (name.equalsIgnoreCase("STOP")) {
             System.out.println("No students removed.");
             return;
         }
@@ -61,32 +67,32 @@ public abstract class GradeBook<S extends Student<G>, G> extends AbstractGradeBo
         displayResults(students);
     }
 
- @Override
-public Optional<S> promptUpdateGrade() {
-    String name = nameInputHandler.getInput("Enter the name of the student to update their grade: " +
-            "('STOP' to update none of the student's individual grades.) ");
-    if (name.equalsIgnoreCase("STOP")) {
-        System.out.println("No student grade(s) have been updated.");
-        return Optional.empty();
-    }
-    Optional<S> student = studentRegistry.getStudent(name);
-    if (student.isEmpty()) {
-        System.out.println("Student not found.");
-        return Optional.empty();
-    }
-    int assignmentNumber = countInputHandler.getInput("Enter the assignment number to update: " +
-            "('STOP' to update none of the individual assignments) ");
-    if (name.equalsIgnoreCase("STOP")) {
-        System.out.println("No individual student assignment has been updated.");
-    } else if (assignmentNumber == 0) {
-        System.out.println("No individual student assignment has been updated.");
+    @Override
+    public Optional<S> promptUpdateGrade() {
+        String name = nameInputHandler.getInput("Enter the name of the student to update their grade: " +
+                "('STOP' to update none of the student's individual grades.) ");
+        if (name.equalsIgnoreCase("STOP")) {
+            System.out.println("No student grade(s) have been updated.");
+            return Optional.empty();
+        }
+        Optional<S> student = studentRegistry.getStudent(name);
+        if (student.isEmpty()) {
+            System.out.println("Student not found.");
+            return Optional.empty();
+        }
+        int assignmentNumber = countInputHandler.getInput("Enter the assignment number to update: " +
+                "('STOP' to update none of the individual assignments) ");
+        if (name.equalsIgnoreCase("STOP")) {
+            System.out.println("No individual student assignment has been updated.");
+        } else if (assignmentNumber == 0) {
+            System.out.println("No individual student assignment has been updated.");
+            return student;
+        } else {
+            G grade = gradeEntrySystem.enterGradeForAssignment(student.get(), assignmentNumber);
+            student.ifPresent(s -> s.updateGrade(assignmentNumber, grade));
+            List<S> students = studentRegistry.getAllStudents();
+            displayResults(students);
+        }
         return student;
-    } else {
-        G grade = gradeEntrySystem.enterGradeForAssignment(student.get(), assignmentNumber);
-        student.ifPresent(s -> s.updateGrade(assignmentNumber, grade));
-        List<S> students = studentRegistry.getAllStudents();
-        displayResults(students);
     }
-    return student;
-}
 }
