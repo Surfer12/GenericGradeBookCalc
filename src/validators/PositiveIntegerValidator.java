@@ -1,5 +1,7 @@
+package validators;
+
 /**
- * PositiveIntegerValidator class that implements the InputValidator.Validator interface for Integer type.
+ * validators.PositiveIntegerValidator class that implements the validators.InputValidator.Validator interface for Integer type.
  * This class provides methods to parse and validate positive integer inputs.
  */
 public class PositiveIntegerValidator implements InputValidator.Validator<Integer> {

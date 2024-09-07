@@ -1,3 +1,5 @@
+package validators;
+
 /**
  * A class that validates and parses input of a generic type.
  *
@@ -8,7 +10,7 @@ public class InputValidator<T> {
     private final String typeName;
 
     /**
-     * Constructs an InputValidator with the specified Validator and type name.
+     * Constructs an validators.InputValidator with the specified Validator and type name.
      *
      * @param validator the Validator to use for validating and parsing input
      * @param typeName  the name of the type to be validated and parsed

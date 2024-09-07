@@ -1,5 +1,7 @@
+package validators;
+
 /**
- * NameValidator class that implements the InputValidator.Validator interface for String type.
+ * validators.NameValidator class that implements the validators.InputValidator.Validator interface for String type.
  * This class provides methods to parse and validate name inputs.
  */
 public class NameValidator implements InputValidator.Validator<String> {

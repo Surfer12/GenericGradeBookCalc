@@ -1,5 +1,7 @@
+package validators;
+
 /**
- * The ScoreValidator class implements the InputValidator.Validator interface for Integer values.
+ * The validators.ScoreValidator class implements the validators.InputValidator.Validator interface for Integer values.
  * It validates if a given score is within a specified range.
  */
 public class ScoreValidator implements InputValidator.Validator<Integer> {

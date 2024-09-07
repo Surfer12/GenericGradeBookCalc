@@ -1,8 +1,12 @@
+package dataManipulators;
+
+import dataModels.Student;
+
 /**
- * The SimpleGradeCalculator class implements the GradeCalculator interface for Student objects.
+ * The dataManipulators.SimpleGradeCalculator class implements the dataManipulators.GradeCalculator interface for dataModels.Student objects.
  * It calculates the average score of a student based on their total score and number of assignments.
  *
- * @param <S> the type of Student
+ * @param <S> the type of dataModels.Student
  */
 public class SimpleGradeCalculator<S extends Student<?>> implements GradeCalculator<S> {
 

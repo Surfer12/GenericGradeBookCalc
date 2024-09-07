@@ -1,13 +1,17 @@
+package Displays;
+
+import dataModels.Student;
+
 import java.util.List;
 
 /**
- * A class that implements the GradebookDisplay interface to display the gradebook information in the console.
+ * A class that implements the Displays.GradebookDisplay interface to display the gradebook information in the console.
  *
  * @param <S> the type of student in the gradebook
  */
 public class ConsoleGradebookDisplay<S extends Student<?>> implements GradebookDisplay<S> {
     // Header for the gradebook display table
-    private static final String HEADER = "| Student  | Grades               | Avg  |";
+    private static final String HEADER = "| dataModels.Student  | Grades               | Avg  |";
     // Separator line for the gradebook display table
     private static final String SEPARATOR = "-----------------------------------------";
     // Format string for displaying each student's information

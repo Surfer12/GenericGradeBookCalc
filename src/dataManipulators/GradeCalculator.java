@@ -1,7 +1,10 @@
+package dataManipulators;
+import dataModels.Student;
+
 /**
  * An interface for calculating the average grade of a student.
  *
- * @param <S> the type of student, which extends the Student class
+ * @param <S> the type of student, which extends the dataModels.Student class
  */
 public interface GradeCalculator<S extends Student<?>> {
 

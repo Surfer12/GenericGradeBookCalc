@@ -1,3 +1,7 @@
+package handlers;
+
+import validators.InputValidator;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -12,10 +16,10 @@ public class ConsoleInputHandler<T> implements InputHandler<T> {
     private final InputValidator<T> inputValidator;
 
     /**
-     * Constructs a ConsoleInputHandler with the specified Scanner and InputValidator.
+     * Constructs a handlers.ConsoleInputHandler with the specified Scanner and validators.InputValidator.
      *
      * @param scanner        the Scanner to use for reading input
-     * @param inputValidator the InputValidator to use for validating and parsing input
+     * @param inputValidator the validators.InputValidator to use for validating and parsing input
      */
     public ConsoleInputHandler(Scanner scanner, InputValidator<T> inputValidator) {
         this.scanner = scanner;

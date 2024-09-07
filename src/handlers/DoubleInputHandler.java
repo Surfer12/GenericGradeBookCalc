@@ -1,3 +1,8 @@
+package handlers;
+
+import validators.DoubleValidator;
+import validators.InputValidator;
+
 import java.util.Scanner;
 
 public class DoubleInputHandler extends ConsoleInputHandler<Double> {

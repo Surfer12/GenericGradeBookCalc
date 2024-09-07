@@ -1,3 +1,15 @@
+package dataModels;
+
+import Displays.ConsoleGradebookDisplay;
+import dataManipulators.AverageClassAverageCalculator;
+import dataManipulators.SimpleGradeCalculator;
+import handlers.ConsoleGradeEntrySystem;
+import handlers.ConsoleInputHandler;
+import validators.InputValidator;
+import validators.NameValidator;
+import validators.PositiveIntegerValidator;
+import validators.ScoreValidator;
+
 import java.util.Scanner;
 import java.util.function.Supplier;
 

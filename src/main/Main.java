@@ -1,3 +1,14 @@
+package main;
+
+import dataModels.IntegerGradeBook;
+import dataModels.Student;
+import handlers.ConsoleInputHandler;
+import handlers.InputHandler;
+import validators.InputValidator;
+import validators.NameValidator;
+import validators.PositiveIntegerValidator;
+import validators.ScoreValidator;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -5,7 +16,7 @@ import java.util.function.Supplier;
 
 public class Main {
     public static void main(String[] args) {
-        // Create an ArrayList of Student<Integer>
+        // Create an ArrayList of dataModels.Student<Integer>
         List<Student<Integer>> studentList = new ArrayList<>();
         studentList.add(new Student<>("Alice"));
         studentList.add(new Student<>("Bob"));
@@ -21,11 +32,11 @@ public class Main {
         InputValidator<Integer> positiveIntValidator = new InputValidator<>(new PositiveIntegerValidator(), "positive integer");
         InputHandler<Integer> countInputHandler = new ConsoleInputHandler<>(scanner, positiveIntValidator);
 
-        // Create an IntegerGradeBook
+        // Create an dataModels.IntegerGradeBook
         Supplier<Student<Integer>> studentFactory = Student::new;
         IntegerGradeBook integerGradeBook = new IntegerGradeBook(studentFactory);
 
-        // Run the IntegerGradeBook
+        // Run the dataModels.IntegerGradeBook
         integerGradeBook.run();
 
         // Close the scanner

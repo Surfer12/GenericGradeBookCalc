@@ -1,9 +1,10 @@
+package dataModels;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 /**
- * The Student class represents a student with a name, a list of grades, and an average score.
+ * The dataModels.Student class represents a student with a name, a list of grades, and an average score.
  *
  * @param <G> the type of grades, which should extend Number
  */

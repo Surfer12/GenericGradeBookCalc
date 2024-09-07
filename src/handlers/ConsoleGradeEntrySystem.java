@@ -1,8 +1,10 @@
-import java.util.Scanner;
+package handlers;
+
+import dataModels.Student;
 
 /**
  * Represents a console-based grade entry system.
- * This class implements the GradeEntrySystem interface and provides methods for entering grades for assignments.
+ * This class implements the handlers.GradeEntrySystem interface and provides methods for entering grades for assignments.
  *
  * @param <S> the type of student in the grade entry system
  * @param <G> the type of grade to be entered
@@ -11,7 +13,7 @@ public class ConsoleGradeEntrySystem<S extends Student<G>, G extends Number> imp
     private final InputHandler<G> scoreInputHandler;
 
     /**
-     * Constructs a ConsoleGradeEntrySystem with the specified InputHandler.
+     * Constructs a handlers.ConsoleGradeEntrySystem with the specified handlers.InputHandler.
      *
      * @param scoreInputHandler the input handler for entering grades
      */

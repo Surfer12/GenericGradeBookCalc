@@ -1,7 +1,10 @@
+package handlers;
+import dataModels.Student;
+
 /**
  * An interface for entering grades for assignments in a grade entry system.
  *
- * @param <S> the type of student, which extends the Student class with a generic grade type
+ * @param <S> the type of student, which extends the dataModels.Student class with a generic grade type
  * @param <G> the type of grade to be entered
  */
 public interface GradeEntrySystem<S extends Student<G>, G> {

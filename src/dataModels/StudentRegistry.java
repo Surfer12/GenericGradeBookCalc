@@ -1,3 +1,5 @@
+package dataModels;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -23,11 +25,11 @@ public interface StudentRegistry<S extends Student<?>, G> {
                 .findFirst();
         studentToRemove.ifPresent(student -> {
             getStudents().remove(student);
-            System.out.println("Student removed: " + student.getName());
+            System.out.println("dataModels.Student removed: " + student.getName());
         });
         if (studentToRemove.isEmpty()) {
             if (!name.equalsIgnoreCase("STOP")) {
-            System.out.println("Student not found .");
+            System.out.println("dataModels.Student not found .");
             } else {
                 return Optional.empty();
         }

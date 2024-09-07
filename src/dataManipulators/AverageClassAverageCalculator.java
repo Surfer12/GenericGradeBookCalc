@@ -1,14 +1,18 @@
+package dataManipulators;
+
+import dataModels.Student;
+
 import java.util.List;
 
 /**
  * \*\*Class\*\*
- * AverageClassAverageCalculator
+ * dataManipulators.AverageClassAverageCalculator
  * <p>
  * \*\*Description\*\*
- * This class implements the ClassAverageCalculator interface to calculate the average class average for a list of students.
+ * This class implements the dataManipulators.ClassAverageCalculator interface to calculate the average class average for a list of students.
  * <p>
  * \*\*Type Parameters\*\*
- * \- \`<S>\` \- the type of student, which must extend the Student class.
+ * \- \`<S>\` \- the type of student, which must extend the dataModels.Student class.
  */
 public class AverageClassAverageCalculator<S extends Student<?>> implements ClassAverageCalculator<S> {
 

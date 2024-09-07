@@ -1,9 +1,13 @@
+package Displays;
+
+import dataModels.Student;
+
 import java.util.List;
 
 /**
  * An interface for displaying a list of students in a gradebook.
  *
- * @param <S> the type of student to display, which extends the Student class
+ * @param <S> the type of student to display, which extends the dataModels.Student class
  */
 public interface GradebookDisplay<S extends Student<?>> {
 
