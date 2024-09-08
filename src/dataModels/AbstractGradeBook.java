@@ -4,7 +4,7 @@ import Displays.GradebookDisplay;
 import dataManipulators.ClassAverageCalculator;
 import dataManipulators.GradeCalculator;
 import handlers.GradeEntrySystem;
-import handlers.InputHandler;
+import handlers.InputHandlerImpl;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,16 +12,13 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Supplier;
 
+
 public abstract class AbstractGradeBook<S extends Student<G>, G> {
 
-    private final StudentRegistry<S, G> studentRegistry;
-    private final InputHandler<String> nameInputHandler;
     private final InputHandler<Integer> countInputHandler;
-    private final InputHandler<Integer> assignmentCountInputHandler;
     private final GradeEntrySystem<S, G> gradeEntrySystem;
     private final GradeCalculator<S> gradeCalculator;
     private final GradebookDisplay<S> gradebookDisplay;
-    private final ClassAverageCalculator<S> classAverageCalculator;
     private final Supplier<S> studentFactory;
 
     public AbstractGradeBook(StudentRegistry<S, G> studentRegistry,
@@ -68,16 +65,16 @@ public abstract class AbstractGradeBook<S extends Student<G>, G> {
         for (S student : students) {
             gradeEntrySystem.enterGradeForAssignment(student, student.getAssignmentCount());
         }
-    }
-
+    protected void enterGrades(List<S> students) {
+        for (S student : students) {
+            gradeEntrySystem.enterGrades(student, student.getAssignmentCount());
+        }
+    }       student.setAverage(gradeCalculator.calculateAverage(student));
+        }
     protected void calculateGrades(List<S> students) {
         for (S student : students) {
-            student.setAverage(gradeCalculator.calculateAverage(student));
+            student.setAverage(gradeCalculator.calculateGrade(student));
         }
-    }
-
-    protected void displayResults(List<S> students) {
-        gradebookDisplay.display(students);
     }
 
     protected int getNewStudentCount() {
