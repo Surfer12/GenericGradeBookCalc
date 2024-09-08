@@ -8,7 +8,7 @@ public class StudentRegistry<S extends Student<G>, G extends Number> {
     private static StudentRegistry<?, ?> instance;
     private List<S> students;
 
-    private StudentRegistry() {
+    protected StudentRegistry() {
         students = new ArrayList<>();
     }
 

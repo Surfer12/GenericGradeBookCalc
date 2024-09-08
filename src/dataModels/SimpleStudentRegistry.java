@@ -4,12 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class SimpleStudentRegistry<S extends Student<G>, G extends Number> extends StudentRegistry<S, G> {
+public class SimpleStudentRegistry<S extends Student<G>, G extends Number> extends StudentRegistryImpl<S, G> {
     private final List<S> students = new ArrayList<>();
+
+    public SimpleStudentRegistry() {
+        super();
+    }
 
     @Override
     public List<S> getStudents() {
-        return students;
+        return new ArrayList<>(students);
     }
 
     @Override

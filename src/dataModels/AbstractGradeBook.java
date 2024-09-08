@@ -51,7 +51,7 @@ public abstract class AbstractGradeBook<S extends Student<G>, G extends Number> 
     public abstract Optional<S> promptUpdateGrade();
 
     protected int getStudentCount() {
-        return countInputHandler.getInput("Enter the number of students:");
+        return countInputHandler.getInput("Enter the number of students: ");
     }
 
     protected List<S> registerStudents(int studentCount) {
@@ -64,9 +64,9 @@ public abstract class AbstractGradeBook<S extends Student<G>, G extends Number> 
     }
 
     protected S registerStudent() {
-        String name = nameInputHandler.getInput("Enter the name of student " + (studentRegistry.countStudents() + 1) + ":");
-        int assignmentCount = assignmentCountInputHandler.getInput("Enter the number of grades for " + name + ":");
-        S student = studentFactory.get(); // Remove the name input here
+        String name = nameInputHandler.getInput("Enter the name of student " + (studentRegistry.countStudents() + 1) + ": ");
+        int assignmentCount = assignmentCountInputHandler.getInput("Enter the number of grades for " + name + ": ");
+        S student = studentFactory.get();
         student.setName(name);
         student.setAssignmentCount(assignmentCount);
         return student;
@@ -84,11 +84,11 @@ public abstract class AbstractGradeBook<S extends Student<G>, G extends Number> 
     protected void calculateGrades(List<S> students) {
         for (S student : students) {
             student.setAverage(gradeCalculator.calculateAverage(student));
-        }1
+        }
     }
 
     protected int getNewStudentCount() {
-        return countInputHandler.getInput("Enter the number of new students:");
+        return countInputHandler.getInput("Enter the number of new students: ");
     }
 
     protected void displayResults(List<S> students) {
@@ -98,12 +98,10 @@ public abstract class AbstractGradeBook<S extends Student<G>, G extends Number> 
 }
 /*
  * Running Double GradeBook:
- * Enter the number of students:1 -- need to update this method to parse the int
- * if there is a space before or after as well as add a space after colon
- * Enter the name of student 1:a -- add a space after colon
- * Enter the number of grades for a:1 -- add a space
- * Enter student name: a -- This reloops when it should just ask for the grade
- * for assignment one, not that name again
+ * Enter the number of students: 1
+ * Enter the name of student 1: a
+ * Enter the number of grades for a: 1
+ * Enter student name: a
  * Enter grade for a for assignment 1: 1
  * Name: a
  * Grades: [1.0]
