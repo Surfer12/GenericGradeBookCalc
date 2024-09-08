@@ -1,6 +1,7 @@
-package dataManipulators;
+package main; // Changed from dataManipulators to main
 
 import dataModels.Student;
+import dataManipulators.ClassAverageCalculator; // Ensure this import is present
 
 import java.util.List;
 

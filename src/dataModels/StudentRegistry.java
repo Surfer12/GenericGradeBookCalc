@@ -47,7 +47,7 @@ public interface StudentRegistry<S extends Student<?>, G extends Number> {
                 .filter(s -> s.getName().equals(name))
                 .findFirst()
                 .map(student -> {
-                    student.updateGrade(assignmentNumber, grade);
+                    student.updateGrade(assignmentNumber, grade); // Ensure updateGrade accepts G
                     System.out.println("Grade updated for student: " + name);
                     return student;
                 });
