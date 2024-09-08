@@ -69,6 +69,7 @@ public abstract class AbstractGradeBook<S extends Student<G>, G extends Number> 
         S student = studentFactory.get();
         student.setName(name);
         student.setAssignmentCount(assignmentCount);
+        studentRegistry.addStudent(student);
         return student;
     }
 
@@ -96,16 +97,3 @@ public abstract class AbstractGradeBook<S extends Student<G>, G extends Number> 
         System.out.println("Class Average: " + classAverageCalculator.calculateAverage(students));
     }
 }
-/*
- * Running Double GradeBook:
- * Enter the number of students: 1
- * Enter the name of student 1: a
- * Enter the number of grades for a: 1
- * Enter student name: a
- * Enter grade for a for assignment 1: 1
- * Name: a
- * Grades: [1.0]
- * Average: 1.00
- * --------------------
- * Class Average: 1.0
- */

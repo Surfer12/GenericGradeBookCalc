@@ -27,11 +27,11 @@ public class DoubleGradeBook extends AbstractGradeBook<Student<Double>, Double> 
 
     @Override
     public void run() {
-    int studentCount = getStudentCount();
-    List<Student<Double>> students = registerStudents(studentCount);
-    enterGrades(students);
-    calculateGrades(students);
-    displayResults(students);
+    int studentCount = getStudentCount(); // Get the number of students
+    List<Student<Double>> students = registerStudents(studentCount); // register the students and return the list
+    enterGrades(students); // enter the grades for each student
+    calculateGrades(students); // Calculate grades for each student
+    displayResults(students); // Display the results
     }
 
     @Override

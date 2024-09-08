@@ -27,10 +27,11 @@ public class IntegerGradeBook extends AbstractGradeBook<Student<Integer>, Intege
 
     @Override
     public void run() {
-        int studentCount = getStudentCount();
-        List<Student<Integer>> students = registerStudents(studentCount);
-        calculateGrades(students);
-        displayResults(students);
+        int studentCount = getStudentCount(); // Get the new student count
+        List<Student<Integer>> students = registerStudents(studentCount); // register the students and return the list
+        enterGrades(students); // enter the grades for each student
+        calculateGrades(students); // Calculate grades for each student
+        displayResults(students); // Display the results
     }
 
     @Override

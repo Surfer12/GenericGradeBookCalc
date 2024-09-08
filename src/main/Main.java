@@ -35,10 +35,7 @@ public class Main {
         InputHandler<Integer> countInputHandler = new ConsoleInputHandler<>(scanner, positiveIntValidator);
 
         StudentRegistry<Student<Integer>, Integer> integerStudentRegistry = StudentRegistry.getInstance();
-        Supplier<Student<Integer>> integerStudentFactory = () -> {
-            String name = nameInputHandler.getInput("Enter student name: ");
-            return new Student<>(name);
-        };
+        Supplier<Student<Integer>> integerStudentFactory = () -> new Student<>();
 
         IntegerGradeBook integerGradeBook = new IntegerGradeBook(
                 integerStudentRegistry,
@@ -62,10 +59,7 @@ public class Main {
         InputHandler<Double> doubleScoreInputHandler = new ConsoleInputHandler<>(scanner, doubleValidator);
 
         StudentRegistry<Student<Double>, Double> doubleStudentRegistry = StudentRegistry.getInstance();
-        Supplier<Student<Double>> doubleStudentFactory = () -> {
-            String name = nameInputHandler.getInput("Enter student name: ");
-            return new Student<>(name);
-        };
+        Supplier<Student<Double>> doubleStudentFactory = () -> new Student<>();
 
         DoubleGradeBook doubleGradeBook = new DoubleGradeBook(
                 doubleStudentRegistry,
@@ -84,13 +78,13 @@ public class Main {
                 new ClassAverageCalculatorImpl<>(),
                 doubleStudentFactory);
 
-        // Demonstrate DoubleGradeBook
-        System.out.println("Running Double GradeBook:");
-        doubleGradeBook.run();
-
         // Demonstrate IntegerGradeBook
-        System.out.println("Running Integer GradeBook:");
+        System.out.println("Running Integer GradeBook:" + "\n");
         integerGradeBook.run();
+
+        // Demonstrate DoubleGradeBook
+        System.out.println("Running Double GradeBook:" + "\n");
+        doubleGradeBook.run();     
 
         // Close the scanner
         scanner.close();
