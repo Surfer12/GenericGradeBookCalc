@@ -11,16 +11,16 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-public abstract class GradeBook<S extends Student<G>, G> extends AbstractGradeBook<S, G> {
-    public GradeBook(StudentRegistry<S, G> studentRegistry,
+public abstract class GradeBook<G> extends AbstractGradeBook<Student<G>, G> {
+    public GradeBook(StudentRegistry<Student<G>, G> studentRegistry,
                      InputHandler<String> nameInputHandler,
                      InputHandler<Integer> countInputHandler,
                      InputHandler<Integer> assignmentCountInputHandler,
-                     GradeEntrySystem<S, G> gradeEntrySystem,
-                     GradeCalculator<S> gradeCalculator,
-                     GradebookDisplay<S> gradebookDisplay,
-                     ClassAverageCalculator<S> classAverageCalculator,
-                     Supplier<S> studentFactory) {
+                     GradeEntrySystem<Student<G>, G> gradeEntrySystem,
+                     GradeCalculator<Student<G>> gradeCalculator,
+                     GradebookDisplay<Student<G>> gradebookDisplay,
+                     ClassAverageCalculator<Student<G>> classAverageCalculator,
+                     Supplier<Student<G>> studentFactory) {
         super(studentRegistry, nameInputHandler, countInputHandler,
                 assignmentCountInputHandler, gradeEntrySystem,
                 gradeCalculator, gradebookDisplay, classAverageCalculator, studentFactory);
@@ -29,7 +29,7 @@ public abstract class GradeBook<S extends Student<G>, G> extends AbstractGradeBo
     @Override
     public void run() {
         int studentCount = getStudentCount();
-        List<S> students = registerStudents(studentCount);
+        List<Student<G>> students = registerStudents(studentCount);
         enterGrades(students); // Enter grades for initial students
         calculateGrades(students);
         displayResults(students);
@@ -43,18 +43,17 @@ public abstract class GradeBook<S extends Student<G>, G> extends AbstractGradeBo
     }
 
     @Override
-    public List<S> addStudents() {
+    public List<Student<G>> addStudents() {
         int studentCount = getNewStudentCount();
         if (studentCount == 0) {
             System.out.println("No new students added.");
             return Collections.emptyList();
         }
-        List<S> newStudents = registerStudents(studentCount);
-        return newStudents;
+        return registerStudents(studentCount);
     }
 
     public void addNewStudents() {
-        List<S> newStudents = addStudents();
+        List<Student<G>> newStudents = addStudents();
         if (!newStudents.isEmpty()) {
             enterGrades(newStudents); // Only enter grades for new students
             calculateGrades(newStudents);
@@ -71,19 +70,19 @@ public abstract class GradeBook<S extends Student<G>, G> extends AbstractGradeBo
             return;
         }
         studentRegistry.removeStudent(name);
-        List<S> students = studentRegistry.getAllStudents();
+        List<Student<G>> students = studentRegistry.getAllStudents();
         displayResults(students);
     }
 
     @Override
-    public Optional<S> promptUpdateGrade() {
+    public Optional<Student<G>> promptUpdateGrade() {
         String name = nameInputHandler.getInput("Enter the name of the student to update their grade: " +
                 "('STOP' to update none of the student's individual grades.) ");
         if (name.equalsIgnoreCase("STOP")) {
             System.out.println("No student grade(s) have been updated.");
             return Optional.empty();
         }
-        Optional<S> student = studentRegistry.getStudent(name);
+        Optional<Student<G>> student = studentRegistry.getStudent(name);
         if (student.isEmpty()) {
             System.out.println("Student not found.");
             return Optional.empty();
@@ -98,7 +97,7 @@ public abstract class GradeBook<S extends Student<G>, G> extends AbstractGradeBo
         } else {
             G grade = gradeEntrySystem.enterGradeForAssignment(student.get(), assignmentNumber);
             student.ifPresent(s -> s.updateGrade(assignmentNumber, grade));
-            List<S> students = studentRegistry.getAllStudents();
+            List<Student<G>> students = studentRegistry.getAllStudents();
             displayResults(students);
         }
         return student;

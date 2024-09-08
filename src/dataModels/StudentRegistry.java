@@ -29,7 +29,7 @@ public interface StudentRegistry<S extends Student<?>, G> {
         });
         if (studentToRemove.isEmpty()) {
             if (!name.equalsIgnoreCase("STOP")) {
-                System.out.println("Student not found .");
+                System.out.println("Student not found.");
             } else {
                 return Optional.empty();
             }
@@ -49,9 +49,11 @@ public interface StudentRegistry<S extends Student<?>, G> {
                 .filter(s -> s.getName().equals(name))
                 .findFirst()
                 .map(student -> {
-                    student.updateGrade(name, assignmentNumber, grade);
+                    student.updateGrade(assignmentNumber, grade);
                     System.out.println("Grade updated for student: " + name);
                     return student;
                 });
     }
+
+    int countStudents();
 }

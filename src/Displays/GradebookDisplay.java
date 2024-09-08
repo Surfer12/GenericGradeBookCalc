@@ -29,18 +29,4 @@ public class GradebookDisplayImpl<S extends Student<?>> implements GradebookDisp
             System.out.println("--------------------");
         }
     }
-
-    @Override
-    public void displayGradebook(List<S> students) {
-        for (S student : students) {
-            System.out.println("Student: " + student.getName());
-            List<?> grades = student.getGrades();
-            if (grades.isEmpty()) {
-                System.out.println("  No grades recorded");
-            } else {
-                System.out.println("  Grades: " + grades);
-                System.out.println("  Average: " + student.getAverageScore());
-            }
-        }
-    }
 }

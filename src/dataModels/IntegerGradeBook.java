@@ -6,9 +6,6 @@ import dataManipulators.GradeCalculator;
 import handlers.GradeEntrySystem;
 import handlers.InputHandler;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
 import java.util.function.Supplier;
 
 public class IntegerGradeBook extends AbstractGradeBook<Student<Integer>, Integer> {
