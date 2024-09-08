@@ -2,12 +2,17 @@ package main;
 
 import dataModels.IntegerGradeBook;
 import dataModels.Student;
+import dataModels.StudentRegistryImpl;
 import handlers.ConsoleInputHandler;
 import handlers.InputHandler;
+import handlers.GradeEntrySystemImpl;
 import validators.InputValidator;
 import validators.NameValidator;
 import validators.PositiveIntegerValidator;
 import validators.ScoreValidator;
+import dataManipulators.ClassAverageCalculatorImpl;
+import dataManipulators.GradeCalculatorImpl;
+import Displays.GradebookDisplayImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,11 +37,24 @@ public class Main {
         InputValidator<Integer> positiveIntValidator = new InputValidator<>(new PositiveIntegerValidator(), "positive integer");
         InputHandler<Integer> countInputHandler = new ConsoleInputHandler<>(scanner, positiveIntValidator);
 
-        // Create an dataModels.IntegerGradeBook
-        Supplier<Student<Integer>> studentFactory = Student::new;
-        IntegerGradeBook integerGradeBook = new IntegerGradeBook(studentFactory);
+        // Create a StudentRegistry
+        StudentRegistryImpl<Student<Integer>, Integer> studentRegistry = new StudentRegistryImpl<>();
 
-        // Run the dataModels.IntegerGradeBook
+        // Create an IntegerGradeBook
+        Supplier<Student<Integer>> studentFactory = Student::new;
+        IntegerGradeBook integerGradeBook = new IntegerGradeBook(
+                studentRegistry,
+                nameInputHandler,
+                countInputHandler,
+                countInputHandler,
+                new GradeEntrySystemImpl<>(),
+                new GradeCalculatorImpl<>(),
+                new GradebookDisplayImpl<>(),
+                new ClassAverageCalculatorImpl<>(),
+                studentFactory
+        );
+
+        // Run the IntegerGradeBook
         integerGradeBook.run();
 
         // Close the scanner

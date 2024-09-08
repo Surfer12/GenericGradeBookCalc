@@ -1,6 +1,7 @@
 package handlers;
 
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * An interface for handling input operations.
@@ -25,4 +26,31 @@ public interface InputHandler<T> {
      * @return a list of validated inputs of type T
      */
     List<T> getMultipleInputs(String prompt, String stopCommand);
+}
+
+public class InputHandlerImpl<T> implements InputHandler<T> {
+    private final Scanner scanner;
+
+    public InputHandlerImpl() {
+        this.scanner = new Scanner(System.in);
+    }
+
+    @Override
+    public T getInput(String prompt) {
+        System.out.print(prompt);
+        return (T) scanner.nextLine();
+    }
+
+    @Override
+    public List<T> getMultipleInputs(String prompt, String stopCommand) {
+        List<T> inputs = new ArrayList<>();
+        String input;
+        do {
+            input = getInput(prompt);
+            if (!input.equalsIgnoreCase(stopCommand)) {
+                inputs.add((T) input);
+            }
+        } while (!input.equalsIgnoreCase(stopCommand));
+        return inputs;
+    }
 }

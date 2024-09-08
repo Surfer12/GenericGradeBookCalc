@@ -2,13 +2,14 @@ package dataModels;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
- * The dataModels.Student class represents a student with a name, a list of grades, and an average score.
+ * The Student class represents a student with a name, a list of grades, and an average score.
  *
  * @param <G> the type of grades, which should extend Number
  */
-public class Student<G> implements StudentRegistry<Student<?>, G> {
+public class Student<G> {
     private final List<G> grades;
     private String name;
     private double average;
@@ -149,7 +150,7 @@ public class Student<G> implements StudentRegistry<Student<?>, G> {
      * @return the total score, or 0 if grades are empty or not numbers
      */
     public int getTotalScore() {
-        if (grades.isEmpty() || !(grades.getFirst() instanceof Number)) {
+        if (grades.isEmpty() || !(grades.get(0) instanceof Number)) {
             return 0;
         }
         return grades.stream()

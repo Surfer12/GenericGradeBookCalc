@@ -1,28 +1,28 @@
 package dataModels;
 
-import Displays.ConsoleGradebookDisplay;
-import dataManipulators.AverageClassAverageCalculator;
-import dataManipulators.SimpleGradeCalculator;
-import handlers.ConsoleGradeEntrySystem;
-import handlers.ConsoleInputHandler;
-import handlers.DoubleInputHandler;
-import validators.InputValidator;
-import validators.NameValidator;
-import validators.PositiveIntegerValidator;
+import Displays.GradebookDisplay;
+import dataManipulators.ClassAverageCalculator;
+import dataManipulators.GradeCalculator;
+import handlers.GradeEntrySystem;
+import handlers.InputHandler;
 
-import java.util.Scanner;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 import java.util.function.Supplier;
 
-public class DoubleGradeBook extends GradeBook<Student<Double>, Double> {
-    public DoubleGradeBook(Supplier<Student<Double>> studentFactory) {
-        super(new SimpleStudentRegistry<>(),
-              new ConsoleInputHandler<>(new Scanner(System.in), new InputValidator<>(new NameValidator(), "name")),
-              new ConsoleInputHandler<>(new Scanner(System.in), new InputValidator<>(new PositiveIntegerValidator(), "positive integer")),
-                new ConsoleInputHandler<>(new Scanner(System.in), new InputValidator<>(new PositiveIntegerValidator(), "positive integer")),
-              new ConsoleGradeEntrySystem<Student<Double>, Double>(new DoubleInputHandler(new Scanner(System.in))),
-              new SimpleGradeCalculator<>(),
-              new ConsoleGradebookDisplay<>(),
-              new AverageClassAverageCalculator<>(),
-              studentFactory);
+public class DoubleGradeBook extends AbstractGradeBook<Student<Double>, Double> {
+    public DoubleGradeBook(StudentRegistry<Student<Double>> studentRegistry,
+                           InputHandler<String> nameInputHandler,
+                           InputHandler<Integer> countInputHandler,
+                           InputHandler<Integer> assignmentCountInputHandler,
+                           GradeEntrySystem<Student<Double>, Double> gradeEntrySystem,
+                           GradeCalculator< Student<Double> > gradeCalculator,
+                           GradebookDisplay< Student<Double> > gradebookDisplay,
+                           ClassAverageCalculator< Student<Double> > classAverageCalculator,
+                           Supplier< Student<Double> > studentFactory) {
+        super(studentRegistry, nameInputHandler, countInputHandler,
+                assignmentCountInputHandler, gradeEntrySystem,
+                gradeCalculator, gradebookDisplay, classAverageCalculator, studentFactory);
     }
 }

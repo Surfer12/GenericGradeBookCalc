@@ -34,8 +34,8 @@ public abstract class GradeBook<S extends Student<G>, G> extends AbstractGradeBo
         calculateGrades(students);
         displayResults(students);
 
-       /* Using this project to learn about Java generics and how to use them effectively so
-        these methods are commented out for now.*/
+        /* Using this project to learn about Java generics and how to use them effectively so
+         these methods are commented out for now.*/
 
         /*removeStudent();
         promptUpdateGrade();
@@ -85,7 +85,7 @@ public abstract class GradeBook<S extends Student<G>, G> extends AbstractGradeBo
         }
         Optional<S> student = studentRegistry.getStudent(name);
         if (student.isEmpty()) {
-            System.out.println("dataModels.Student not found.");
+            System.out.println("Student not found.");
             return Optional.empty();
         }
         int assignmentNumber = countInputHandler.getInput("Enter the assignment number to update: " +

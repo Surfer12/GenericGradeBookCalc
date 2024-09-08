@@ -6,25 +6,26 @@ import dataManipulators.GradeCalculator;
 import handlers.GradeEntrySystem;
 import handlers.InputHandler;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Supplier;
 
 public abstract class AbstractGradeBook<S extends Student<G>, G> {
-    protected final StudentRegistry<S, G> studentRegistry;
-    protected final InputHandler<String> nameInputHandler;
-    protected final InputHandler<Integer> countInputHandler;
-    protected final InputHandler<Integer> assignmentCountInputHandler;
-    protected final GradeEntrySystem<S, G> gradeEntrySystem;
-    protected final GradeCalculator<S> gradeCalculator;
-    protected final GradebookDisplay<S> gradebookDisplay;
-    protected final ClassAverageCalculator<S> classAverageCalculator;
-    protected final Supplier<S> studentFactory;
+    private StudentRegistry<S, G> studentRegistry;
+    private InputHandler<String> nameInputHandler;
+    private InputHandler<Integer> countInputHandler;
+    private InputHandler<Integer> assignmentCountInputHandler;
+    private GradeEntrySystem<S, G> gradeEntrySystem;
+    private GradeCalculator<S> gradeCalculator;
+    private GradebookDisplay<S> gradebookDisplay;
+    private ClassAverageCalculator<S> classAverageCalculator;
+    private Supplier<S> studentFactory;
 
     public AbstractGradeBook(StudentRegistry<S, G> studentRegistry,
                              InputHandler<String> nameInputHandler,
                              InputHandler<Integer> countInputHandler,
-                                InputHandler<Integer> assignmentCountInputHandler,
+                             InputHandler<Integer> assignmentCountInputHandler,
                              GradeEntrySystem<S, G> gradeEntrySystem,
                              GradeCalculator<S> gradeCalculator,
                              GradebookDisplay<S> gradebookDisplay,
@@ -50,64 +51,29 @@ public abstract class AbstractGradeBook<S extends Student<G>, G> {
     public abstract Optional<S> promptUpdateGrade();
 
     protected int getStudentCount() {
-        return countInputHandler.getInput("Enter the number of students: (or type 'unknown'): ");
+        // Implement the logic to get the student count
+        return 0;
     }
 
-protected int getNewStudentCount() {
-    String input = String.valueOf(assignmentCountInputHandler.getInput("Enter the number of new students to add: (or type 'unknown' if not known (Default 10 Students). ('STOP' to enter no new students)"));
-    return handleNewStudentCount(input.trim());
-}
-
-    protected int handleNewStudentCount(String input) {
-        if (input.equalsIgnoreCase("STOP")) {
-            System.out.println("No new students will be added.");
-            return 0;
-        }
-        try {
-            return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            System.out.println("Invalid input. Defaulting to 10 students.");
-            return 10;
-        }
-    }
-
-    protected int getAssignmentCount() {
-        return countInputHandler.getInput("Enter the number of assignments: ");
-    }
-
-    protected List<S> registerStudents(int count) {
-        for (int i = 0; i < count; i++) {
-            String name = nameInputHandler.getInput("Enter the name of student " + (i + 1) + ": ");
-            int assignmentCount = countInputHandler.getInput("Enter the number of assignments for " + name + ": ");
-            S student = studentFactory.get();
-            student.setName(name);
-            student.setAssignmentCount(assignmentCount);
-            studentRegistry.addStudent(student);
-        }
-        return studentRegistry.getAllStudents();
+    protected List<S> registerStudents(int studentCount) {
+        // Implement the logic to register students
+        return Collections.emptyList();
     }
 
     protected void enterGrades(List<S> students) {
-        for (S student : students) {
-            System.out.println("Entering grades for " + student.getName() + ":");
-            for (int i = 0; i < student.getAssignmentCount(); i++) {
-                G grade = gradeEntrySystem.enterGradeForAssignment(student, i + 1);
-                student.addGrade(grade);
-            }
-        }
+        // Implement the logic to enter grades
     }
 
     protected void calculateGrades(List<S> students) {
-        for (S student : students) {
-            double average = gradeCalculator.calculateAverage(student);
-            student.setAverage(average);
-        }
+        // Implement the logic to calculate grades
     }
 
+    protected void displayResults(List<S> students) {
+        // Implement the logic to display results
+    }
 
-public void displayResults(List<S> students) {
-    gradebookDisplay.display(students);
-    double classAverage = classAverageCalculator.calculateAverage(students);
-    System.out.printf("Class Average: %.2f%n", classAverage);
-}
+    protected int getNewStudentCount() {
+        // Implement the logic to get the count of new students
+        return 0;
+    }
 }
