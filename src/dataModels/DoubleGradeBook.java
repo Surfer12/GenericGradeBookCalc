@@ -54,7 +54,7 @@ public class DoubleGradeBook extends AbstractGradeBook<Student<Double>, Double> 
         if (student.isPresent()) {
             int assignmentNumber = countInputHandler.getInput("Enter the assignment number to update: ");
             Double grade = gradeEntrySystem.enterGradeForAssignment(student.get(), assignmentNumber);
-            student.get().updateGrade(assignmentNumber, grade);
+            student.get().updateGrade(name,assignmentNumber, grade);
             displayResults(studentRegistry.getAllStudents());
         } else {
             System.out.println("Student not found.");

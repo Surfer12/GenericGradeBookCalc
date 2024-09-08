@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class SimpleStudentRegistry<S extends Student<G>, G extends Number> implements StudentRegistry<S, G> {
+public class SimpleStudentRegistry<S extends Student<G>, G extends Number> extends StudentRegistry<S, G> {
     private final List<S> students = new ArrayList<>();
 
     @Override

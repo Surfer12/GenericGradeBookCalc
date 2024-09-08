@@ -2,10 +2,10 @@ package main;
 
 import Displays.GradebookDisplayImpl;
 import dataManipulators.ClassAverageCalculatorImpl;
-import dataManipulators.GradeCalculatorImpl; // Ensure this class exists
+import dataManipulators.GradeCalculator;
 import dataModels.IntegerGradeBook;
 import dataModels.Student;
-import dataModels.StudentRegistryImpl; // Ensure this class exists
+import dataModels.StudentRegistry;
 import handlers.ConsoleInputHandler;
 import handlers.GradeEntrySystemImpl;
 import handlers.InputHandler;
@@ -34,11 +34,12 @@ public class Main {
         InputValidator<Integer> scoreValidator = new InputValidator<>(new ScoreValidator(), "score");
         InputHandler<Integer> scoreInputHandler = new ConsoleInputHandler<>(scanner, scoreValidator);
 
-        InputValidator<Integer> positiveIntValidator = new InputValidator<>(new PositiveIntegerValidator(), "positive integer");
+        InputValidator<Integer> positiveIntValidator = new InputValidator<>(new PositiveIntegerValidator(),
+                "positive integer");
         InputHandler<Integer> countInputHandler = new ConsoleInputHandler<>(scanner, positiveIntValidator);
 
         // Create a StudentRegistry
-        StudentRegistryImpl<Student<Integer>, Integer> studentRegistry = new StudentRegistryImpl<>();
+        StudentRegistry<Student<Integer>, Integer> studentRegistry = StudentRegistry.getInstance();
 
         // Create an IntegerGradeBook
         InputHandler<Integer> gradeInputHandler = new ConsoleInputHandler<>(scanner, scoreValidator);
@@ -52,11 +53,16 @@ public class Main {
                 countInputHandler,
                 countInputHandler,
                 new GradeEntrySystemImpl<>(gradeInputHandler),
-                new GradeCalculatorImpl<>(),
+                new GradeCalculator<>() {
+                    @Override
+                    public double calculateAverage(Student<Integer> student) {
+                        List<Integer> grades = student.getGrades();
+                        return grades.stream().mapToInt(Integer::intValue).average().orElse(0.0);
+                    }
+                },
                 new GradebookDisplayImpl<>(),
                 new ClassAverageCalculatorImpl<>(),
-                studentFactory
-        );
+                studentFactory);
 
         // Run the IntegerGradeBook
         integerGradeBook.run();

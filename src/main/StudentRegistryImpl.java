@@ -7,12 +7,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class StudentRegistryImpl<S extends Student<G>, G extends Number> implements StudentRegistry<S, G> {
-   private final List<S> students = new ArrayList<>();
+public class StudentRegistryImpl<S extends Student<G>, G extends Number> extends StudentRegistry<S, G> {
+    private final List<S> students = new ArrayList<>();
 
-   @Override
-   public List<S> getStudents() {
-      return students;
+    public StudentRegistryImpl() {
+        super();
+    }
+
+    @Override
+    public List<S> getStudents() {
+      return new ArrayList<>(students);
    }
 
    @Override
@@ -37,5 +41,14 @@ public class StudentRegistryImpl<S extends Student<G>, G extends Number> impleme
    @Override
    public int countStudents() {
       return students.size();
+   }
+
+   @Override
+   public Optional<S> updateGrade(String name, int assignmentNumber, G grade) {
+      return getStudent(name).map(student -> {
+         student.addGrade(grade);
+         System.out.println("Grade updated for student: " + name);
+         return student;
+      });
    }
 }
