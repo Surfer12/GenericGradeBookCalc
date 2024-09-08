@@ -5,20 +5,20 @@ import java.util.List;
 import java.util.Optional;
 
 public class StudentRegistry<S extends Student<G>, G extends Number> {
-    private static class Holder<S extends Student<G>, G extends Number> {
-        private static final StudentRegistry<?, ?> INSTANCE = new StudentRegistry<>();
+    private static StudentRegistry<?, ?> instance;
+    private List<S> students;
+
+    private StudentRegistry() {
+        students = new ArrayList<>();
     }
 
     public static synchronized <S extends Student<G>, G extends Number> StudentRegistry<S, G> getInstance() {
+        if (instance == null) {
+            instance = new StudentRegistry<>();
+        }
         @SuppressWarnings("unchecked")
-        StudentRegistry<S, G> instance = (StudentRegistry<S, G>) Holder.INSTANCE;
-        return instance;
-    }
-
-    private List<S> students;
-
-    protected StudentRegistry() {
-        students = new ArrayList<>();
+        StudentRegistry<S, G> castedInstance = (StudentRegistry<S, G>) instance;
+        return castedInstance;
     }
 
     public List<S> getStudents() {
@@ -27,10 +27,6 @@ public class StudentRegistry<S extends Student<G>, G extends Number> {
 
     public void addStudent(S student) {
         students.add(student);
-    }
-
-    public List<S> getAllStudents() {
-        return new ArrayList<>(students);
     }
 
     public Optional<S> removeStudent(String name) {
@@ -66,5 +62,9 @@ public class StudentRegistry<S extends Student<G>, G extends Number> {
 
     public int countStudents() {
         return students.size();
+    }
+
+    public List<S> getAllStudents() {
+        return new ArrayList<>(students);
     }
 }

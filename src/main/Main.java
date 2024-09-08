@@ -30,7 +30,8 @@ public class Main {
         InputValidator<Integer> scoreValidator = new InputValidator<>(new ScoreValidator(), "score");
         InputHandler<Integer> scoreInputHandler = new ConsoleInputHandler<>(scanner, scoreValidator);
 
-        InputValidator<Integer> positiveIntValidator = new InputValidator<>(new PositiveIntegerValidator(), "positive integer");
+        InputValidator<Integer> positiveIntValidator = new InputValidator<>(new PositiveIntegerValidator(),
+                "positive integer");
         InputHandler<Integer> countInputHandler = new ConsoleInputHandler<>(scanner, positiveIntValidator);
 
         StudentRegistry<Student<Integer>, Integer> integerStudentRegistry = StudentRegistry.getInstance();
@@ -54,8 +55,7 @@ public class Main {
                 },
                 new GradebookDisplayImpl<>(),
                 new ClassAverageCalculatorImpl<>(),
-                integerStudentFactory
-        );
+                integerStudentFactory);
 
         // Double GradeBook setup
         InputValidator<Double> doubleValidator = new InputValidator<>(new DoubleValidator(), "double score");
@@ -82,33 +82,15 @@ public class Main {
                 },
                 new GradebookDisplayImpl<>(),
                 new ClassAverageCalculatorImpl<>(),
-                doubleStudentFactory
-        );
-
-        // Demonstrate IntegerGradeBook
-        System.out.println("Running Integer GradeBook:");
-        integerGradeBook.run();
-
-        // Add a student to IntegerGradeBook
-        integerGradeBook.addStudents();
-        // Update a grade for the new student
-        integerGradeBook.promptUpdateGrade();
-
-        // Remove a student from IntegerGradeBook
-        integerGradeBook.removeStudent();
+                doubleStudentFactory);
 
         // Demonstrate DoubleGradeBook
         System.out.println("Running Double GradeBook:");
         doubleGradeBook.run();
 
-        // Add a student to DoubleGradeBook
-        doubleGradeBook.addStudents();
-
-        // Update a grade for the new student
-        doubleGradeBook.promptUpdateGrade();
-
-        // Remove a student from DoubleGradeBook
-        doubleGradeBook.removeStudent();
+        // Demonstrate IntegerGradeBook
+        System.out.println("Running Integer GradeBook:");
+        integerGradeBook.run();
 
         // Close the scanner
         scanner.close();

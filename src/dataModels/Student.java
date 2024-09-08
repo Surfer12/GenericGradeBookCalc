@@ -34,6 +34,7 @@ public class Student<G extends Number> {
 
     public void addGrade(G grade) {
         grades.add(grade);
+        updateAverage();
     }
 
     public List<G> getGrades() {
@@ -53,14 +54,10 @@ public class Student<G extends Number> {
     }
 
     public Optional<Student<G>> updateGrade(String name, int assignmentNumber, G grade) {
-        return getCurrentStudentRegistry().getStudents().stream()
-                .filter(s -> s.getName().equals(name))
-                .findFirst()
-                .map(student -> {
-                    student.addGrade(grade);
-                    System.out.println("Grade updated for student: " + name);
-                    return student;
-                });
+        // Use a safer cast with a type check
+        Optional<?> result = StudentRegistry.getInstance().updateGrade(name, assignmentNumber, grade);
+        return result.filter(Student.class::isInstance)
+                     .map(Student.class::cast);
     }
     
     public int getNumAssignments() {
@@ -81,9 +78,14 @@ public class Student<G extends Number> {
                 .sum();
     }
 
-    // Add this method to your Student class
-    private StudentRegistry<Student<G>, G> getCurrentStudentRegistry() {
-        // Implement the logic to return the current StudentRegistry instance
-        return StudentRegistry.getInstance(); // Example, replace with actual implementation
+    private void updateAverage() {
+        if (grades.isEmpty()) {
+            average = 0.0;
+        } else {
+            double sum = grades.stream()
+                    .mapToDouble(Number::doubleValue)
+                    .sum();
+            average = sum / grades.size();
+        }
     }
 }

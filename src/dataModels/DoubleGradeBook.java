@@ -27,11 +27,11 @@ public class DoubleGradeBook extends AbstractGradeBook<Student<Double>, Double> 
 
     @Override
     public void run() {
-        int studentCount = getStudentCount();
-        List<Student<Double>> students = registerStudents(studentCount);
-        enterGrades(students);
-        calculateGrades(students);
-        displayResults(students);
+    int studentCount = getStudentCount();
+    List<Student<Double>> students = registerStudents(studentCount);
+    enterGrades(students);
+    calculateGrades(students);
+    displayResults(students);
     }
 
     @Override
@@ -54,7 +54,7 @@ public class DoubleGradeBook extends AbstractGradeBook<Student<Double>, Double> 
         if (student.isPresent()) {
             int assignmentNumber = countInputHandler.getInput("Enter the assignment number to update: ");
             Double grade = gradeEntrySystem.enterGradeForAssignment(student.get(), assignmentNumber);
-            student.get().updateGrade(name,assignmentNumber, grade);
+            student.get().updateGrade(name, assignmentNumber, grade);
             displayResults(studentRegistry.getAllStudents());
         } else {
             System.out.println("Student not found.");
@@ -62,8 +62,10 @@ public class DoubleGradeBook extends AbstractGradeBook<Student<Double>, Double> 
         return student;
     }
 
-    private void displayResults(List<Student<Double>> students) {
+    @Override
+    public void displayResults(List<Student<Double>> students) {
         gradebookDisplay.display(students);
+        System.out.println("Class Average: " + classAverageCalculator.calculateAverage(students));
     }
 
     public void addStudent(Student<Double> student) {

@@ -29,12 +29,8 @@ public class IntegerGradeBook extends AbstractGradeBook<Student<Integer>, Intege
     public void run() {
         int studentCount = getStudentCount();
         List<Student<Integer>> students = registerStudents(studentCount);
-        enterGrades(students);
         calculateGrades(students);
         displayResults(students);
-        addStudents();
-        removeStudent();
-        promptUpdateGrade();
     }
 
     @Override
@@ -65,7 +61,9 @@ public class IntegerGradeBook extends AbstractGradeBook<Student<Integer>, Intege
         return student;
     }
 
-    private void displayResults(List<Student<Integer>> students) {
+    @Override
+    public void displayResults(List<Student<Integer>> students) {
         gradebookDisplay.display(students);
+        System.out.println("Class Average: " + classAverageCalculator.calculateAverage(students));
     }
 }

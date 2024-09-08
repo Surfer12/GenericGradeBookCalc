@@ -56,25 +56,58 @@ public abstract class AbstractGradeBook<S extends Student<G>, G extends Number> 
 
     protected List<S> registerStudents(int studentCount) {
         List<S> students = new ArrayList<>();
-        for (int i = 0; i < studentCount; i++) {
-            students.add(studentFactory.get());
+        for (int i = 1; i <= studentCount; i++) {
+            S student = registerStudent();
+            students.add(student);
         }
         return students;
     }
 
+    protected S registerStudent() {
+        String name = nameInputHandler.getInput("Enter the name of student " + (studentRegistry.countStudents() + 1) + ":");
+        int assignmentCount = assignmentCountInputHandler.getInput("Enter the number of grades for " + name + ":");
+        S student = studentFactory.get(); // Remove the name input here
+        student.setName(name);
+        student.setAssignmentCount(assignmentCount);
+        return student;
+    }
+
     protected void enterGrades(List<S> students) {
         for (S student : students) {
-            gradeEntrySystem.enterGradeForAssignment(student, student.getAssignmentCount());
+            for (int i = 0; i < student.getAssignmentCount(); i++) {
+                G grade = gradeEntrySystem.enterGradeForAssignment(student, i + 1);
+                student.addGrade(grade);
+            }
         }
     }
 
     protected void calculateGrades(List<S> students) {
         for (S student : students) {
             student.setAverage(gradeCalculator.calculateAverage(student));
-        }
+        }1
     }
 
     protected int getNewStudentCount() {
         return countInputHandler.getInput("Enter the number of new students:");
     }
+
+    protected void displayResults(List<S> students) {
+        gradebookDisplay.display(students);
+        System.out.println("Class Average: " + classAverageCalculator.calculateAverage(students));
+    }
 }
+/*
+ * Running Double GradeBook:
+ * Enter the number of students:1 -- need to update this method to parse the int
+ * if there is a space before or after as well as add a space after colon
+ * Enter the name of student 1:a -- add a space after colon
+ * Enter the number of grades for a:1 -- add a space
+ * Enter student name: a -- This reloops when it should just ask for the grade
+ * for assignment one, not that name again
+ * Enter grade for a for assignment 1: 1
+ * Name: a
+ * Grades: [1.0]
+ * Average: 1.00
+ * --------------------
+ * Class Average: 1.0
+ */

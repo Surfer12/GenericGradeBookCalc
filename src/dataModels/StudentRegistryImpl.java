@@ -1,7 +1,4 @@
-package main;
-
-import dataModels.Student;
-import dataModels.StudentRegistry;
+package dataModels;
 
 import java.util.ArrayList;
 import java.util.List;
