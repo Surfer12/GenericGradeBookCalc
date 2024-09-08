@@ -65,4 +65,16 @@ public class DoubleGradeBook extends AbstractGradeBook<Student<Double>, Double> 
     private void displayResults(List<Student<Double>> students) {
         gradebookDisplay.display(students);
     }
+
+    public void addStudent(Student<Double> student) {
+        // Logic to add student to the registry
+    }
+
+    public void updateGrade(Student<Double> student, double grade) {
+        // Logic to update the student's grade
+    }
+
+    public void removeStudent(Student<Double> student) {
+        // Logic to remove student from the registry
+    }
 }

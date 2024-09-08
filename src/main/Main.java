@@ -91,9 +91,26 @@ public class Main {
         System.out.println("Running Integer GradeBook:");
         integerGradeBook.run();
 
+        // Add a student to IntegerGradeBook
+        integerGradeBook.addStudents();
+        // Update a grade for the new student
+        integerGradeBook.promptUpdateGrade();
+
+        // Remove a student from IntegerGradeBook
+        integerGradeBook.removeStudent();
+
         // Demonstrate DoubleGradeBook
         System.out.println("Running Double GradeBook:");
         doubleGradeBook.run();
+
+        // Add a student to DoubleGradeBook
+        doubleGradeBook.addStudents();
+
+        // Update a grade for the new student
+        doubleGradeBook.promptUpdateGrade();
+
+        // Remove a student from DoubleGradeBook
+        doubleGradeBook.removeStudent();
 
         // Close the scanner
         scanner.close();

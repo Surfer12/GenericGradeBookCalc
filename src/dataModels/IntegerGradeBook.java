@@ -32,6 +32,9 @@ public class IntegerGradeBook extends AbstractGradeBook<Student<Integer>, Intege
         enterGrades(students);
         calculateGrades(students);
         displayResults(students);
+        addStudents();
+        removeStudent();
+        promptUpdateGrade();
     }
 
     @Override
