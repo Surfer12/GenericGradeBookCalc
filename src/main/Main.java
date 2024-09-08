@@ -1,18 +1,18 @@
 package main;
 
+import Displays.GradebookDisplayImpl;
+import dataManipulators.ClassAverageCalculatorImpl;
+import dataManipulators.GradeCalculatorImpl;
 import dataModels.IntegerGradeBook;
 import dataModels.Student;
 import dataModels.StudentRegistryImpl;
 import handlers.ConsoleInputHandler;
-import handlers.InputHandler;
 import handlers.GradeEntrySystemImpl;
+import handlers.InputHandler;
 import validators.InputValidator;
 import validators.NameValidator;
 import validators.PositiveIntegerValidator;
 import validators.ScoreValidator;
-import dataManipulators.ClassAverageCalculatorImpl;
-import dataManipulators.GradeCalculatorImpl;
-import Displays.GradebookDisplayImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,13 +41,17 @@ public class Main {
         StudentRegistryImpl<Student<Integer>, Integer> studentRegistry = new StudentRegistryImpl<>();
 
         // Create an IntegerGradeBook
-        Supplier<Student<Integer>> studentFactory = Student::new;
+        InputHandler<Integer> gradeInputHandler = new ConsoleInputHandler<>(scanner, scoreValidator);
+        Supplier<Student<Integer>> studentFactory = () -> {
+            String name = nameInputHandler.getInput("Enter student name: ");
+            return new Student<>(name);
+        };
         IntegerGradeBook integerGradeBook = new IntegerGradeBook(
                 studentRegistry,
                 nameInputHandler,
                 countInputHandler,
                 countInputHandler,
-                new GradeEntrySystemImpl<>(),
+                new GradeEntrySystemImpl<>(gradeInputHandler),
                 new GradeCalculatorImpl<>(),
                 new GradebookDisplayImpl<>(),
                 new ClassAverageCalculatorImpl<>(),

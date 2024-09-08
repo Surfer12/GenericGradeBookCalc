@@ -10,15 +10,15 @@ import dataModels.Student;
  * @param <G> the type of grade to be entered
  */
 public class ConsoleGradeEntrySystem<S extends Student<G>, G extends Number> implements GradeEntrySystem<S, G> {
-    private final InputHandler<G> scoreInputHandler;
+    private final InputHandler<G> gradeInputHandler;
 
     /**
      * Constructs a handlers.ConsoleGradeEntrySystem with the specified handlers.InputHandler.
      *
-     * @param scoreInputHandler the input handler for entering grades
+     * @param gradeInputHandler the input handler for entering grades
      */
-    public ConsoleGradeEntrySystem(InputHandler<G> scoreInputHandler) {
-        this.scoreInputHandler = scoreInputHandler;
+    public ConsoleGradeEntrySystem(InputHandler<G> gradeInputHandler) {
+        this.gradeInputHandler = gradeInputHandler;
     }
 
     /**
@@ -30,6 +30,6 @@ public class ConsoleGradeEntrySystem<S extends Student<G>, G extends Number> imp
      */
     @Override
     public G enterGradeForAssignment(S student, int assignmentNumber) {
-        return scoreInputHandler.getInput("Enter grade for assignment " + assignmentNumber + ": ");
+        return gradeInputHandler.getInput("Enter grade for " + student.getName() + " for assignment " + assignmentNumber + ": ");
     }
 }

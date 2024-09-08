@@ -1,6 +1,6 @@
 package dataManipulators;
-
 import dataModels.Student;
+import java.util.List;
 
 /**
  * The dataManipulators.SimpleGradeCalculator class implements the dataManipulators.GradeCalculator interface for dataModels.Student objects.
@@ -18,9 +18,14 @@ public class SimpleGradeCalculator<S extends Student<?>> implements GradeCalcula
      */
     @Override
     public double calculateAverage(S student) {
-        if (student.getNumAssignments() == 0) {
+        List<?> grades = student.getGrades();
+        if (grades.isEmpty()) {
             return 0;
         }
-        return (double) student.getTotalScore() / student.getNumAssignments();
+        double sum = 0;
+        for (Object grade : grades) {
+            sum += ((Number) grade).doubleValue();
+        }
+        return sum / grades.size();
     }
 }

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public interface StudentRegistry<S extends Student<?>, G> {
+public interface StudentRegistry<S extends Student<?>, G extends Number> {
 
     default List<S> getStudents() {
         return new ArrayList<>();
@@ -18,7 +18,6 @@ public interface StudentRegistry<S extends Student<?>, G> {
         return new ArrayList<>(getStudents());
     }
 
-    @SuppressWarnings("unused")
     default Optional<S> removeStudent(String name) {
         Optional<S> studentToRemove = getStudents().stream()
                 .filter(s -> s.getName().equals(name))
@@ -43,8 +42,7 @@ public interface StudentRegistry<S extends Student<?>, G> {
                 .findFirst();
     }
 
-    @SuppressWarnings("unused")
-    default Optional<S> updateGrade(String name, int assignmentNumber, Number grade) {
+    default Optional<S> updateGrade(String name, int assignmentNumber, G grade) {
         return getStudents().stream()
                 .filter(s -> s.getName().equals(name))
                 .findFirst()

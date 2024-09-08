@@ -7,7 +7,7 @@ import dataModels.Student;
  * @param <S> the type of student, which extends the dataModels.Student class with a generic grade type
  * @param <G> the type of grade to be entered
  */
-public interface GradeEntrySystem<S extends Student<G>, G> {
+public interface GradeEntrySystem<S extends Student<G>, G extends Number> { // Fix type parameter
 
     /**
      * Enters a grade for a specific assignment for the given student.

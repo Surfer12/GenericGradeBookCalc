@@ -5,101 +5,78 @@ import dataManipulators.ClassAverageCalculator;
 import dataManipulators.GradeCalculator;
 import handlers.GradeEntrySystem;
 import handlers.InputHandler;
+import dataModels.StudentRegistry;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-public abstract class GradeBook<G> extends AbstractGradeBook<Student<G>, G> {
-    public GradeBook(StudentRegistry<Student<G>, G> studentRegistry,
-                     InputHandler<String> nameInputHandler,
-                     InputHandler<Integer> countInputHandler,
-                     InputHandler<Integer> assignmentCountInputHandler,
-                     GradeEntrySystem<Student<G>, G> gradeEntrySystem,
-                     GradeCalculator<Student<G>> gradeCalculator,
-                     GradebookDisplay<Student<G>> gradebookDisplay,
-                     ClassAverageCalculator<Student<G>> classAverageCalculator,
-                     Supplier<Student<G>> studentFactory) {
-        super(studentRegistry, nameInputHandler, countInputHandler,
-                assignmentCountInputHandler, gradeEntrySystem,
-                gradeCalculator, gradebookDisplay, classAverageCalculator, studentFactory);
+public abstract class AbstractGradeBook<S extends Student<G>, G extends Number> {
+
+    protected final StudentRegistry<S, G> studentRegistry;
+    protected final InputHandler<String> nameInputHandler;
+    protected final InputHandler<Integer> countInputHandler;
+    protected final InputHandler<Integer> assignmentCountInputHandler;
+    protected final GradeEntrySystem<S, G> gradeEntrySystem;
+    protected final GradeCalculator<S> gradeCalculator;
+    protected final GradebookDisplay<S> gradebookDisplay;
+    protected final ClassAverageCalculator<S> classAverageCalculator;
+    protected final Supplier<S> studentFactory;
+
+    public AbstractGradeBook(StudentRegistry<S, G> studentRegistry,
+                             InputHandler<String> nameInputHandler,
+                             InputHandler<Integer> countInputHandler,
+                             InputHandler<Integer> assignmentCountInputHandler,
+                             GradeEntrySystem<S, G> gradeEntrySystem,
+                             GradeCalculator<S> gradeCalculator,
+                             GradebookDisplay<S> gradebookDisplay,
+                             ClassAverageCalculator<S> classAverageCalculator,
+                             Supplier<S> studentFactory) {
+        this.studentRegistry = studentRegistry;
+        this.nameInputHandler = nameInputHandler;
+        this.countInputHandler = countInputHandler;
+        this.assignmentCountInputHandler = assignmentCountInputHandler;
+        this.gradeEntrySystem = gradeEntrySystem;
+        this.gradeCalculator = gradeCalculator;
+        this.gradebookDisplay = gradebookDisplay;
+        this.classAverageCalculator = classAverageCalculator;
+        this.studentFactory = studentFactory;
     }
 
-    @Override
-    public void run() {
-        int studentCount = getStudentCount();
-        List<Student<G>> students = registerStudents(studentCount);
-        enterGrades(students); // Enter grades for initial students
-        calculateGrades(students);
-        displayResults(students);
+    public abstract void run();
 
-        /* Using this project to learn about Java generics and how to use them effectively so
-         these methods are commented out for now.*/
+    public abstract List<S> addStudents();
 
-        /*removeStudent();
-        promptUpdateGrade();
-        /*addNewStudents();*/
+    public abstract void removeStudent();
+
+    public abstract Optional<S> promptUpdateGrade();
+
+    protected int getStudentCount() {
+        return countInputHandler.getInput("Enter the number of students:");
     }
 
-    @Override
-    public List<Student<G>> addStudents() {
-        int studentCount = getNewStudentCount();
-        if (studentCount == 0) {
-            System.out.println("No new students added.");
-            return Collections.emptyList();
+    protected List<S> registerStudents(int studentCount) {
+        List<S> students = new ArrayList<>();
+        for (int i = 0; i < studentCount; i++) {
+            students.add(studentFactory.get());
         }
-        return registerStudents(studentCount);
+        return students;
     }
 
-    public void addNewStudents() {
-        List<Student<G>> newStudents = addStudents();
-        if (!newStudents.isEmpty()) {
-            enterGrades(newStudents); // Only enter grades for new students
-            calculateGrades(newStudents);
-            displayResults(newStudents);
+    protected void enterGrades(List<S> students) {
+        for (S student : students) {
+            gradeEntrySystem.enterGradeForAssignment(student, student.getAssignmentCount());
         }
     }
 
-    @Override
-    public void removeStudent() {
-        String name = nameInputHandler.getInput("Enter the name of the student to remove: " +
-                "('STOP' to remove none.) ");
-        if (name.equalsIgnoreCase("STOP")) {
-            System.out.println("No students removed.");
-            return;
+    protected void calculateGrades(List<S> students) {
+        for (S student : students) {
+            student.setAverage(gradeCalculator.calculateAverage(student));
         }
-        studentRegistry.removeStudent(name);
-        List<Student<G>> students = studentRegistry.getAllStudents();
-        displayResults(students);
     }
 
-    @Override
-    public Optional<Student<G>> promptUpdateGrade() {
-        String name = nameInputHandler.getInput("Enter the name of the student to update their grade: " +
-                "('STOP' to update none of the student's individual grades.) ");
-        if (name.equalsIgnoreCase("STOP")) {
-            System.out.println("No student grade(s) have been updated.");
-            return Optional.empty();
-        }
-        Optional<Student<G>> student = studentRegistry.getStudent(name);
-        if (student.isEmpty()) {
-            System.out.println("Student not found.");
-            return Optional.empty();
-        }
-        int assignmentNumber = countInputHandler.getInput("Enter the assignment number to update: " +
-                "('STOP' to update none of the individual assignments) ");
-        if (name.equalsIgnoreCase("STOP")) {
-            System.out.println("No individual student assignment has been updated.");
-        } else if (assignmentNumber == 0) {
-            System.out.println("No individual student assignment has been updated.");
-            return student;
-        } else {
-            G grade = gradeEntrySystem.enterGradeForAssignment(student.get(), assignmentNumber);
-            student.ifPresent(s -> s.updateGrade(assignmentNumber, grade));
-            List<Student<G>> students = studentRegistry.getAllStudents();
-            displayResults(students);
-        }
-        return student;
+    protected int getNewStudentCount() {
+        return countInputHandler.getInput("Enter the number of new students:");
     }
 }
