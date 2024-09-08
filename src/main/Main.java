@@ -15,8 +15,6 @@ import validators.NameValidator;
 import validators.PositiveIntegerValidator;
 import validators.ScoreValidator;
 import validators.DoubleValidator;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.function.Supplier;
