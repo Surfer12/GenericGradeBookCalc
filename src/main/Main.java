@@ -2,10 +2,10 @@ package main;
 
 import Displays.GradebookDisplayImpl;
 import dataManipulators.ClassAverageCalculatorImpl;
-import dataManipulators.GradeCalculatorImpl;
+import dataManipulators.GradeCalculatorImpl; // Ensure this class exists
 import dataModels.IntegerGradeBook;
 import dataModels.Student;
-import dataModels.StudentRegistryImpl;
+import dataModels.StudentRegistryImpl; // Ensure this class exists
 import handlers.ConsoleInputHandler;
 import handlers.GradeEntrySystemImpl;
 import handlers.InputHandler;

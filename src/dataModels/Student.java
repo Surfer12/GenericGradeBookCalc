@@ -2,6 +2,7 @@ package dataModels;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class Student<G extends Number> {
     private final List<G> grades;
@@ -51,16 +52,17 @@ public class Student<G extends Number> {
         return grades.toString();
     }
 
-    public void updateGrade(int assignmentNumber, G newGrade) {
-        if (assignmentNumber > 0 && assignmentNumber <= grades.size()) {
-            grades.set(assignmentNumber - 1, newGrade);
-        } else if (assignmentNumber == grades.size() + 1) {
-            grades.add(newGrade);
-        } else {
-            System.out.println("Invalid assignment number.");
-        }
+    public Optional<Student<G>> updateGrade(String name, int assignmentNumber, G grade) {
+        return getCurrentStudentRegistry().getStudents().stream()
+                .filter(s -> s.getName().equals(name))
+                .findFirst()
+                .map(student -> {
+                    student.addGrade(grade);
+                    System.out.println("Grade updated for student: " + name);
+                    return student;
+                });
     }
-
+    
     public int getNumAssignments() {
         return grades.size();
     }
@@ -77,5 +79,11 @@ public class Student<G extends Number> {
         return grades.stream()
                 .mapToInt(G::intValue)
                 .sum();
+    }
+
+    // Add this method to your Student class
+    private StudentRegistry<Student<G>, G> getCurrentStudentRegistry() {
+        // Implement the logic to return the current StudentRegistry instance
+        return StudentRegistry.getInstance(); // Example, replace with actual implementation
     }
 }

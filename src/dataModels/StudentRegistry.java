@@ -4,11 +4,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public interface StudentRegistry<S extends Student<?>, G extends Number> {
+public class StudentRegistry<S extends Student<G>, G extends Number> {
+    private static StudentRegistry<?, ?> instance; // Parameterize with wildcards
+
+    private StudentRegistry() {
+        // private constructor to prevent instantiation
+    }
+
+    public static synchronized <S extends Student<G>, G extends Number> StudentRegistry<S, G> getInstance() {
+        if (instance == null) {
+            instance = new StudentRegistry<>();
+        }
+        return (StudentRegistry<S, G>) instance;
+    }
 
     default List<S> getStudents() {
         return new ArrayList<>();
     }
+
+    
 
     default void addStudent(S student) {
         getStudents().add(student);
@@ -47,7 +61,7 @@ public interface StudentRegistry<S extends Student<?>, G extends Number> {
                 .filter(s -> s.getName().equals(name))
                 .findFirst()
                 .map(student -> {
-                    student.updateGrade(assignmentNumber, grade); // Ensure updateGrade accepts G
+                    student.updateGrade(assignmentNumber, grade); // Remove cast to Number
                     System.out.println("Grade updated for student: " + name);
                     return student;
                 });
