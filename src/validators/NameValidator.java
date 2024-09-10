@@ -1,5 +1,8 @@
 package validators;
-
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.HashSet;
+import java.util.Set;
 /**
  * validators.NameValidator class that implements the validators.InputValidator.Validator interface for String type.
  * This class provides methods to parse and validate name inputs.
@@ -28,4 +31,14 @@ public class NameValidator implements InputValidator.Validator<String> {
         // Example validation: Ensure the name is not empty and contains only letters and spaces
         return value != null && value.matches("[a-zA-Z\\s]+");
     }
+
+    List<String> getUniqueNames(List<String> names) {
+        return names.stream().distinct().collect(Collectors.toList());
+    }
+    
+    Set<String> getUniqueNamesForHashSet(List<String> names) {
+        return new HashSet<>(names);
+    }
+
+
 }
