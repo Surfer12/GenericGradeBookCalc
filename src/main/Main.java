@@ -54,7 +54,7 @@ public class Main {
                         return grades.stream().mapToInt(Integer::intValue).average().orElse(0.0);
                     }
                 },
-                new GradebookDisplayImpl<>(),
+                new GradebookDisplayImpl<Student<Integer>>(),
                 new ClassAverageCalculatorImpl<>(),
                 integerStudentFactory);
 
@@ -78,7 +78,7 @@ public class Main {
                         return grades.stream().mapToDouble(Double::doubleValue).average().orElse(0.0);
                     }
                 },
-                new GradebookDisplayImpl<>(),
+                new GradebookDisplayImpl<Student<Double>>(),
                 new ClassAverageCalculatorImpl<>(),
                 doubleStudentFactory);
 
@@ -88,12 +88,11 @@ public class Main {
 
         // Demonstrate DoubleGradeBook
         System.out.println("Running Double GradeBook:" + "\n");
-        doubleGradeBook.run();     
+        doubleGradeBook.run();
 
-
-            // Demonstrate DoubleGradeBook
+        // Demonstrate DoubleGradeBook
         System.out.println("Running Double Grade Book for HashSet of Unique Names:" + "\n");
-        doubleGradeBook.run();     
+        doubleGradeBook.run();
 
         // Demonstration of getUniqueNamesForHashSet
         List<String> sampleNames = Arrays.asList("Alice", "Bob", "Alice", "Charlie", "Bob");

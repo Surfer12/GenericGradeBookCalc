@@ -33,6 +33,9 @@ public class MainHashSet {
         InputValidator<Double> doubleValidator = new InputValidator<>(new DoubleValidator(), "double score");
         InputHandler<Double> doubleScoreInputHandler = new ConsoleInputHandler<>(scanner, doubleValidator);
 
+        InputHandler<String> nameInputHandler = new ConsoleInputHandler<>(scanner, new InputValidator<>(new NameValidator(), "name"));
+        InputHandler<Integer> countInputHandler = new ConsoleInputHandler<>(scanner, new InputValidator<>(new PositiveIntegerValidator(), "count"));
+
         StudentRegistry<Student<Double>, Double> doubleStudentRegistry = StudentRegistry.getInstance();
         Supplier<Student<Double>> doubleStudentFactory = () -> new Student<>();
 
@@ -43,7 +46,7 @@ public class MainHashSet {
                 countInputHandler,
                 countInputHandler,
                 new GradeEntrySystemImpl<>(doubleScoreInputHandler),
-                new GradeCalculator<>() {
+                new GradeCalculator<Double>() {
                     @Override
                     public double calculateAverage(Student<Double> student) {
                         List<Double> grades = student.getGrades();
