@@ -36,7 +36,7 @@ public class NameValidator implements InputValidator.Validator<String> {
         return names.stream().distinct().collect(Collectors.toList());
     }
     
-    Set<String> getUniqueNamesForHashSet(List<String> names) {
+    public Set<String> getUniqueNamesForHashSet(List<String> names) {
         return new HashSet<>(names);
     }
 
