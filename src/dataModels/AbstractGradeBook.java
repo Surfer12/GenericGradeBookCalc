@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Supplier;
+import java.util.Set;
 
 public abstract class AbstractGradeBook<S extends Student<G>, G extends Number> {
 
@@ -21,6 +22,7 @@ public abstract class AbstractGradeBook<S extends Student<G>, G extends Number> 
     protected final GradebookDisplay<S> gradebookDisplay;
     protected final ClassAverageCalculator<S> classAverageCalculator;
     protected final Supplier<S> studentFactory;
+    protected final Set<String> uniqueNames; // Add the uniqueNames field
 
     public AbstractGradeBook(StudentRegistry<S, G> studentRegistry,
                              InputHandler<String> nameInputHandler,
@@ -30,7 +32,8 @@ public abstract class AbstractGradeBook<S extends Student<G>, G extends Number> 
                              GradeCalculator<S> gradeCalculator,
                              GradebookDisplay<S> gradebookDisplay,
                              ClassAverageCalculator<S> classAverageCalculator,
-                             Supplier<S> studentFactory) {
+                             Supplier<S> studentFactory,
+                             Set<String> uniqueNames) { // Add the uniqueNames parameter
         this.studentRegistry = studentRegistry;
         this.nameInputHandler = nameInputHandler;
         this.countInputHandler = countInputHandler;
@@ -40,6 +43,7 @@ public abstract class AbstractGradeBook<S extends Student<G>, G extends Number> 
         this.gradebookDisplay = gradebookDisplay;
         this.classAverageCalculator = classAverageCalculator;
         this.studentFactory = studentFactory;
+        this.uniqueNames = uniqueNames; // Initialize the uniqueNames field
     }
 
     public abstract void run();

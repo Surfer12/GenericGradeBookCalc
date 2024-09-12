@@ -9,6 +9,7 @@ import handlers.InputHandler; // Fix import
 import java.util.function.Supplier;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 public class DoubleGradeBook extends AbstractGradeBook<Student<Double>, Double> {
     public DoubleGradeBook(StudentRegistry<Student<Double>, Double> studentRegistry,
@@ -19,10 +20,11 @@ public class DoubleGradeBook extends AbstractGradeBook<Student<Double>, Double> 
             GradeCalculator<Student<Double>> gradeCalculator,
             GradebookDisplay<Student<Double>> gradebookDisplay,
             ClassAverageCalculator<Student<Double>> classAverageCalculator,
-            Supplier<Student<Double>> studentFactory) {
+            Supplier<Student<Double>> studentFactory,
+            Set<String> uniqueNames) { // Add the uniqueNames parameter
         super(studentRegistry, nameInputHandler, countInputHandler,
                 assignmentCountInputHandler, gradeEntrySystem,
-                gradeCalculator, gradebookDisplay, classAverageCalculator, studentFactory);
+                gradeCalculator, gradebookDisplay, classAverageCalculator, studentFactory, uniqueNames); // Pass it to the superclass constructor
     }
 
     @Override

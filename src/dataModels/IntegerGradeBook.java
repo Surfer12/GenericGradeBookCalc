@@ -9,7 +9,7 @@ import handlers.InputHandler; // Fix import
 import java.util.function.Supplier;
 import java.util.List;
 import java.util.Optional;
-
+import java.util.Set;
 public class IntegerGradeBook extends AbstractGradeBook<Student<Integer>, Integer> {
     public IntegerGradeBook(StudentRegistry<Student<Integer>, Integer> studentRegistry,
                             InputHandler<String> nameInputHandler,
@@ -19,10 +19,11 @@ public class IntegerGradeBook extends AbstractGradeBook<Student<Integer>, Intege
                             GradeCalculator< Student<Integer> > gradeCalculator,
                             GradebookDisplay< Student<Integer> > gradebookDisplay,
                             ClassAverageCalculator< Student<Integer> > classAverageCalculator,
-                            Supplier< Student<Integer> > studentFactory) {
+                            Supplier< Student<Integer> > studentFactory,
+                            Set<String> uniqueNames) { // Add the uniqueNames parameter
         super(studentRegistry, nameInputHandler, countInputHandler,
                 assignmentCountInputHandler, gradeEntrySystem,
-                gradeCalculator, gradebookDisplay, classAverageCalculator, studentFactory);
+                gradeCalculator, gradebookDisplay, classAverageCalculator, studentFactory, uniqueNames); // Pass it to the superclass constructor
     }
 
     @Override

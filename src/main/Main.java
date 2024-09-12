@@ -14,7 +14,6 @@ import handlers.ConsoleInputHandler;
 import handlers.GradeEntrySystemImpl;
 import handlers.InputHandler;
 import validators.InputValidator;
-import validators.NameValidator;
 import validators.PositiveIntegerValidator;
 import validators.ScoreValidator;
 import validators.DoubleValidator;
@@ -40,6 +39,7 @@ public class Main {
 
         StudentRegistry<Student<Integer>, Integer> integerStudentRegistry = StudentRegistry.getInstance();
         Supplier<Student<Integer>> integerStudentFactory = () -> new Student<>();
+        Set<String> uniqueNames = new HashSet<>();
 
         IntegerGradeBook integerGradeBook = new IntegerGradeBook(
                 integerStudentRegistry,
@@ -56,7 +56,8 @@ public class Main {
                 },
                 new GradebookDisplayImpl<Student<Integer>>(),
                 new ClassAverageCalculatorImpl<>(),
-                integerStudentFactory);
+                integerStudentFactory,
+                uniqueNames);
 
         // Double GradeBook setup
         InputValidator<Double> doubleValidator = new InputValidator<>(new DoubleValidator(), "double score");
@@ -70,8 +71,8 @@ public class Main {
                 nameInputHandler,
                 countInputHandler,
                 countInputHandler,
-                new GradeEntrySystemImpl<>(doubleScoreInputHandler),
-                new GradeCalculator<>() {
+                new GradeEntrySystemImpl<Student<Double>, Double>(doubleScoreInputHandler),
+                new GradeCalculator<Student<Double>>() {
                     @Override
                     public double calculateAverage(Student<Double> student) {
                         List<Double> grades = student.getGrades();
@@ -79,11 +80,12 @@ public class Main {
                     }
                 },
                 new GradebookDisplayImpl<Student<Double>>(),
-                new ClassAverageCalculatorImpl<>(),
-                doubleStudentFactory);
+                new ClassAverageCalculatorImpl<Student<Double>>(),
+                doubleStudentFactory,
+                uniqueNames);
 
-        // Demonstrate IntegerGradeBook
-        System.out.println("Running Integer GradeBook:" + "\n");
+        // Demonstrate Integer GradeBook
+        System.out.println("Running Integer GradeBook:\n");
         integerGradeBook.run();
 
         // Demonstrate DoubleGradeBook
@@ -96,8 +98,8 @@ public class Main {
 
         // Demonstration of getUniqueNamesForHashSet
         List<String> sampleNames = Arrays.asList("Alice", "Bob", "Alice", "Charlie", "Bob");
-        Set<String> uniqueNames = new NameValidator().getUniqueNamesForHashSet(sampleNames);
-        System.out.println("Unique names: " + uniqueNames);
+        Set<String> uniqueNamesSet = new NameValidator().getUniqueNamesForHashSet(sampleNames);
+        System.out.println("Unique names: " + uniqueNamesSet);
 
         // Close the scanner
         scanner.close();

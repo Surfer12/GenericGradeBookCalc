@@ -40,23 +40,25 @@ public class MainHashSet {
         Supplier<Student<Double>> doubleStudentFactory = () -> new Student<>();
 
         // Declare and initialize the doubleGradeBook variable
+        Set<String> uniqueNames = new HashSet<>(); // Create a HashSet for unique names
         DoubleGradeBook doubleGradeBook = new DoubleGradeBook(
                 doubleStudentRegistry,
                 nameInputHandler,
                 countInputHandler,
                 countInputHandler,
                 new GradeEntrySystemImpl<>(doubleScoreInputHandler),
-                new GradeCalculator<Double>() {
+                new GradeCalculator<Student<Double>>() { // Use the correct generic type
                     @Override
-                    public double calculateAverage(Student<Double> student) {
+                    public double calculateAverage(Student<Double> student) { // Implement the calculateAverage method
                         List<Double> grades = student.getGrades();
                         return grades.stream().mapToDouble(Double::doubleValue).average().orElse(0.0);
                     }
                 },
-                new GradebookDisplayImpl<>(),
+                new GradebookDisplayImpl<Student<Double>>(),
                 new ClassAverageCalculatorImpl<>(),
                 doubleStudentFactory,
-                new HashSet<>()); // Add an empty HashSet argument to the constructor
+                uniqueNames
+        );  
 
         // Demonstrate DoubleGradeBook
         System.out.println("Running Double Grade Book for HashSet of Unique Names:" + "\n");
@@ -64,8 +66,8 @@ public class MainHashSet {
 
         // Demonstration of getUniqueNamesForHashSet
         List<String> sampleNames = Arrays.asList("Alice", "Bob", "Alice", "Charlie", "Bob");
-        Set<String> uniqueNames = new NameValidator().getUniqueNamesForHashSet(sampleNames);
-        System.out.println("Unique names: " + uniqueNames);
+        Set<String> uniqueNames2 = new NameValidator().getUniqueNamesForHashSet(sampleNames);
+        System.out.println("Unique names: " + uniqueNames2);
 
         // Close the scanner
         scanner.close();
