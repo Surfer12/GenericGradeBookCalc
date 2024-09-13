@@ -13,14 +13,11 @@ import java.util.Optional;
  */
 @Singleton
 public class StudentRegistry<S extends Student<G>, G extends Number> {
-    private static StudentRegistry<?, ?> instance;
-    private final List<S> students = new ArrayList<>();
+    private static final StudentRegistry<?, ?> INSTANCE = new StudentRegistry<>();
 
-    public static synchronized <S extends Student<G>, G extends Number> StudentRegistry<S, G> getInstance() {
-        if (instance == null) {
-            instance = new StudentRegistry<>();
-        }
-        return (StudentRegistry<S, G>) instance;
+    @SuppressWarnings("unchecked")
+    public static <S extends Student<G>, G extends Number> StudentRegistry<S, G> getInstance() {
+        return (StudentRegistry<S, G>) INSTANCE;
     }
 
     public List<S> getStudents() {

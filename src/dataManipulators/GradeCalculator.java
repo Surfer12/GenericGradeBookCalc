@@ -6,7 +6,8 @@ import dataModels.Student;
  *
  * @param <S> the type of student, which extends the dataModels.Student class
  */
-public interface GradeCalculator<S extends Student<?>> {
+@FunctionalInterface
+public interface GradeCalculator<S extends Student<G>, G extends Number> {
 
     /**
      * Calculates the average grade for the given student.
@@ -16,3 +17,9 @@ public interface GradeCalculator<S extends Student<?>> {
      */
     double calculateAverage(S student);
 }
+
+// Usage with lambda
+GradeCalculator<Student<Integer>, Integer> calculator = student -> {
+    List<Integer> grades = student.getGrades();
+    return grades.stream().mapToInt(Integer::intValue).average().orElse(0.0);
+};

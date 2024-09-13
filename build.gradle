@@ -6,7 +6,7 @@ dependencies {
     implementation 'org.springframework:spring-aspects:5.3.20'
     
     // Spring Data JPA
-    implementation 'org.springframework.data:spring-data-jpa:2.7.6'
+    implementation 'org.springframework.data:spring-data-jpa:2.5.12'
     
     // AspectJ Weaver
     implementation 'org.aspectj:aspectjweaver:1.9.19'

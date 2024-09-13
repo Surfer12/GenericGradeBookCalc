@@ -10,18 +10,21 @@ public class Student<G extends Number> {
     private double average;
     private int assignmentCount;
 
+    // Default constructor initializes grades
     public Student() {
         this.grades = new ArrayList<>();
     }
 
+    // Constructor with name
     public Student(String name) {
         this();
         this.name = name;
     }
 
+    // Constructor with name and grades
     public Student(String name, List<G> grades) {
         this.name = name;
-        this.grades.addAll(grades);
+        this.grades = new ArrayList<>(grades); // Initialize final field
     }
 
     public String getName() {
