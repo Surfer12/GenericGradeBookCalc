@@ -1,5 +1,9 @@
 package dataModels;
 
+import io.micronaut.context.annotation.Bean;
+import dataModels.Student;
+import dataModels.StudentRepository;
+
 import javax.inject.Singleton;
 import java.util.HashMap;
 import java.util.Map;

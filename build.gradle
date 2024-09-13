@@ -1,13 +1,3 @@
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        // Spring Boot Gradle Plugin
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.7.4")
-    }
-}
-
 plugins {
     id 'java'
     id 'io.micronaut.application' version '3.7.10'
@@ -28,25 +18,18 @@ micronaut {
 }
 
 dependencies {
-    // Micronaut Dependencies
     implementation("io.micronaut:micronaut-inject")
     implementation("io.micronaut:micronaut-runtime")
-
-    // AspectJ Dependencies
-    implementation("org.aspectj:aspectjrt:1.9.19")
-    implementation("org.aspectj:aspectjweaver:1.9.19")
-
-    // javax.inject Dependency
-    implementation 'javax.inject:javax.inject:1'
-
-    // Spring Framework Dependencies (if needed)
-    implementation("org.springframework:spring-context:5.3.29")
-
-    // Spring Boot Dependencies (if needed)
-    // Uncomment and specify version if you need Spring Boot
-    // implementation("org.springframework.boot:spring-boot-starter:2.7.14")
+    implementation("io.micronaut.data:micronaut-data-hibernate-jpa")
+    implementation("io.micronaut.sql:micronaut-jdbc-hikari")
+    implementation("jakarta.persistence:jakarta.persistence-api")
+    runtimeOnly("h2database:h2")
+    
+    testImplementation("io.micronaut.test:micronaut-test-junit5")
+    testImplementation("org.junit.jupiter:junit-jupiter-api")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
 }
 
 application {
-    mainClass.set('main.Application')
+    mainClass.set('your.package.Application')
 }
