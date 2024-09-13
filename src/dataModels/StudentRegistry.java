@@ -4,21 +4,26 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Singleton StudentRegistry to manage students.
+ *
+ * @param <S> Type of Student
+ * @param <G> Type of Grade
+ */
 public class StudentRegistry<S extends Student<G>, G extends Number> {
     private static StudentRegistry<?, ?> instance;
     private List<S> students;
 
-    protected StudentRegistry() {
+    private StudentRegistry() {
         students = new ArrayList<>();
     }
 
+    @SuppressWarnings("unchecked")
     public static synchronized <S extends Student<G>, G extends Number> StudentRegistry<S, G> getInstance() {
         if (instance == null) {
             instance = new StudentRegistry<>();
         }
-        @SuppressWarnings("unchecked")
-        StudentRegistry<S, G> castedInstance = (StudentRegistry<S, G>) instance;
-        return castedInstance;
+        return (StudentRegistry<S, G>) instance;
     }
 
     public List<S> getStudents() {

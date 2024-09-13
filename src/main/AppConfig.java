@@ -1,17 +1,17 @@
 package main;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import dataModels.StudentRegistry;
 import dataModels.IntegerGradeBook;
-import dataManipulators.ClassAverageCalculatorImpl;
-import Displays.GradebookDisplayImpl;
-import handlers.GradeEntrySystemImpl;
-import validators.NameValidator;
-import validators.InputValidator;
+import handlers.InputHandler;
 import handlers.ConsoleInputHandler;
+import handlers.GradeEntrySystemImpl;
+import validators.InputValidator;
+import validators.NameValidator;
 import validators.ScoreValidator;
 import validators.PositiveIntegerValidator;
+// ... other imports ...
 
 @Configuration
 public class AppConfig {
@@ -52,15 +52,5 @@ public class AppConfig {
         );
     }
 
-    // Other bean definitions...
-}
-
-public class Main {
-    public static void main(String[] args) {
-        ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
-        IntegerGradeBook integerGradeBook = context.getBean(IntegerGradeBook.class);
-        
-        // Run the GradeBook
-        integerGradeBook.run();
-    }
+    // Define other beans similarly...
 }
