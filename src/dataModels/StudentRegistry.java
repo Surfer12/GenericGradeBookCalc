@@ -14,8 +14,14 @@ public class StudentRegistry<S extends Student<G>, G extends Number> {
     private static StudentRegistry<?, ?> instance;
     private List<S> students;
 
-    private StudentRegistry() {
+    // Change the constructor to public
+    public StudentRegistry() {
         students = new ArrayList<>();
+    }
+
+    // Alternatively, provide a public static factory method
+    public static <S extends Student<G>, G extends Number> StudentRegistry<S, G> createRegistry() {
+        return new StudentRegistry<>();
     }
 
     @SuppressWarnings("unchecked")
@@ -23,7 +29,9 @@ public class StudentRegistry<S extends Student<G>, G extends Number> {
         if (instance == null) {
             instance = new StudentRegistry<>();
         }
-        return (StudentRegistry<S, G>) instance;
+        @SuppressWarnings("unchecked")
+        StudentRegistry<S, G> castedInstance = (StudentRegistry<S, G>) instance;
+        return castedInstance;
     }
 
     public List<S> getStudents() {

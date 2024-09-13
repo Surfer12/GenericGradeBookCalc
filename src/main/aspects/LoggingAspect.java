@@ -13,13 +13,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class LoggingAspect {
 
-    @Before("execution(* dataModels.StudentService.*(..))")
-    public void logBeforeMethods(JoinPoint joinPoint) {
-        System.out.println("Executing: " + joinPoint.getSignature().getName());
+    @Before("execution(* main..*(..))")
+    public void beforeMethod(JoinPoint joinPoint) {
+        System.out.println("Before method: " + joinPoint.getSignature().getName());
     }
 
-    @After("execution(* dataModels.StudentService.*(..))")
-    public void logAfterMethods(JoinPoint joinPoint) {
-        System.out.println("Completed: " + joinPoint.getSignature().getName());
+    @After("execution(* main..*(..))")
+    public void afterMethod(JoinPoint joinPoint) {
+        System.out.println("After method: " + joinPoint.getSignature().getName());
     }
 }

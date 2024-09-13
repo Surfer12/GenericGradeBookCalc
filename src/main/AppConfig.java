@@ -30,14 +30,15 @@ public class AppConfig {
     }
 
     @Bean
-    public IntegerGradeBook integerGradeBook(StudentRegistry<Student<Integer>, Integer> registry,
-                                             InputHandler<String> nameInputHandler,
-                                             InputHandler<Integer> countInputHandler,
-                                             InputHandler<Integer> gradeInputHandler,
-                                             GradeEntrySystemImpl<Integer> gradeEntrySystem,
-                                             GradeCalculator<Student<Integer>> gradeCalculator,
-                                             GradebookDisplayImpl<Student<Integer>> display,
-                                             ClassAverageCalculatorImpl<Integer> averageCalculator) {
+    public IntegerGradeBook integerGradeBook(
+            StudentRegistry<Student<Integer>, Integer> registry,
+            InputHandler<String> nameInputHandler,
+            InputHandler<Integer> countInputHandler,
+            InputHandler<Integer> gradeInputHandler,
+            GradeEntrySystemImpl<Student<Integer>, Integer> gradeEntrySystem, // Corrected
+            GradeCalculator<Student<Integer>> gradeCalculator,
+            GradebookDisplayImpl<Student<Integer>> display,
+            ClassAverageCalculatorImpl<Student<Integer>> averageCalculator) { // Corrected
         return new IntegerGradeBook(
                 registry,
                 nameInputHandler,
