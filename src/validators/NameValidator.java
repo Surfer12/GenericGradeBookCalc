@@ -1,8 +1,10 @@
 package validators;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.HashSet;
 import java.util.Set;
+
 /**
  * validators.NameValidator class that implements the validators.InputValidator.Validator interface for String type.
  * This class provides methods to parse and validate name inputs.
@@ -35,7 +37,7 @@ public class NameValidator implements InputValidator.Validator<String> {
     List<String> getUniqueNames(List<String> names) {
         return names.stream().distinct().collect(Collectors.toList());
     }
-    
+
     public Set<String> getUniqueNamesForHashSet(List<String> names) {
         return new HashSet<>(names);
     }

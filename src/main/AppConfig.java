@@ -1,7 +1,9 @@
 package main;
 
 import io.micronaut.context.annotation.Factory;
+
 import javax.inject.Singleton;
+
 import dataModels.StudentRegistry;
 import dataModels.IntegerGradeBook;
 import handlers.InputHandler;
@@ -11,6 +13,7 @@ import dataManipulators.GradeCalculator;
 import Displays.GradebookDisplayImpl;
 import dataManipulators.ClassAverageCalculatorImpl;
 import dataModels.Student;
+
 import java.util.HashSet;
 import java.util.function.Supplier;
 import java.util.Set;
@@ -27,9 +30,9 @@ public class AppConfig {
     public GradeCalculator<Student<Integer>, Integer> gradeCalculator() {
         return student -> {
             return student.getGrades().stream()
-                          .mapToInt(Integer::intValue)
-                          .average()
-                          .orElse(0.0);
+                    .mapToInt(Integer::intValue)
+                    .average()
+                    .orElse(0.0);
         };
     }
 

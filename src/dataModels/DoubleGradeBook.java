@@ -13,15 +13,15 @@ import java.util.Set;
 
 public class DoubleGradeBook extends AbstractGradeBook<Student<Double>, Double> {
     public DoubleGradeBook(StudentRegistry<Student<Double>, Double> studentRegistry,
-            InputHandler<String> nameInputHandler,
-            InputHandler<Integer> countInputHandler,
-            InputHandler<Integer> assignmentCountInputHandler,
-            GradeEntrySystem<Student<Double>, Double> gradeEntrySystem,
-            GradeCalculator<Student<Double>, Double> gradeCalculator,
-            GradebookDisplay<Student<Double>> gradebookDisplay,
-            ClassAverageCalculator<Student<Double>> classAverageCalculator,
-            Supplier<Student<Double>> studentFactory,
-            Set<String> uniqueNames) { // Add the uniqueNames parameter
+                           InputHandler<String> nameInputHandler,
+                           InputHandler<Integer> countInputHandler,
+                           InputHandler<Integer> assignmentCountInputHandler,
+                           GradeEntrySystem<Student<Double>, Double> gradeEntrySystem,
+                           GradeCalculator<Student<Double>, Double> gradeCalculator,
+                           GradebookDisplay<Student<Double>> gradebookDisplay,
+                           ClassAverageCalculator<Student<Double>> classAverageCalculator,
+                           Supplier<Student<Double>> studentFactory,
+                           Set<String> uniqueNames) { // Add the uniqueNames parameter
         super(studentRegistry, nameInputHandler, countInputHandler,
                 assignmentCountInputHandler, gradeEntrySystem,
                 gradeCalculator, gradebookDisplay, classAverageCalculator, studentFactory, uniqueNames); // Pass it to the superclass constructor
@@ -29,11 +29,11 @@ public class DoubleGradeBook extends AbstractGradeBook<Student<Double>, Double> 
 
     @Override
     public void run() {
-    int studentCount = getStudentCount(); // Get the number of students
-    List<Student<Double>> students = registerStudents(studentCount); // register the students and return the list
-    enterGrades(students); // enter the grades for each student
-    calculateGrades(students); // Calculate grades for each student
-    displayResults(students); // Display the results
+        int studentCount = getStudentCount(); // Get the number of students
+        List<Student<Double>> students = registerStudents(studentCount); // register the students and return the list
+        enterGrades(students); // enter the grades for each student
+        calculateGrades(students); // Calculate grades for each student
+        displayResults(students); // Display the results
     }
 
     @Override

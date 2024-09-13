@@ -18,10 +18,10 @@ public class IntegerGradeBook extends AbstractGradeBook<Student<Integer>, Intege
                             InputHandler<Integer> countInputHandler,
                             InputHandler<Integer> assignmentCountInputHandler,
                             GradeEntrySystem<Student<Integer>, Integer> gradeEntrySystem,
-                            GradeCalculator< Student<Integer> > gradeCalculator,
-                            GradebookDisplay< Student<Integer> > gradebookDisplay,
-                            ClassAverageCalculator< Student<Integer> > classAverageCalculator,
-                            Supplier< Student<Integer> > studentFactory,
+                            GradeCalculator<Student<Integer>> gradeCalculator,
+                            GradebookDisplay<Student<Integer>> gradebookDisplay,
+                            ClassAverageCalculator<Student<Integer>> classAverageCalculator,
+                            Supplier<Student<Integer>> studentFactory,
                             Set<String> uniqueNames) { // Add the uniqueNames parameter
         super(studentRegistry, nameInputHandler, countInputHandler,
                 assignmentCountInputHandler, gradeEntrySystem,
@@ -57,7 +57,7 @@ public class IntegerGradeBook extends AbstractGradeBook<Student<Integer>, Intege
         if (student.isPresent()) {
             int assignmentNumber = countInputHandler.getInput("Enter the assignment number to update: ");
             Integer grade = gradeEntrySystem.enterGradeForAssignment(student.get(), assignmentNumber);
-            student.get().updateGrade(name,assignmentNumber, grade);
+            student.get().updateGrade(name, assignmentNumber, grade);
             displayResults(studentRegistry.getAllStudents());
         } else {
             System.out.println("Student not found.");

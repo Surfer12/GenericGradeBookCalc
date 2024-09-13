@@ -1,7 +1,21 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        // Spring Boot Gradle Plugin
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.7.4")
+    }
+}
+
 plugins {
     id 'java'
     id 'org.springframework.boot' version '2.7.4'
     id 'io.spring.dependency-management' version '1.0.13.RELEASE'
+}
+
+repositories {
+    mavenCentral()
 }
 
 dependencies {
@@ -18,4 +32,6 @@ dependencies {
 
     // Spring Framework Dependencies (if needed)
     implementation("org.springframework:spring-context:5.3.24")
+
+    // Spring Boot Dependencies (if needed)
 }

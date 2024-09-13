@@ -1,8 +1,10 @@
 package main;
 
 import validators.NameValidator;
+
 import java.util.HashSet;
 import java.util.Set;
+
 import Displays.GradebookDisplayImpl;
 import dataManipulators.ClassAverageCalculatorImpl;
 import dataManipulators.GradeCalculator;
@@ -15,6 +17,7 @@ import handlers.InputHandler;
 import validators.InputValidator;
 import validators.PositiveIntegerValidator;
 import validators.DoubleValidator;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -44,7 +47,7 @@ public class MainHashSet {
                 countInputHandler,
                 countInputHandler,
                 new GradeEntrySystemImpl<>(doubleScoreInputHandler),
-                new GradeCalculator<Student<Double>, Double     >() { // Use the correct generic type
+                new GradeCalculator<Student<Double>, Double>() { // Use the correct generic type
                     @Override
                     public double calculateAverage(Student<Double> student) { // Implement the calculateAverage method
                         List<Double> grades = student.getGrades();
@@ -55,7 +58,7 @@ public class MainHashSet {
                 new ClassAverageCalculatorImpl<>(),
                 doubleStudentFactory,
                 uniqueNames
-        );  
+        );
 
         // Demonstrate DoubleGradeBook
         System.out.println("Running Double Grade Book for HashSet of Unique Names:" + "\n");
