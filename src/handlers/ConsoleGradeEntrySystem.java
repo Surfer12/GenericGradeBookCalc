@@ -1,19 +1,20 @@
 package handlers;
 
 import dataModels.Student;
+import javax.inject.Singleton;
 
 /**
  * Represents a console-based grade entry system.
- * This class implements the handlers.GradeEntrySystem interface and provides methods for entering grades for assignments.
  *
  * @param <S> the type of student in the grade entry system
  * @param <G> the type of grade to be entered
  */
+@Singleton
 public class ConsoleGradeEntrySystem<S extends Student<G>, G extends Number> implements GradeEntrySystem<S, G> {
     private final InputHandler<G> gradeInputHandler;
 
     /**
-     * Constructs a handlers.ConsoleGradeEntrySystem with the specified handlers.InputHandler.
+     * Constructs a ConsoleGradeEntrySystem with the specified InputHandler.
      *
      * @param gradeInputHandler the input handler for entering grades
      */

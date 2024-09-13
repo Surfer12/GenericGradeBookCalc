@@ -21,7 +21,7 @@ public class Student<G extends Number> {
 
     public Student(String name, List<G> grades) {
         this.name = name;
-        this.grades = new ArrayList<>(grades);
+        this.grades.addAll(grades);
     }
 
     public String getName() {
@@ -54,7 +54,6 @@ public class Student<G extends Number> {
     }
 
     public Optional<Student<G>> updateGrade(String name, int assignmentNumber, G grade) {
-        // Use a safer cast with a type check
         Optional<?> result = StudentRegistry.getInstance().updateGrade(name, assignmentNumber, grade);
         return result.filter(Student.class::isInstance)
                      .map(Student.class::cast);

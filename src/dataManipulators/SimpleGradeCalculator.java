@@ -22,10 +22,9 @@ public class SimpleGradeCalculator<S extends Student<?>> implements GradeCalcula
         if (grades.isEmpty()) {
             return 0;
         }
-        double sum = 0;
-        for (Object grade : grades) {
-            sum += ((Number) grade).doubleValue();
-        }
+        double sum = grades.stream()
+                           .mapToDouble(g -> ((Number) g).doubleValue())
+                           .sum();
         return sum / grades.size();
     }
 }

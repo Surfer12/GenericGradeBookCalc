@@ -1,7 +1,7 @@
 package main;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import io.micronaut.context.annotation.Factory;
+import javax.inject.Singleton;
 import dataModels.StudentRegistry;
 import dataModels.IntegerGradeBook;
 import handlers.InputHandler;
@@ -11,17 +11,19 @@ import validators.InputValidator;
 import validators.NameValidator;
 import validators.ScoreValidator;
 import validators.PositiveIntegerValidator;
-// ... other imports ...
+import java.util.HashSet;
+import java.util.function.Supplier;
+import java.util.List;
 
-@Configuration
+@Factory
 public class AppConfig {
 
-    @Bean
+    @Singleton
     public StudentRegistry<Student<Integer>, Integer> studentRegistry() {
         return StudentRegistry.getInstance();
     }
 
-    @Bean
+    @Singleton
     public GradeCalculator<Student<Integer>> gradeCalculator() {
         return student -> {
             List<Integer> grades = student.getGrades();
@@ -29,16 +31,16 @@ public class AppConfig {
         };
     }
 
-    @Bean
+    @Singleton
     public IntegerGradeBook integerGradeBook(
             StudentRegistry<Student<Integer>, Integer> registry,
             InputHandler<String> nameInputHandler,
             InputHandler<Integer> countInputHandler,
             InputHandler<Integer> gradeInputHandler,
-            GradeEntrySystemImpl<Student<Integer>, Integer> gradeEntrySystem, // Corrected
+            GradeEntrySystemImpl<Student<Integer>, Integer> gradeEntrySystem,
             GradeCalculator<Student<Integer>> gradeCalculator,
             GradebookDisplayImpl<Student<Integer>> display,
-            ClassAverageCalculatorImpl<Student<Integer>> averageCalculator) { // Corrected
+            ClassAverageCalculatorImpl<Student<Integer>> averageCalculator) {
         return new IntegerGradeBook(
                 registry,
                 nameInputHandler,
