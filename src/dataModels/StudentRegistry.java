@@ -1,8 +1,8 @@
 package dataModels;
 
 import javax.inject.Singleton;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -13,50 +13,39 @@ import java.util.Optional;
  */
 @Singleton
 public class StudentRegistry<S extends Student<G>, G extends Number> {
-    private static final StudentRegistry<?, ?> INSTANCE = new StudentRegistry<>();
+    private static StudentRegistry<?, ?> instance;
+    private final Map<String, S> students;
 
-    @SuppressWarnings("unchecked")
-    public static <S extends Student<G>, G extends Number> StudentRegistry<S, G> getInstance() {
-        return (StudentRegistry<S, G>) INSTANCE;
+    private StudentRegistry() {
+        students = new HashMap<>();
     }
 
-    public List<S> getStudents() {
-        return new ArrayList<>(students);
+    public static synchronized <S extends Student<G>, G extends Number> StudentRegistry<S, G> getInstance() {
+        if (instance == null) {
+            instance = new StudentRegistry<>();
+        }
+        @SuppressWarnings("unchecked")
+        StudentRegistry<S, G> castedInstance = (StudentRegistry<S, G>) instance;
+        return castedInstance;
     }
 
     public void addStudent(S student) {
-        if (student != null) {
-            students.add(student);
-        }
-    }
-
-    public Optional<S> removeStudent(String name) {
-        return getStudent(name).map(student -> {
-            students.remove(student);
-            System.out.println("Student removed: " + student.getName());
-            return student;
-        });
+        students.put(student.getName(), student);
     }
 
     public Optional<S> getStudent(String name) {
-        return students.stream()
-                .filter(s -> s.getName().equals(name))
-                .findFirst();
+        return Optional.ofNullable(students.get(name));
     }
 
-    public Optional<S> updateGrade(String name, int assignmentNumber, G grade) {
-        return getStudent(name).map(student -> {
-            student.addGrade(grade);
-            System.out.println("Grade updated for student: " + name);
-            return student;
-        });
+    public void removeStudent(String name) {
+        students.remove(name);
     }
 
     public int countStudents() {
         return students.size();
     }
 
-    public List<S> getAllStudents() {
-        return new ArrayList<>(students);
+    public Map<String, S> getAllStudents() {
+        return new HashMap<>(students);
     }
 }

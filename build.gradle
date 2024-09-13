@@ -1,18 +1,15 @@
 dependencies {
-    // Spring Context
-    implementation 'org.springframework:spring-context:5.3.20'
-    
-    // Spring AOP
-    implementation 'org.springframework:spring-aspects:5.3.20'
-    
-    // Spring Data JPA
-    implementation 'org.springframework.data:spring-data-jpa:2.5.12'
-    
-    // AspectJ Weaver
-    implementation 'org.aspectj:aspectjweaver:1.9.19'
-    
-    // Resilience4j for Circuit Breaker
-    implementation 'io.github.resilience4j:resilience4j-spring-boot2:1.7.1'
-    
-    // Add other necessary dependencies here
+    // Micronaut Dependencies
+    implementation("io.micronaut:micronaut-inject:3.7.4")
+    implementation("io.micronaut:micronaut-runtime:3.7.4")
+
+    // AspectJ Dependencies
+    implementation("org.aspectj:aspectjrt:1.9.7")
+    implementation("org.aspectj:aspectjweaver:1.9.7")
+
+    // javax.inject Dependency
+    implementation 'javax.inject:javax.inject:1'
+
+    // Spring Framework Dependencies (if needed)
+    implementation("org.springframework:spring-context:5.3.24")
 }

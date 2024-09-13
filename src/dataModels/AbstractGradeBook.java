@@ -18,22 +18,22 @@ public abstract class AbstractGradeBook<S extends Student<G>, G extends Number> 
     protected final InputHandler<Integer> countInputHandler;
     protected final InputHandler<Integer> assignmentCountInputHandler;
     protected final GradeEntrySystem<S, G> gradeEntrySystem;
-    protected final GradeCalculator<S> gradeCalculator;
+    protected final GradeCalculator<S, G> gradeCalculator;
     protected final GradebookDisplay<S> gradebookDisplay;
     protected final ClassAverageCalculator<S> classAverageCalculator;
     protected final Supplier<S> studentFactory;
-    protected final Set<String> uniqueNames; // Add the uniqueNames field
+    protected final Set<String> uniqueNames;
 
     public AbstractGradeBook(StudentRegistry<S, G> studentRegistry,
                              InputHandler<String> nameInputHandler,
                              InputHandler<Integer> countInputHandler,
                              InputHandler<Integer> assignmentCountInputHandler,
                              GradeEntrySystem<S, G> gradeEntrySystem,
-                             GradeCalculator<S> gradeCalculator,
+                             GradeCalculator<S, G> gradeCalculator,
                              GradebookDisplay<S> gradebookDisplay,
                              ClassAverageCalculator<S> classAverageCalculator,
                              Supplier<S> studentFactory,
-                             Set<String> uniqueNames) { // Add the uniqueNames parameter
+                             Set<String> uniqueNames) {
         this.studentRegistry = studentRegistry;
         this.nameInputHandler = nameInputHandler;
         this.countInputHandler = countInputHandler;
@@ -43,7 +43,7 @@ public abstract class AbstractGradeBook<S extends Student<G>, G extends Number> 
         this.gradebookDisplay = gradebookDisplay;
         this.classAverageCalculator = classAverageCalculator;
         this.studentFactory = studentFactory;
-        this.uniqueNames = uniqueNames; // Initialize the uniqueNames field
+        this.uniqueNames = uniqueNames;
     }
 
     public abstract void run();

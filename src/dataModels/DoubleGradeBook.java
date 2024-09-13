@@ -17,7 +17,7 @@ public class DoubleGradeBook extends AbstractGradeBook<Student<Double>, Double> 
             InputHandler<Integer> countInputHandler,
             InputHandler<Integer> assignmentCountInputHandler,
             GradeEntrySystem<Student<Double>, Double> gradeEntrySystem,
-            GradeCalculator<Student<Double>> gradeCalculator,
+            GradeCalculator<Student<Double>, Double> gradeCalculator,
             GradebookDisplay<Student<Double>> gradebookDisplay,
             ClassAverageCalculator<Student<Double>> classAverageCalculator,
             Supplier<Student<Double>> studentFactory,
