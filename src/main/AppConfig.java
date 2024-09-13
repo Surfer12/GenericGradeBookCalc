@@ -7,13 +7,13 @@ import dataModels.IntegerGradeBook;
 import handlers.InputHandler;
 import handlers.ConsoleInputHandler;
 import handlers.GradeEntrySystemImpl;
-import validators.InputValidator;
-import validators.NameValidator;
-import validators.ScoreValidator;
-import validators.PositiveIntegerValidator;
+import dataManipulators.GradeCalculator;
+import Displays.GradebookDisplayImpl;
+import dataManipulators.ClassAverageCalculatorImpl;
+import dataModels.Student;
 import java.util.HashSet;
 import java.util.function.Supplier;
-import java.util.List;
+import java.util.Set;
 
 @Factory
 public class AppConfig {
@@ -24,10 +24,12 @@ public class AppConfig {
     }
 
     @Singleton
-    public GradeCalculator<Student<Integer>> gradeCalculator() {
+    public GradeCalculator<Student<Integer>, Integer> gradeCalculator() {
         return student -> {
-            List<Integer> grades = student.getGrades();
-            return grades.stream().mapToInt(Integer::intValue).average().orElse(0.0);
+            return student.getGrades().stream()
+                          .mapToInt(Integer::intValue)
+                          .average()
+                          .orElse(0.0);
         };
     }
 
@@ -38,7 +40,7 @@ public class AppConfig {
             InputHandler<Integer> countInputHandler,
             InputHandler<Integer> gradeInputHandler,
             GradeEntrySystemImpl<Student<Integer>, Integer> gradeEntrySystem,
-            GradeCalculator<Student<Integer>> gradeCalculator,
+            GradeCalculator<Student<Integer>, Integer> gradeCalculator,
             GradebookDisplayImpl<Student<Integer>> display,
             ClassAverageCalculatorImpl<Student<Integer>> averageCalculator) {
         return new IntegerGradeBook(

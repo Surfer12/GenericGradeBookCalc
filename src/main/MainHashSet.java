@@ -14,7 +14,6 @@ import handlers.GradeEntrySystemImpl;
 import handlers.InputHandler;
 import validators.InputValidator;
 import validators.PositiveIntegerValidator;
-import validators.ScoreValidator;
 import validators.DoubleValidator;
 import java.util.Arrays;
 import java.util.List;
@@ -45,7 +44,7 @@ public class MainHashSet {
                 countInputHandler,
                 countInputHandler,
                 new GradeEntrySystemImpl<>(doubleScoreInputHandler),
-                new GradeCalculator<Student<Double>>() { // Use the correct generic type
+                new GradeCalculator<Student<Double>, Double     >() { // Use the correct generic type
                     @Override
                     public double calculateAverage(Student<Double> student) { // Implement the calculateAverage method
                         List<Double> grades = student.getGrades();
