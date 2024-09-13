@@ -7,6 +7,7 @@ import handlers.GradeEntrySystem;
 import handlers.InputHandler; // Fix import
 
 import java.util.function.Supplier;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -18,7 +19,7 @@ public class IntegerGradeBook extends AbstractGradeBook<Student<Integer>, Intege
                             InputHandler<Integer> countInputHandler,
                             InputHandler<Integer> assignmentCountInputHandler,
                             GradeEntrySystem<Student<Integer>, Integer> gradeEntrySystem,
-                            GradeCalculator<Student<Integer>> gradeCalculator,
+                            GradeCalculator<Student<Integer>, Integer> gradeCalculator,
                             GradebookDisplay<Student<Integer>> gradebookDisplay,
                             ClassAverageCalculator<Student<Integer>> classAverageCalculator,
                             Supplier<Student<Integer>> studentFactory,
@@ -47,7 +48,7 @@ public class IntegerGradeBook extends AbstractGradeBook<Student<Integer>, Intege
     public void removeStudent() {
         String name = nameInputHandler.getInput("Enter the name of the student to remove: ");
         studentRegistry.removeStudent(name);
-        displayResults(studentRegistry.getAllStudents());
+        displayResults(new ArrayList<>(studentRegistry.getAllStudents().values()));
     }
 
     @Override
@@ -58,7 +59,7 @@ public class IntegerGradeBook extends AbstractGradeBook<Student<Integer>, Intege
             int assignmentNumber = countInputHandler.getInput("Enter the assignment number to update: ");
             Integer grade = gradeEntrySystem.enterGradeForAssignment(student.get(), assignmentNumber);
             student.get().updateGrade(name, assignmentNumber, grade);
-            displayResults(studentRegistry.getAllStudents());
+            displayResults(new ArrayList<>(studentRegistry.getAllStudents().values()));
         } else {
             System.out.println("Student not found.");
         }
@@ -67,7 +68,7 @@ public class IntegerGradeBook extends AbstractGradeBook<Student<Integer>, Intege
 
     @Override
     public void displayResults(List<Student<Integer>> students) {
-        gradebookDisplay.display(students);
-        System.out.println("Class Average: " + classAverageCalculator.calculateAverage(students));
-    }
+        gradebookDisplay.display(new ArrayList<>(studentRegistry.getAllStudents().values()));
+        System.out.println("Class Average: " + classAverageCalculator.calculateAverage(new ArrayList<>(studentRegistry.getAllStudents().values())));
+}
 }

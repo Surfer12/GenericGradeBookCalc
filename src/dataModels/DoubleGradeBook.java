@@ -10,6 +10,7 @@ import java.util.function.Supplier;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.ArrayList;
 
 public class DoubleGradeBook extends AbstractGradeBook<Student<Double>, Double> {
     public DoubleGradeBook(StudentRegistry<Student<Double>, Double> studentRegistry,
@@ -46,7 +47,7 @@ public class DoubleGradeBook extends AbstractGradeBook<Student<Double>, Double> 
     public void removeStudent() {
         String name = nameInputHandler.getInput("Enter the name of the student to remove: ");
         studentRegistry.removeStudent(name);
-        displayResults(studentRegistry.getAllStudents());
+        displayResults(new ArrayList<>(studentRegistry.getAllStudents().values()));
     }
 
     @Override
@@ -57,7 +58,7 @@ public class DoubleGradeBook extends AbstractGradeBook<Student<Double>, Double> 
             int assignmentNumber = countInputHandler.getInput("Enter the assignment number to update: ");
             Double grade = gradeEntrySystem.enterGradeForAssignment(student.get(), assignmentNumber);
             student.get().updateGrade(name, assignmentNumber, grade);
-            displayResults(studentRegistry.getAllStudents());
+            displayResults(new ArrayList<>(studentRegistry.getAllStudents().values()));
         } else {
             System.out.println("Student not found.");
         }
@@ -66,8 +67,8 @@ public class DoubleGradeBook extends AbstractGradeBook<Student<Double>, Double> 
 
     @Override
     public void displayResults(List<Student<Double>> students) {
-        gradebookDisplay.display(students);
-        System.out.println("Class Average: " + classAverageCalculator.calculateAverage(students));
+        gradebookDisplay.display(new ArrayList<>(studentRegistry.getAllStudents().values()));
+        System.out.println("Class Average: " + classAverageCalculator.calculateAverage(new ArrayList<>(studentRegistry.getAllStudents().values())));
     }
 
     public void addStudent(Student<Double> student) {

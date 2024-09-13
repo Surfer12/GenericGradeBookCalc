@@ -57,7 +57,7 @@ public class Student<G extends Number> {
     }
 
     public Optional<Student<G>> updateGrade(String name, int assignmentNumber, G grade) {
-        Optional<?> result = StudentRegistry.getInstance().updateGrade(name, assignmentNumber, grade);
+        Optional<Student<G>> result = StudentRegistry.getInstance().updateGrade(name, assignmentNumber, grade);
         return result.filter(Student.class::isInstance)
                 .map(Student.class::cast);
     }

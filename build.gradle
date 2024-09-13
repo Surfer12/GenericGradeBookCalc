@@ -10,28 +10,43 @@ buildscript {
 
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '2.7.4'
-    id 'io.spring.dependency-management' version '1.0.13.RELEASE'
+    id 'io.micronaut.application' version '3.7.10'
 }
 
 repositories {
     mavenCentral()
 }
 
+micronaut {
+    version = '3.9.4'
+    runtime 'netty'
+    testRuntime 'junit5'
+    processing {
+        incremental true
+        annotations 'your.package.*'
+    }
+}
+
 dependencies {
     // Micronaut Dependencies
-    implementation("io.micronaut:micronaut-inject:3.7.4")
-    implementation("io.micronaut:micronaut-runtime:3.7.4")
+    implementation("io.micronaut:micronaut-inject")
+    implementation("io.micronaut:micronaut-runtime")
 
     // AspectJ Dependencies
-    implementation("org.aspectj:aspectjrt:1.9.7")
-    implementation("org.aspectj:aspectjweaver:1.9.7")
+    implementation("org.aspectj:aspectjrt:1.9.19")
+    implementation("org.aspectj:aspectjweaver:1.9.19")
 
     // javax.inject Dependency
     implementation 'javax.inject:javax.inject:1'
 
     // Spring Framework Dependencies (if needed)
-    implementation("org.springframework:spring-context:5.3.24")
+    implementation("org.springframework:spring-context:5.3.29")
 
     // Spring Boot Dependencies (if needed)
+    // Uncomment and specify version if you need Spring Boot
+    // implementation("org.springframework.boot:spring-boot-starter:2.7.14")
+}
+
+application {
+    mainClass.set('main.Application')
 }
