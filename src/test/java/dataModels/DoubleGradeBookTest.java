@@ -1,5 +1,21 @@
 package dataModels;
 
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.function.Supplier;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import dataManipulators.ClassAverageCalculatorImpl;
+import dataModels.Student;
+import dataModels.StudentRegistry;
+import inputHandlers.InputHandler;
+import validators.GradeCalculator;
+import validators.GradebookDisplay;
+import validators.GradeEntrySystem;
+
 public class DoubleGradeBookTest {
 
    private DoubleGradeBook doubleGradeBook;
@@ -33,4 +49,10 @@ public class DoubleGradeBookTest {
    }
 
    @Test
-   public void
+   public void testCalculateAverageWithEmptyList() {
+      ClassAverageCalculatorImpl<TestStudent> calculator = new ClassAverageCalculatorImpl<>();
+      List<TestStudent> students = Collections.emptyList();
+      double result = calculator.calculateAverage(students);
+      assertEquals(0, result, "The average of an empty list should be 0");
+   }
+}

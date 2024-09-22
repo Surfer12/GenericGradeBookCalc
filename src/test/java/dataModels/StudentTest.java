@@ -48,3 +48,5 @@ class StudentTest {
       List<Integer> grades = student.getGrades();
       assertEquals(2, grades.size());
       assertEquals(85, grades.get(0));
+   }
+}

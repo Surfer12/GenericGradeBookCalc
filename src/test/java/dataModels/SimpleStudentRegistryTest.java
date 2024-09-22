@@ -1,8 +1,16 @@
 package dataModels;
 
+import java.util.Optional;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import dataModels.Student;
+import dataModels.StudentImpl;
+
 class SimpleStudentRegistryTest {
 
-   private SimpleStudentRegistry<StudentImpl, Integer> registry;
+   private SimpleStudentRegistry<Student<Integer>, Integer> registry;
 
    @BeforeEach
    void setUp() {
@@ -38,4 +46,6 @@ class SimpleStudentRegistryTest {
 
 @Test
    void testCountStudents() {
-      assertEquals(0,
+      assertEquals(0, registry.countStudents());
+   }
+}
