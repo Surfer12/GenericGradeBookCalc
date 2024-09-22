@@ -7,11 +7,10 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Supplier;
 import handlers.InputHandler;
-import dataManipulators.GradeCalculator;
-import dataManipulators.GradeEntrySystem;
-import dataManipulators.GradebookDisplay;
+import handlers.GradeEntrySystem; // Updated import
+import handlers.GradebookDisplay; // Updated import
+import handlers.StudentRegistry; // Updated import
 import dataManipulators.ClassAverageCalculator;
-import dataManipulators.StudentRegistry;
 import dataModels.Student;
    
 public class DoubleGradeBookTest {
@@ -21,9 +20,9 @@ public class DoubleGradeBookTest {
    private InputHandler<String> nameInputHandler;
    private InputHandler<Integer> countInputHandler;
    private InputHandler<Integer> assignmentCountInputHandler;
-   private GradeEntrySystem<Student<Double>, Double> gradeEntrySystem;
+   private GradeEntrySystem<Student<Double>, Double> gradeEntrySystem; // Ensure this class exists
    private GradeCalculator<Student<Double>, Double> gradeCalculator;
-   private GradebookDisplay<Student<Double>> gradebookDisplay;
+   private GradebookDisplay<Student<Double>> gradebookDisplay; // Ensure this class exists
    private ClassAverageCalculator<Student<Double>> classAverageCalculator;
    private Supplier<Student<Double>> studentFactory;
    private Set<String> uniqueNames;
@@ -34,9 +33,9 @@ public class DoubleGradeBookTest {
       nameInputHandler = mock(InputHandler.class);
       countInputHandler = mock(InputHandler.class);
       assignmentCountInputHandler = mock(InputHandler.class);
-      gradeEntrySystem = mock(GradeEntrySystem.class);
+      gradeEntrySystem = mock(GradeEntrySystem.class); // Ensure this class exists
       gradeCalculator = mock(GradeCalculator.class);
-      gradebookDisplay = mock(GradebookDisplay.class);
+      gradebookDisplay = mock(GradebookDisplay.class); // Ensure this class exists
       classAverageCalculator = mock(ClassAverageCalculator.class);
       studentFactory = mock(Supplier.class);
       uniqueNames = new HashSet<>();

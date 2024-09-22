@@ -1,12 +1,18 @@
 package handlers;
 
+import java.util.List;
+import java.util.Scanner;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 import validators.InputValidator;
-import java.util.Scanner;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 public class InputHandlerImplTest {
 
    private Scanner scanner;

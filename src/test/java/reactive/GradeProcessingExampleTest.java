@@ -1,11 +1,11 @@
+package reactive; // Fix the package declaration
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import reactor.core.publisher.Flux;
 import reactor.test.StepVerifier;
 import static org.mockito.Mockito.*;
-
-package test.java.reactive; // Fix the package declaration
 
 public class GradeProcessingExampleTest {
 

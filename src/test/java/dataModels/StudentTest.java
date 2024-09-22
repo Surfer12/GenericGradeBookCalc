@@ -1,50 +1,58 @@
-package dataModels;
+package dataModels; // Ensure this is correct
+
+import java.util.List; // Import List
+import java.util.Arrays; // Import Arrays
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*; // Import assertions
+import org.junit.jupiter.api.BeforeEach; // Ensure this class exists
 
 class StudentTest {
-   private Student<Integer> student;
+   private Student defaultStudent;
+   private Student studentWithGrades;
 
    @BeforeEach
-   void setUp() {
-      student = new Student<>("John Doe");
+   public void setUp() {
+      defaultStudent = new Student("John Doe");
+      List<Integer> grades = Arrays.asList(90, 80, 70);
+      studentWithGrades = new Student("Jane Doe", grades);
    }
 
    @Test
-   void testDefaultConstructor() {
-      Student<Integer> defaultStudent = new Student<>();
+   public void testDefaultStudent() {
       assertNotNull(defaultStudent.getGrades());
       assertEquals(0, defaultStudent.getGrades().size());
    }
 
    @Test
    void testConstructorWithName() {
-      assertEquals("John Doe", student.getName());
+      assertEquals("John Doe", studentWithGrades.getName());
    }
 
    @Test
    void testConstructorWithNameAndGrades() {
-      List<Integer> grades = Arrays.asList(90, 80, 70);
-      Student<Integer> studentWithGrades = new Student<>("Jane Doe", grades);
       assertEquals("Jane Doe", studentWithGrades.getName());
       assertEquals(grades, studentWithGrades.getGrades());
    }
 
    @Test
    void testSetName() {
-      student.setName("Jane Doe");
-      assertEquals("Jane Doe", student.getName());
+      studentWithGrades.setName("Jane Doe");
+      assertEquals("Jane Doe", studentWithGrades.getName());
    }
 
    @Test
    void testAddGrade() {
-      student.addGrade(85);
-      assertEquals(1, student.getGrades().size());
-      assertEquals(85, student.getGrades().get(0));
+      studentWithGrades.addGrade(85);
+      assertEquals(1, studentWithGrades.getGrades().size());
+      assertEquals(85, studentWithGrades.getGrades().get(0));
    }
 
-@Test
+   @Test
    void testGetGrades() {
-      student.addGrade(85);
-      student.addGrade(90);
-      List<Integer> grades = student.getGrades();
+      studentWithGrades.addGrade(85);
+      studentWithGrades.addGrade(90);
+      List<Integer> grades = studentWithGrades.getGrades();
       assertEquals(2, grades.size());
       assertEquals(85, grades.get(0));
+   }
+}
