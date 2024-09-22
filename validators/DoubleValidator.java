@@ -1,4 +1,4 @@
-package src.main.validators;
+package validators;
 
 import validators.InputValidator;
 

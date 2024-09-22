@@ -1,4 +1,4 @@
-package src.main.dataModels;
+package dataModels;
 
 import Displays.GradebookDisplay;
 import dataManipulators.ClassAverageCalculator;

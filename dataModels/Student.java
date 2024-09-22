@@ -1,5 +1,4 @@
-package src.main.dataModels;
-
+package dataModels;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

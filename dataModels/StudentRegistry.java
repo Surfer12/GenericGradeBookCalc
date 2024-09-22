@@ -1,5 +1,4 @@
-package src.main.dataModels;
-
+package dataModels;
 
 import io.micronaut.context.annotation.Bean;
 import dataModels.Student;

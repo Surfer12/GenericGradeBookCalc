@@ -1,5 +1,4 @@
-package src.main.Displays;
-import java.util.List;
+package Displays;
 import javax.inject.Singleton;
 
 import src.main.dataModels.*;

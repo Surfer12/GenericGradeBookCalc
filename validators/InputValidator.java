@@ -1,5 +1,4 @@
-package src.main.validators;
-
+package validators;
 /**
  * A class that validates and parses input of a generic type.
  *

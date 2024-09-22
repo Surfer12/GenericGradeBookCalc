@@ -1,4 +1,4 @@
-package src.main.Displays;
+package Displays;
 
 import java.util.List;
 import javax.inject.Singleton;

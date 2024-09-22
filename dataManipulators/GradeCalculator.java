@@ -1,5 +1,4 @@
-package src.main.dataManipulators;
-
+package dataManipulators;
 import java.util.List;
 
 import dataModels.Student;

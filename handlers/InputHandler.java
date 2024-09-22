@@ -1,4 +1,4 @@
-package src.main.handlers;
+package handlers;
 
 import java.util.List;
 
