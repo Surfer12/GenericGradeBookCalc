@@ -1,14 +1,17 @@
 plugins {
-    id 'org.springframework.boot' version '3.1.5'
     id 'io.spring.dependency-management' version '1.0.15.RELEASE'
     id 'java'
-    // Micronaut plugin removed
+    id 'aspectj' version '1.9.9.1' // Use the correct AspectJ plugin
+    id 'org.springframework.boot' version '3.1.5'
+    id 'reactor' version '3.5.1'
 }
 
 repositories {
     mavenCentral() // Ensure Maven Central is included
     maven { url 'https://repo.spring.io/release' } // Add Spring release repository
     maven { url 'https://repo.spring.io/milestone' } // Add Spring milestone repository
+    maven { url 'https://repo.spring.io/snapshot' } // Add Spring snapshot repository
+    maven { url 'https://repo.reactor.io/core' } // Add Reactor snapshot repository
 }
 
 configurations {
@@ -23,5 +26,6 @@ dependencies {
     implementation 'ch.qos.logback:logback-classic:1.2.6' // Logging implementation
     implementation 'org.aspectj:aspectjweaver:1.9.9.1' // Add AspectJ weaver dependency
     implementation 'org.aspectj:aspectjrt:1.9.9.1' // Add AspectJ runtime dependency
-    // ... other dependencies ...
+    implementation 'org.springframework.boot:spring-boot-starter-webflux' // WebFlux starter
+    implementation 'org.springframework.boot:spring-boot-starter-aop' // Add Spring AOP starter
 }
