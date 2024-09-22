@@ -23,7 +23,7 @@ dependencies {
     implementation("io.micronaut.data:micronaut-data-hibernate-jpa")
     implementation("io.micronaut.sql:micronaut-jdbc-hikari")
     implementation("jakarta.persistence:jakarta.persistence-api")
-    runtimeOnly("h2database:h2")
+    runtimeOnly("com.h2database:h2:1.4.200") // Specify the version here
     
     testImplementation("io.micronaut.test:micronaut-test-junit5")
     testImplementation("org.junit.jupiter:junit-jupiter-api")
