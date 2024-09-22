@@ -1,11 +1,11 @@
 package aspects;
 
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.After;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
+import org.aspectj.lang.annotation.Aspect; // Import Aspect
+import org.aspectj.lang.annotation.After; // Import After
+import org.aspectj.lang.annotation.Before; // Import Before
+import org.slf4j.Logger; // Import Logger
+import org.slf4j.LoggerFactory; // Import LoggerFactory
+import org.springframework.stereotype.Component; // Import Component
 
 /**
  * **Class**
@@ -21,7 +21,7 @@ public class LoggingAspect {
 
     @Before("execution(* GenericGradeBookCalc..*(..))")
     public void logBefore() {
-        logger.info("Method execution started");./gradlew build --refresh-dependencies
+        logger.info("Method execution started");
     }
 
     @After("execution(* GenericGradeBookCalc..*(..))")
