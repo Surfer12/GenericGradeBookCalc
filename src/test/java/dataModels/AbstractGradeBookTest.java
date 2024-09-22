@@ -1,4 +1,4 @@
-package test.java.dataModels;
+package dataModels;
 
 import dataModels.AbstractGradeBook;
 import dataModels.Student;
