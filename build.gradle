@@ -19,7 +19,6 @@ repositories {
 }
 
 configurations {
-    // Define developmentOnly without extending from runtimeClasspath
     developmentOnly
     runtimeClasspath {
         extendsFrom developmentOnly
@@ -61,16 +60,15 @@ dependencies {
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
 }
 
+tasks.withType(JavaCompile) {
+    options.compilerArgs += ["-parameters"]
+    options.annotationProcessorPath = configurations.annotationProcessor
+}
+
 bootJar {
     mainClassName = 'reactive.MainClass' // Specify your main class here
 }
 
 test {
     useJUnitPlatform()
-}
-
-// Enable annotation processing for Lombok
-tasks.withType(JavaCompile) {
-    options.compilerArgs += ["-parameters"]
-    options.annotationProcessorPath = configurations.annotationProcessor
 }

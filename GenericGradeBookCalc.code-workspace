@@ -2,9 +2,6 @@
 	"folders": [
 		{
 			"path": "."
-		},
-		{
-			"path": "../../InProgressPersonalNotes"
 		}
 	],
 	"settings": {
@@ -14,7 +11,8 @@
 			"."
 		],
 		"java.project.referencedLibraries": [
-			"e:\\Cis232Decoupled\\InProgressClassProjects\\GenericGradeBookCalc\\lib\\junit-platform-console-standalone-1.11.0.jar"
+			"lib\\junit-platform-console-standalone-1.11.0.jar",
+			"gradle\\wrapper\\gradle-wrapper.jar"
 		]
 	}
 }
