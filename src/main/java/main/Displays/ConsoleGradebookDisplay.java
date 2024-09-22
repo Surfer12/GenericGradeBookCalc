@@ -1,4 +1,4 @@
-package Displays;
+package main.Displays;
 
 import dataModels.Student;
 

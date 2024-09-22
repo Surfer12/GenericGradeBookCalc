@@ -1,4 +1,4 @@
-package dataManipulators;
+package main.dataManipulators;
 
 import dataModels.Student;
 

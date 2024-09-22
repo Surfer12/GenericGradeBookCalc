@@ -12,12 +12,6 @@ import dataModels.Student;
 @FunctionalInterface
 public interface GradeCalculator<S extends Student<G>, G extends Number> {
 
-    // Usage with lambda
-    GradeCalculator<Student<Integer>, Integer> calculator = student -> {
-        List<Integer> grades = student.getGrades();
-        return grades.stream().mapToInt(Integer::intValue).average().orElse(0.0);
-    };
-
     /**
      * Calculates the average grade for the given student.
      *
