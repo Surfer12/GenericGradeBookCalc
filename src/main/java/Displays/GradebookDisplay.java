@@ -1,7 +1,7 @@
-package src.main.Displays;
+package main.java.Displays;
 import java.util.List;
 
-import src.main.dataModels.Student;
+import main.java.dataModels.Student;
 
 /**
  * An interface for displaying a list of students in a gradebook.

@@ -1,4 +1,4 @@
-package src.main.validators;
+package main.java.validators;
 
 public class DoubleValidator implements InputValidator.Validator<Double> {
 

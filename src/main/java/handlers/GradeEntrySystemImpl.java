@@ -1,6 +1,6 @@
-package src.main.handlers;
+package main.java.handlers;
 
-import src.main.dataModels.Student;
+import main.java.dataModels.Student;
 
 public class GradeEntrySystemImpl<S extends Student<G>, G extends Number> implements GradeEntrySystem<S, G> {
     private final InputHandler<G> gradeInputHandler;

@@ -1,4 +1,4 @@
-package src.main.java.aspects;
+package main.java.aspects;
 
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.After;

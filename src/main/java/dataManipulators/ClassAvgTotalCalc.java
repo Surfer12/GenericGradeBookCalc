@@ -1,8 +1,8 @@
-package src.main.dataManipulators;
+package main.java.dataManipulators;
 
 import java.util.List;
 
-import src.main.dataModels.Student;
+import main.java.dataModels.Student;
 
 public class ClassAvgTotalCalc<S extends Student<G>, G extends Number> {
     public double calculateClassAverage(List<S> students) {

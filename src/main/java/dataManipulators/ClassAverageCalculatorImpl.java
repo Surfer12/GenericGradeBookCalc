@@ -1,8 +1,8 @@
-package src.main.dataManipulators;  
+package main.java.dataManipulators;  
 
 import java.util.List;
 
-import src.main.dataModels.Student;
+import main.java.dataModels.Student;
 
 public class ClassAverageCalculatorImpl<S extends Student<?>> implements ClassAverageCalculator<S> {
     @Override

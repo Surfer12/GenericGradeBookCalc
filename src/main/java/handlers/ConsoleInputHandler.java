@@ -1,10 +1,10 @@
-package src.main.handlers;
+package main.java.handlers;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import src.main.validators.InputValidator;
+import main.java.validators.InputValidator;
 
 public class ConsoleInputHandler<T> implements InputHandler<T> {
     private final Scanner scanner;

@@ -1,4 +1,4 @@
- package src.main.java.reactive;
+ package main.java.reactive;
 
 import org.springframework.stereotype.Component;
 import org.springframework.boot.CommandLineRunner;

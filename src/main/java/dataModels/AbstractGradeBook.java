@@ -1,10 +1,10 @@
-package src.main.dataModels;
+package main.java.dataModels;
 
-import src.main.Displays.GradebookDisplay;
-import src.main.dataManipulators.ClassAverageCalculator;
-import src.main.dataManipulators.GradeCalculator;
-import src.main.handlers.GradeEntrySystem;
-import src.main.handlers.InputHandler;
+import main.java.Displays.GradebookDisplay;
+import main.java.dataManipulators.ClassAverageCalculator;
+import main.java.dataManipulators.GradeCalculator;
+import main.java.handlers.GradeEntrySystem;
+import main.java.handlers.InputHandler;
 
 import java.util.ArrayList;
 import java.util.List;

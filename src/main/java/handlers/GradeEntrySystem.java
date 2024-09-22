@@ -1,6 +1,6 @@
-package src.main.handlers;
+package main.java.handlers;
 
-import src.main.dataModels.Student;
+import main.java.dataModels.Student;
 
 /**
  * An interface for entering grades for assignments in a grade entry system.

@@ -1,8 +1,8 @@
-package src.main.handlers;
+package main.java.handlers;
 
 import java.util.Scanner;
 
-import src.main.validators.InputValidator;
+import main.java.validators.InputValidator;
 
 import java.util.ArrayList;
 import java.util.List;

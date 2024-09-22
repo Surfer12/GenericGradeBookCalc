@@ -1,10 +1,9 @@
-package src.main.java.reactive;
+package main.java.reactive;
 
 import reactor.core.publisher.Flux;
-import reactor.core.scheduler.Schedulers;
-import src.main.java.reactive.GradeStrategy;
-import src.main.java.reactive.LetterGradeStrategy;
-import src.main.java.reactive.PassFailStrategy;
+import main.java.reactive.GradeStrategy;
+import main.java.reactive.LetterGradeStrategy;
+import main.java.reactive.PassFailStrategy;
 
 public class GradeCalculator {
     public static void main(String[] args) {

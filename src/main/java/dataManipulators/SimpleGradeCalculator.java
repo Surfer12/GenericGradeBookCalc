@@ -1,8 +1,8 @@
-package src.main.dataManipulators;
+package main.java.dataManipulators;
 
 import java.util.List;
 
-import src.main.dataModels.Student;
+import main.java.dataModels.Student;
 
 /**
  * The dataManipulators.SimpleGradeCalculator class implements the dataManipulators.GradeCalculator interface for dataModels.Student objects.

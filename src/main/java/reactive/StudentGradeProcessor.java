@@ -1,8 +1,8 @@
-package src.main.java.reactive;
+package main.java.reactive;
 
 import reactor.core.publisher.Flux;
-import src.main.java.reactive.GradeStrategy;
-import src.main.java.reactive.PassFailStrategy;
+import main.java.reactive.GradeStrategy;
+import main.java.reactive.PassFailStrategy;
 
 
 public class StudentGradeProcessor {
