@@ -5,7 +5,7 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.After;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired; // Add this import
+import org.springframework.stereotype.Component;
 
 /**
  * **Class**
@@ -15,16 +15,16 @@ import org.springframework.beans.factory.annotation.Autowired; // Add this impor
  * Aspect for logging method calls.
  */
 @Aspect
+@Component
 public class LoggingAspect {
-    @Autowired // Inject the logger
-    private Logger logger = LoggerFactory.getLogger(LoggingAspect.class); // Adjust logger initialization
+    private final Logger logger = LoggerFactory.getLogger(LoggingAspect.class);
 
-    @Before("execution(* com.yourpackage..*(..))") // Adjust the pointcut expression as needed
+    @Before("execution(* GenericGradeBookCalc..*(..))")
     public void logBefore() {
-        logger.info("Method execution started");
+        logger.info("Method execution started");./gradlew build --refresh-dependencies
     }
 
-    @After("execution(* com.yourpackage..*(..))") // Adjust the pointcut expression as needed
+    @After("execution(* GenericGradeBookCalc..*(..))")
     public void logAfter() {
         logger.info("Method execution finished");
     }

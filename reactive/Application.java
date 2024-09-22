@@ -2,7 +2,6 @@ package reactive;
 
 import reactor.core.publisher.Flux;
 
-
 public class Application {
     public static void main(String[] args) {
         // Create a flux of student grades
