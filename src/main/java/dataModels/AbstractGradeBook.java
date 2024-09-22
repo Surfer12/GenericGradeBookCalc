@@ -26,15 +26,15 @@ public abstract class AbstractGradeBook<S extends Student<G>, G extends Number> 
     protected final Set<String> uniqueNames;
 
     public AbstractGradeBook(StudentRegistry<S, G> studentRegistry,
-                             InputHandler<String> nameInputHandler,
-                             InputHandler<Integer> countInputHandler,
-                             InputHandler<Integer> assignmentCountInputHandler,
-                             GradeEntrySystem<S, G> gradeEntrySystem,
-                             GradeCalculator<S, G> gradeCalculator,
-                             GradebookDisplay<S> gradebookDisplay,
-                             ClassAverageCalculator<S> classAverageCalculator,
-                             Supplier<S> studentFactory,
-                             Set<String> uniqueNames) {
+            InputHandler<String> nameInputHandler,
+            InputHandler<Integer> countInputHandler,
+            InputHandler<Integer> assignmentCountInputHandler,
+            GradeEntrySystem<S, G> gradeEntrySystem,
+            GradeCalculator<S, G> gradeCalculator,
+            GradebookDisplay<S> gradebookDisplay,
+            ClassAverageCalculator<S> classAverageCalculator,
+            Supplier<S> studentFactory,
+            Set<String> uniqueNames) {
         this.studentRegistry = studentRegistry;
         this.nameInputHandler = nameInputHandler;
         this.countInputHandler = countInputHandler;
@@ -69,7 +69,8 @@ public abstract class AbstractGradeBook<S extends Student<G>, G extends Number> 
     }
 
     protected S registerStudent() {
-        String name = nameInputHandler.getInput("Enter the name of student " + (studentRegistry.countStudents() + 1) + ": ");
+        String name = nameInputHandler
+                .getInput("Enter the name of student " + (studentRegistry.countStudents() + 1) + ": ");
         int assignmentCount = assignmentCountInputHandler.getInput("Enter the number of grades for " + name + ": ");
         S student = studentFactory.get();
         student.setName(name);
