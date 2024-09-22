@@ -6,7 +6,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
- * validators.NameValidator class that implements the validators.InputValidator.Validator interface for String type.
+ * validators.NameValidator class that implements the
+ * validators.InputValidator.Validator interface for String type.
  * This class provides methods to parse and validate name inputs.
  */
 public class NameValidator implements InputValidator.Validator<String> {
@@ -23,14 +24,16 @@ public class NameValidator implements InputValidator.Validator<String> {
     }
 
     /**
-     * Validates the parsed string to ensure it is not empty and contains only letters and spaces.
+     * Validates the parsed string to ensure it is not empty and contains only
+     * letters and spaces.
      *
      * @param value The parsed string to be validated
      * @return true if the string is valid, false otherwise
      */
     @Override
     public boolean isValid(String value) {
-        // Example validation: Ensure the name is not empty and contains only letters and spaces
+        // Example validation: Ensure the name is not empty and contains only letters
+        // and spaces
         return value != null && value.matches("[a-zA-Z\\s]+");
     }
 
@@ -41,6 +44,5 @@ public class NameValidator implements InputValidator.Validator<String> {
     public Set<String> getUniqueNamesForHashSet(List<String> names) {
         return new HashSet<>(names);
     }
-
 
 }

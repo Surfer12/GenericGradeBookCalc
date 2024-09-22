@@ -7,11 +7,9 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
 
-
-
 class GradeCalculatorTest {
 
-   private GradeCalculator<StudentImpl, Integer> gradeCalculator;
+   private GradeProcessor<StudentImpl, Integer> gradeCalculator;
 
    @BeforeEach
    void setUp() {

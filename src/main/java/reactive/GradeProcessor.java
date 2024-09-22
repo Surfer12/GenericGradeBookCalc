@@ -2,7 +2,7 @@ package reactive;
 
 import reactor.core.publisher.Flux;
 
-public class GradeCalculator {
+public class GradeProcessor {
     public static void main(String[] args) {
         GradeStrategy strategy = new LetterGradeStrategy();
 
