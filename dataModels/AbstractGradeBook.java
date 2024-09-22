@@ -12,7 +12,7 @@ import java.util.Optional;
 import java.util.function.Supplier;
 import java.util.Set;
 
-public abstract class AbstractGradeBook<S extends Student<G>, G extends Number> {
+public abstract class AbstractGradeBook<S>, G extends Number> {
 
     protected final StudentRegistry<S, G> studentRegistry;
     protected final InputHandler<String> nameInputHandler;
