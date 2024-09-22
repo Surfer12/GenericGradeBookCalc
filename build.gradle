@@ -18,18 +18,19 @@ micronaut {
 }
 
 dependencies {
-    implementation("io.micronaut:micronaut-inject")
+    implementation("jakarta.inject:jakarta.inject-api:2.0.1")
+    implementation("io.micronaut:micronaut-inject-java")
+    implementation("io.micronaut:micronaut-validation")
     implementation("io.micronaut:micronaut-runtime")
     implementation("io.micronaut.data:micronaut-data-hibernate-jpa")
     implementation("io.micronaut.sql:micronaut-jdbc-hikari")
     implementation("jakarta.persistence:jakarta.persistence-api")
-    runtimeOnly("com.h2database:h2:1.4.200") // Specify the version here
-    
+    runtimeOnly("com.h2database:h2:1.4.200")
     testImplementation("io.micronaut.test:micronaut-test-junit5")
     testImplementation("org.junit.jupiter:junit-jupiter-api")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
 }
 
 application {
-    mainClass.set('your.package.Application')
+    
 }
