@@ -5,7 +5,7 @@ import reactor.core.publisher.Flux;
 import reactor.test.StepVerifier;
 import static org.mockito.Mockito.*;
 
-package reactive;
+package test.java.reactive; // Fix the package declaration
 
 public class GradeProcessingExampleTest {
 

@@ -1,4 +1,4 @@
-package test.java.dataManipulators;
+package dataManipulators;
 
 import dataModels.Student;
 import org.junit.jupiter.api.Test;

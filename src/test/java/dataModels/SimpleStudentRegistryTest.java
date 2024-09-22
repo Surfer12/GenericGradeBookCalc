@@ -38,4 +38,6 @@ class SimpleStudentRegistryTest {
 
 @Test
    void testCountStudents() {
-      assertEquals(0,
+      assertEquals(0, registry.countStudents());
+   }
+}

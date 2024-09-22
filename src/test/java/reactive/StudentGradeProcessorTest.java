@@ -1,9 +1,8 @@
-import org.junit.jupiter.api.Test;
-import reactor.core.publisher.Flux;
-import reactor.test.StepVerifier;
-import static org.mockito.Mockito.*;
+package test.java.reactive; // Fix the package declaration
 
-package reactive;
+import org.junit.jupiter.api.Test; // Necessary imports
+import reactor.core.publisher.Flux;
+import static org.mockito.Mockito.*;
 
 public class StudentGradeProcessorTest {
 
@@ -13,11 +12,11 @@ public class StudentGradeProcessorTest {
       GradeStrategy mockStrategy = mock(GradeStrategy.class);
 
       // Define the behavior of the mock
-      when(mockStrategy.applyStrategy(85)).thenReturn(Flux.just("Pass"));
-      when(mockStrategy.applyStrategy(70)).thenReturn(Flux.just("Pass"));
-      when(mockStrategy.applyStrategy(55)).thenReturn(Flux.just("Fail"));
-      when(mockStrategy.applyStrategy(90)).thenReturn(Flux.just("Pass"));
-      when(mockStrategy.applyStrategy(40)).thenReturn(Flux.just("Fail"));
+      when(mockStrategy.calculateGrade(90)).thenReturn(Flux.just("A")); // Change Mono to Flux
+      when(mockStrategy.calculateGrade(80)).thenReturn(Flux.just("B"));
+      when(mockStrategy.calculateGrade(70)).thenReturn(Flux.just("C"));
+      when(mockStrategy.calculateGrade(60)).thenReturn(Flux.just("D"));
+      when(mockStrategy.calculateGrade(50)).thenReturn(Flux.just("F"));
 
       // Create the processor with the mock strategy
       StudentGradeProcessor processor = new StudentGradeProcessor(mockStrategy);

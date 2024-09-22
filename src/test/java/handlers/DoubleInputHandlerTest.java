@@ -1,3 +1,6 @@
+package handlers;
+
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -6,7 +9,6 @@ import java.util.Scanner;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.mock;
 
-package handlers;
 
 public class DoubleInputHandlerTest {
 

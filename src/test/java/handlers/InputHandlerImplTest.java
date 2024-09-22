@@ -1,14 +1,12 @@
+package handlers;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import validators.InputValidator;
-import java.util.List;
 import java.util.Scanner;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
-
-package handlers;
-
 public class InputHandlerImplTest {
 
    private Scanner scanner;

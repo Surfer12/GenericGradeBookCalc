@@ -20,3 +20,19 @@ public class IntegerGradeBookTest {
    @BeforeEach
    public void setUp() {
       studentRegistry = mock(StudentRegistry.class);
+      nameInputHandler = mock(InputHandler.class);
+      countInputHandler = mock(InputHandler.class);
+      assignmentCountInputHandler = mock(InputHandler.class);
+      gradeEntrySystem = mock(GradeEntrySystem.class);
+      gradeCalculator = mock(GradeCalculator.class);
+      gradebookDisplay = mock(GradebookDisplay.class);
+      classAverageCalculator = mock(ClassAverageCalculator.class);
+      studentFactory = mock(Supplier.class);
+      uniqueNames = new HashSet<>();
+
+      integerGradeBook = new IntegerGradeBook(studentRegistry, nameInputHandler, countInputHandler,
+            assignmentCountInputHandler, gradeEntrySystem, gradeCalculator, gradebookDisplay,
+            classAverageCalculator, studentFactory, uniqueNames);
+   }
+
+}

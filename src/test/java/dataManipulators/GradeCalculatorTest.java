@@ -1,4 +1,4 @@
-package test.java.dataManipulators;
+package dataManipulators;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import dataModels.Student;

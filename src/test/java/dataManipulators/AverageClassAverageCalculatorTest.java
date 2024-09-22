@@ -1,13 +1,13 @@
-package test.java.dataManipulators;
-
-import dataModels.Student;
-import org.junit.jupiter.api.Test;
+package dataManipulators;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
+
+import dataModels.Student;
 
 class AverageClassAverageCalculatorTest {
 

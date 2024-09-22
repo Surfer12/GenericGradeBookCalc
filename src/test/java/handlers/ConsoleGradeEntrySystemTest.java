@@ -1,12 +1,15 @@
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
+package handlers;
+
 import dataModels.Student;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import org.mockito.Mock;
+
+import dataModels.Student;
 import org.mockito.MockitoAnnotations;
 
-package handlers;
 
 class ConsoleGradeEntrySystemTest {
 
