@@ -1,8 +1,8 @@
- package main.java.reactive;
+package reactive;
 
-import org.springframework.stereotype.Component;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
 
 @Component
@@ -24,10 +24,10 @@ public class GradeProcessingExample implements CommandLineRunner {
 
         System.out.println("Letter Grades:");
         letterProcessor.processGrades(grades)
-            .subscribe(System.out::println);
+                .subscribe(System.out::println);
 
         System.out.println("\nPass/Fail Results:");
         passFailProcessor.processGrades(grades)
-            .subscribe(System.out::println);
+                .subscribe(System.out::println);
     }
 }

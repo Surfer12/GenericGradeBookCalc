@@ -1,8 +1,8 @@
-package main.java.dataManipulators;
+package dataManipulators;
+
+import dataModels.Student;
 
 import java.util.List;
-
-import main.java.dataModels.Student;
 
 /**
  * Interface for calculating the class average.

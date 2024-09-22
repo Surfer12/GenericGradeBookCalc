@@ -1,6 +1,6 @@
-package main.java.dataManipulators;
-    
-import main.java.dataModels.Student;
+package dataManipulators;
+
+import dataModels.Student;
 
 /**
  * An interface for calculating the average grade of a student.

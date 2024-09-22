@@ -1,4 +1,4 @@
-package main.java.dataModels;
+package dataModels;
 
 
 import java.util.ArrayList;
@@ -11,10 +11,12 @@ public class SimpleStudentRegistry<S extends Student<G>, G extends Number> exten
     public SimpleStudentRegistry() {
         super();
     }
+
     @Override
     public List<S> getStudents() {
         return new ArrayList<>(students);
     }
+
     public void addStudent(S student) {
         students.add(student);
     }

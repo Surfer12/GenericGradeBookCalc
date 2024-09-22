@@ -1,4 +1,4 @@
-package main.java.dataModels;
+package dataModels;
 
 import java.util.ArrayList;
 import java.util.List;

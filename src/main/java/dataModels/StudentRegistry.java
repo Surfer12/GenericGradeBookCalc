@@ -1,8 +1,9 @@
-package main.java.dataModels;
+package dataModels;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.List;
+
 /**
  * Interface for managing students.
  *
@@ -11,10 +12,16 @@ import java.util.List;
  */
 public interface StudentRegistry<S extends Student<G>, G extends Number> {
     void addStudent(S student);
+
     Optional<S> getStudent(String name);
+
     Optional<S> removeStudent(String name);
+
     int countStudents();
+
     List<S> getStudents();
+
     Optional<S> updateGrade(String name, int assignmentNumber, G grade);
+
     Map<String, S> getAllStudents();
 }

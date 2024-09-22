@@ -1,4 +1,5 @@
-package main.java.validators;
+package validators;
+
 /**
  * The validators.ScoreValidator class implements the validators.InputValidator.Validator interface for Integer values.
  * It validates if a given score is within a specified range.

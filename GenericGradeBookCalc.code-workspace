@@ -11,11 +11,8 @@
 		"java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx2G -Xms100m -Xlog:disable",
 		"java.dependency.packagePresentation": "hierarchical",
 		"java.project.sourcePaths": [
-			"src"
+			"src\\main\\java"
 		],
-		"java.project.referencedLibraries": [
-			"e:\\Cis232Decoupled\\InProgressClassProjects\\GenericGradeBookCalc\\gradle\\wrapper\\gradle-wrapper.jar",
-			"e:\\Cis232Decoupled\\InProgressClassProjects\\GenericGradeBookCalc\\lib\\junit-platform-console-standalone-1.11.0.jar"
-		]
+		"java.project.referencedLibraries": []
 	}
 }

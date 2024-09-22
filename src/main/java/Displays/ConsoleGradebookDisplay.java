@@ -1,8 +1,8 @@
-package main.java.Displays;
+package Displays;
+
+import dataModels.Student;
 
 import java.util.List;
-
-import main.java.dataModels.Student;
 
 /**
  * Displays the gradebook information in a formatted table in the console.

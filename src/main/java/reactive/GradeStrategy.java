@@ -1,4 +1,4 @@
-package main.java.reactive;
+package reactive;
 
 import reactor.core.publisher.Mono;
 

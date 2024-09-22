@@ -1,8 +1,8 @@
-package main.java.Displays;
+package Displays;
+
+import dataModels.Student;
 
 import java.util.List;
-
-import main.java.dataModels.Student;
 
 public class GradebookDisplayImpl<S extends Student<?>> implements GradebookDisplay<S> {
     @Override

@@ -1,11 +1,10 @@
-package main.java.handlers;
+package handlers;
 
-import java.util.Scanner;
-
-import main.java.validators.InputValidator;
+import validators.InputValidator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class InputHandlerImpl<T> implements InputHandler<T> {
     private final Scanner scanner;

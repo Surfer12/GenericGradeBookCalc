@@ -31,7 +31,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
     implementation 'org.springframework.boot:spring-boot-starter-aop'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
- 
+
     // Reactive programming dependencies
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
     implementation 'io.projectreactor:reactor-core'
@@ -41,41 +41,42 @@ dependencies {
     // Reactor
     implementation platform('io.projectreactor:reactor-bom:2023.0.0')
     implementation 'io.projectreactor:reactor-core'
-    
+
     // Logging
     implementation 'org.slf4j:slf4j-api:1.7.36'
     implementation 'ch.qos.logback:logback-classic:1.2.11'
-    
+
     // AspectJ
     implementation 'org.aspectj:aspectjweaver:1.9.9.1'
     implementation 'org.aspectj:aspectjrt:1.9.9.1'
-    
+
     // Jackson for JSON processing
     implementation 'com.fasterxml.jackson.core:jackson-databind'
     implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
-    
+
     // Guava for additional utilities
     implementation 'com.google.guava:guava:30.1.1-jre'
-    
+
     // AutoValue
     compileOnly 'com.google.auto.value:auto-value-annotations:1.9'
     annotationProcessor 'com.google.auto.value:auto-value:1.9'
-    
+
     // Testing
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'io.projectreactor:reactor-test'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
-    
+
     // Development tools
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
-    
+
     // Spring Framework
     implementation 'org.springframework:spring-context:5.3.23' // Use the latest stable version
-    
+
     // SLF4J and Logback
     implementation 'org.slf4j:slf4j-api:1.7.36'
-    implementation 'ch.qos.logback:logback-classic:1.2.11'  // Common logging implementation for SLF4J
+    implementation 'ch.qos.logback:logback-classic:1.2.11'
+    // Common logging implementation for SLF4J
 
     // Reactor
     implementation 'io.projectreactor:reactor-core:3.5.1'

@@ -1,8 +1,9 @@
-package main.java.validators;
-import java.util.List;
-import java.util.stream.Collectors;
+package validators;
+
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * validators.NameValidator class that implements the validators.InputValidator.Validator interface for String type.

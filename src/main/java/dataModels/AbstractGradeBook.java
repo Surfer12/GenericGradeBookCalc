@@ -1,16 +1,16 @@
-package main.java.dataModels;
+package dataModels;
 
-import main.java.Displays.GradebookDisplay;
-import main.java.dataManipulators.ClassAverageCalculator;
-import main.java.dataManipulators.GradeCalculator;
-import main.java.handlers.GradeEntrySystem;
-import main.java.handlers.InputHandler;
+import Displays.GradebookDisplay;
+import dataManipulators.ClassAverageCalculator;
+import dataManipulators.GradeCalculator;
+import handlers.GradeEntrySystem;
+import handlers.InputHandler;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Supplier;
 import java.util.Set;
+import java.util.function.Supplier;
 
 public abstract class AbstractGradeBook<S extends Student<G>, G extends Number> {
 

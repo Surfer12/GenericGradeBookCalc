@@ -1,9 +1,6 @@
-package main.java.reactive;
+package reactive;
 
 import reactor.core.publisher.Flux;
-import main.java.reactive.GradeStrategy;
-import main.java.reactive.LetterGradeStrategy;
-import main.java.reactive.PassFailStrategy;
 
 public class GradeCalculator {
     public static void main(String[] args) {
