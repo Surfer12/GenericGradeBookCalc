@@ -70,5 +70,5 @@ public class IntegerGradeBook extends AbstractGradeBook<Student<Integer>, Intege
     public void displayResults(List<Student<Integer>> students) {
         gradebookDisplay.display(new ArrayList<>(studentRegistry.getAllStudents().values()));
         System.out.println("Class Average: " + classAverageCalculator.calculateAverage(new ArrayList<>(studentRegistry.getAllStudents().values())));
-}
+    }
 }
