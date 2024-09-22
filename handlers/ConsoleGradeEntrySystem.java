@@ -2,7 +2,6 @@ package handlers;
 
 import dataModels.Student;
 
-import javax.inject.Singleton;
 
 /**
  * Represents a console-based grade entry system.
@@ -10,7 +9,7 @@ import javax.inject.Singleton;
  * @param <S> the type of student in the grade entry system
  * @param <G> the type of grade to be entered
  */
-@Singleton
+
 public class ConsoleGradeEntrySystem<S extends Student<G>, G extends Number> implements GradeEntrySystem<S, G> {
     private final InputHandler<G> gradeInputHandler;
 

@@ -30,8 +30,12 @@ dependencies {
     testImplementation("io.micronaut.test:micronaut-test-junit5")
     testImplementation("org.junit.jupiter:junit-jupiter-api")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
+    implementation("org.aspectj:aspectjrt:1.9.7")
+    implementation("org.aspectj:aspectjweaver:1.9.7")
+    implementation("org.aspectj:aspectjtools:1.9.7")
+    implementation("org.aspectj:aspectjweaver:1.9.7")
 }
 
 application {
-
+    mainClassName = 'GenericGradeBookCalc.Application'
 }

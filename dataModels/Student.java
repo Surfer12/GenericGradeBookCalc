@@ -1,10 +1,5 @@
 package dataModels;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -62,9 +57,12 @@ public class Student<G extends Number> {
     }
 
     public Optional<Student<G>> updateGrade(String name, int assignmentNumber, G grade) {
-        Optional<Student<G>> result = StudentRegistry.getInstance().updateGrade(name, assignmentNumber, grade);
-        return result.filter(Student.class::isInstance)
-                .map(Student.class::cast);
+        // Implement the logic here without relying on StudentRegistry
+        if (assignmentNumber > 0 && assignmentNumber <= grades.size()) {
+            grades.set(assignmentNumber - 1, grade);
+            updateAverage();
+        }
+        return Optional.empty();
     }
 
     public int getNumAssignments() {

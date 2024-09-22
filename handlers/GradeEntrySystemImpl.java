@@ -2,9 +2,6 @@ package handlers;
 
 import dataModels.Student;
 
-import javax.inject.Singleton;
-
-@Singleton
 public class GradeEntrySystemImpl<S extends Student<G>, G extends Number> implements GradeEntrySystem<S, G> {
     private final InputHandler<G> gradeInputHandler;
 

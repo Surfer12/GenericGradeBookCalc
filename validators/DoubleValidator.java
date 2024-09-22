@@ -1,7 +1,5 @@
 package validators;
 
-import validators.InputValidator;
-
 public class DoubleValidator implements InputValidator.Validator<Double> {
 
     @Override

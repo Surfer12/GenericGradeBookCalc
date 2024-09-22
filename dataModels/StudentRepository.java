@@ -1,12 +1,11 @@
 package dataModels;
-import dataModels.Student;
-import io.micronaut.data.annotation.Repository;
-import io.micronaut.data.repository.CrudRepository;
+
+import java.util.List;
+import java.util.Optional;
 
 /**
  * Repository for Student entities.
  */
-@Repository
-public interface StudentRepository extends CrudRepository<Student, Integer> {
-    // Additional query methods if needed
+public interface StudentRepository<S extends Student<G>, G extends Number> {
+    // Define repository methods here
 }

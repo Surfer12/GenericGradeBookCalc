@@ -1,16 +1,14 @@
 package Displays;
 
 import java.util.List;
-import javax.inject.Singleton;
-
-import src.main.dataModels.Student;
+import dataModels.Student;
 
 /**
  * Displays the gradebook information in a formatted table in the console.
  *
  * @param <S> the type of student in the gradebook
  */
-@Singleton
+
 public class ConsoleGradebookDisplay<S extends Student<?>> implements GradebookDisplay<S> {
     // Header for the gradebook display table
     private static final String HEADER = "| Student    | Grades               | Avg  |";

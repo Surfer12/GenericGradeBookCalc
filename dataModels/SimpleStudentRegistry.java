@@ -11,13 +11,10 @@ public class SimpleStudentRegistry<S extends Student<G>, G extends Number> exten
     public SimpleStudentRegistry() {
         super();
     }
-
     @Override
     public List<S> getStudents() {
         return new ArrayList<>(students);
     }
-
-    @Override
     public void addStudent(S student) {
         students.add(student);
     }
@@ -39,5 +36,10 @@ public class SimpleStudentRegistry<S extends Student<G>, G extends Number> exten
     @Override
     public int countStudents() {
         return students.size();
+    }
+
+    @Override
+    public List<S> getAllStudents() {
+        return new List<>(students);
     }
 }

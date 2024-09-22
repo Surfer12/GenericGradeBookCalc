@@ -1,9 +1,9 @@
 package Displays;
-import javax.inject.Singleton;
 
-import src.main.dataModels.*;
+import dataModels.Student;
 
-@Singleton
+import java.util.List;
+
 public class GradebookDisplayImpl<S extends Student<?>> implements GradebookDisplay<S> {
     @Override
     public void display(List<S> students) {

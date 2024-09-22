@@ -2,8 +2,11 @@ package dataModels;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
-public class StudentRegistryImpl<S extends Student<G>, G extends Number> extends StudentRegistry<S, G> {
+public class StudentRegistryImpl<S extends Student<G>, G extends Number> implements StudentRegistry<S, G> {
     private final List<S> students = new ArrayList<>();
 
     public StudentRegistryImpl() {
@@ -40,6 +43,12 @@ public class StudentRegistryImpl<S extends Student<G>, G extends Number> extends
     @Override
     public int countStudents() {
         return students.size();
+    }
+
+    @Override
+    public Map<String, S> getAllStudents() {
+        return students.stream()
+                .collect(Collectors.toMap(Student::getName, Function.identity()));
     }
 
     @Override
