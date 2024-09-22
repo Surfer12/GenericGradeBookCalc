@@ -1,4 +1,4 @@
-package handlers;
+package src.main.java.main.handlers;
 
 import dataModels.Student;
 

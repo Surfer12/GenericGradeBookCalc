@@ -1,4 +1,4 @@
-package validators;
+package src.main.java.main.validators;
 
 import java.util.List;
 import java.util.stream.Collectors;

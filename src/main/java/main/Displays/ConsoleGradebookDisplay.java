@@ -1,6 +1,6 @@
-package Displays;
+package src.main.java.main.Displays;
 
-import dataModels.Student;
+import src.main.java.main.dataModels.Student;
 
 import java.util.List;
 import javax.inject.Singleton;

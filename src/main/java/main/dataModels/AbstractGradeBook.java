@@ -1,4 +1,4 @@
-package dataModels;
+package src.main.java.main.dataModels;
 
 import Displays.GradebookDisplay;
 import dataManipulators.ClassAverageCalculator;

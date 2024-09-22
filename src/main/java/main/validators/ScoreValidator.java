@@ -1,4 +1,4 @@
-package validators;
+package src.main.java.main.validators;
 
 /**
  * The validators.ScoreValidator class implements the validators.InputValidator.Validator interface for Integer values.

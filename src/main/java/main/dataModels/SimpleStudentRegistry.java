@@ -1,4 +1,6 @@
-package dataModels;
+package src.main.java.main.dataModels;
+
+
 
 import java.util.ArrayList;
 import java.util.List;

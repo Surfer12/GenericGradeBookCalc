@@ -1,4 +1,4 @@
-package validators;
+package src.main.java.main.validators;
 
 /**
  * A class that validates and parses input of a generic type.

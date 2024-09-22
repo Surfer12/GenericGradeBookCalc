@@ -1,6 +1,5 @@
-package Displays;
-
-import dataModels.Student;
+package src.main.java.main.Displays;
+import src.main.java.main.dataModels.*;
 
 import java.util.List;
 

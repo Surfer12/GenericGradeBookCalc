@@ -1,4 +1,4 @@
-package validators;
+package src.main.java.main.validators;
 
 /**
  * validators.PositiveIntegerValidator class that implements the validators.InputValidator.Validator interface for Integer type.

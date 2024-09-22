@@ -1,4 +1,5 @@
-package main;
+package src.main.java.main;
+
 
 public class DemoApplication {
     public static void main(String[] args) {
