@@ -37,9 +37,4 @@ public class SimpleStudentRegistry<S extends Student<G>, G extends Number> exten
     public int countStudents() {
         return students.size();
     }
-
-    @Override
-    public List<S> getAllStudents() {
-        return new List<>(students);
-    }
 }

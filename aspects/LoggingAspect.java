@@ -3,6 +3,8 @@ package aspects;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.After;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * **Class**
@@ -13,13 +15,15 @@ import org.aspectj.lang.annotation.After;
  */
 @Aspect
 public class LoggingAspect {
-    @Before("execution(* dataManipulators.*.*(..))")
+    private static final Logger logger = LoggerFactory.getLogger(LoggingAspect.class);
+
+    @Before("execution(* com.yourpackage..*(..))") // Adjust the pointcut expression as needed
     public void logBefore() {
-        System.out.println("Method called in dataManipulators package");
+        logger.info("Method execution started");
     }
-    
-    @After("execution(* dataManipulators.*.*(..))") // Changed @Before to @After
+
+    @After("execution(* com.yourpackage..*(..))") // Adjust the pointcut expression as needed
     public void logAfter() {
-        System.out.println("Method finished in dataManipulators package"); // New logging for method completion
+        logger.info("Method execution finished");
     }
 }
