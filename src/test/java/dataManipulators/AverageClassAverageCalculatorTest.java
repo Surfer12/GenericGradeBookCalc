@@ -1,13 +1,13 @@
 package dataManipulators;
 
+import dataModels.Student;
+import org.junit.jupiter.api.Test;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import org.junit.jupiter.api.Test;
-
-import dataModels.Student;
 
 class AverageClassAverageCalculatorTest {
 
@@ -59,7 +59,7 @@ class AverageClassAverageCalculatorTest {
 
     // Mock Student class for testing
     static class MockStudent extends Student<Double> {
-        private List<Double> grades;
+        private final List<Double> grades;
 
         public MockStudent(List<Double> grades) {
             this.grades = grades;

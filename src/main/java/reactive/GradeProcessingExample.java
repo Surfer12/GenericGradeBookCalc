@@ -2,7 +2,6 @@ package reactive;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-
 import reactor.core.publisher.Flux;
 
 @Component

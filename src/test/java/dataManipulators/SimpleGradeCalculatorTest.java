@@ -1,70 +1,72 @@
 package dataManipulators;
 
 import dataModels.Student;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import java.util.Arrays;
 import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SimpleGradeCalculatorTest {
 
-   private SimpleGradeCalculator<Student<Number>, Number> gradeCalculator;
+    private SimpleGradeCalculator<Student<Number>, Number> gradeCalculator;
 
-   @BeforeEach
-   void setUp() {
-      gradeCalculator = new SimpleGradeCalculator<>();
-   }
+    @BeforeEach
+    void setUp() {
+        gradeCalculator = new SimpleGradeCalculator<>();
+    }
 
-   @Test
-   void testCalculateAverageWithGrades() {
-      Student<Number> student = new Student<Number>() {
-         @Override
-         public List<Number> getGrades() {
-            return Arrays.asList(90, 80, 70);
-         }
-      };
+    @Test
+    void testCalculateAverageWithGrades() {
+        Student<Number> student = new Student<Number>() {
+            @Override
+            public List<Number> getGrades() {
+                return Arrays.asList(90, 80, 70);
+            }
+        };
 
-      double average = gradeCalculator.calculateAverage(student);
-      assertEquals(80.0, average, 0.01);
-   }
+        double average = gradeCalculator.calculateAverage(student);
+        assertEquals(80.0, average, 0.01);
+    }
 
-   @Test
-   void testCalculateAverageWithNoGrades() {
-      Student<Number> student = new Student<Number>() {
-         @Override
-         public List<Number> getGrades() {
-            return Arrays.asList();
-         }
-      };
+    @Test
+    void testCalculateAverageWithNoGrades() {
+        Student<Number> student = new Student<Number>() {
+            @Override
+            public List<Number> getGrades() {
+                return List.of();
+            }
+        };
 
-      double average = gradeCalculator.calculateAverage(student);
-      assertEquals(0.0, average, 0.01);
-   }
+        double average = gradeCalculator.calculateAverage(student);
+        assertEquals(0.0, average, 0.01);
+    }
 
-   @Test
-   void testCalculateAverageWithSingleGrade() {
-      Student<Number> student = new Student<Number>() {
-         @Override
-         public List<Number> getGrades() {
-            return Arrays.asList(100);
-         }
-      };
+    @Test
+    void testCalculateAverageWithSingleGrade() {
+        Student<Number> student = new Student<Number>() {
+            @Override
+            public List<Number> getGrades() {
+                return List.of(100);
+            }
+        };
 
-      double average = gradeCalculator.calculateAverage(student);
-      assertEquals(100.0, average, 0.01);
-   }
+        double average = gradeCalculator.calculateAverage(student);
+        assertEquals(100.0, average, 0.01);
+    }
 
-   @Test
-   void testCalculateAverageWithDifferentNumberTypes() {
-      Student<Number> student = new Student<Number>() {
-         @Override
-         public List<Number> getGrades() {
-            return Arrays.asList(90, 85.5, 78.3);
-         }
-      };
+    @Test
+    void testCalculateAverageWithDifferentNumberTypes() {
+        Student<Number> student = new Student<Number>() {
+            @Override
+            public List<Number> getGrades() {
+                return Arrays.asList(90, 85.5, 78.3);
+            }
+        };
 
-      double average = gradeCalculator.calculateAverage(student);
-      assertEquals(84.6, average, 0.01);
-   }
+        double average = gradeCalculator.calculateAverage(student);
+        assertEquals(84.6, average, 0.01);
+    }
 }

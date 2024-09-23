@@ -99,4 +99,8 @@ public class Student<G extends Number> {
             average = sum / grades.size();
         }
     }
+
+    public double getGradeValue() {
+        return grades.getFirst().doubleValue();
+    }
 }
