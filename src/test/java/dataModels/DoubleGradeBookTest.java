@@ -2,8 +2,8 @@ package dataModels;
 
 import Displays.GradebookDisplayImpl;
 import dataManipulators.ClassAverageCalculatorImpl;
-import handlers.GradeEntrySystem;
-import handlers.InputHandler;
+import dataManipulators.SimpleGradeCalculator;
+import handlers.GradeEntrySystemImpl;
 import handlers.InputHandlerImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,9 +13,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import dataManipulators.GradeCalculator;
 import Displays.GradebookDisplay;
 import dataManipulators.ClassAverageCalculator;
+import org.junit.jupiter.params.shadow.com.univocity.parsers.conversions.Validator;
+import validators.InputValidator;
+
 import java.util.HashSet;
 import java.util.Scanner;
-
 public class DoubleGradeBookTest {
 
     private DoubleGradeBook doubleGradeBook;
@@ -25,11 +27,9 @@ public class DoubleGradeBookTest {
         // Initialize the DoubleGradeBook instance with necessary dependencies
         doubleGradeBook = new DoubleGradeBook(
                 new StudentRegistryImpl<>(),
-                new InputHandlerImpl<>(),
-                new InputHandlerImpl<>(),
-                new InputHandlerImpl<>(),
-                new GradeEntrySystem<Double, Double>(),
-                new GradeCalculator<Double. Student<Double>, Double>(),
+new InputHandlerImpl<>(new Scanner(System.in), new InputValidator<>(new Validator<String>() {}, "name")),
+new InputHandlerImpl<>(new Scanner(System.in), new InputValidator<>(String.class, "name")),
+                new SimpleGradeCalculator<>(),
                 new GradebookDisplayImpl<>(),
                 new ClassAverageCalculatorImpl<>(),
                 () -> new Student<Double>(),

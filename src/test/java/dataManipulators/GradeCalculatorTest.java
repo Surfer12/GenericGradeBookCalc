@@ -24,7 +24,7 @@ class GradeCalculatorTest {
 
     @BeforeEach
     void setUp() {
-        gradeCalculator = new GradeProcessor(gradeStrategyMock, passFailStrategy);
+        gradeCalculator = new GradeProcessor(gradeStrategyMock, () -> new PassFailGradeStrategy());
     }
 
     @Test

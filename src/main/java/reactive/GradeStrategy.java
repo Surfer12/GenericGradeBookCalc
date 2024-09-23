@@ -1,9 +1,10 @@
+// src/main/java/reactive/GradeStrategy.java
 package reactive;
 
 import reactor.core.publisher.Mono;
 
 public interface GradeStrategy {
-    Mono<String> applyStrategy(Integer grade);
+    Mono<String> calculateGrade(int grade);
 
-    Object calculateGrade(int i);
+    Mono<String> applyStrategy(Integer grade);
 }

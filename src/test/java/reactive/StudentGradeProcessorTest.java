@@ -6,7 +6,6 @@ import reactor.test.StepVerifier;
 
 import static org.mockito.Mockito.*;
 
-
 public class StudentGradeProcessorTest {
 
     @Test
@@ -15,11 +14,11 @@ public class StudentGradeProcessorTest {
         GradeStrategy mockStrategy = mock(GradeStrategy.class);
 
         // Define the behavior of the mock
-        when(mockStrategy.applyStrategy(85)).thenReturn(Flux.just("Pass"));
-        when(mockStrategy.applyStrategy(70)).thenReturn(Flux.just("Pass"));
-        when(mockStrategy.applyStrategy(55)).thenReturn(Flux.just("Fail"));
-        when(mockStrategy.applyStrategy(90)).thenReturn(Flux.just("Pass"));
-        when(mockStrategy.applyStrategy(40)).thenReturn(Flux.just("Fail"));
+        when(mockStrategy.applyStrategy(85)).thenAnswer(invocation -> Flux.just("Pass"));
+        when(mockStrategy.applyStrategy(70)).thenAnswer(invocation -> Flux.just("Pass"));
+        when(mockStrategy.applyStrategy(55)).thenAnswer(invocation -> Flux.just("Fail"));
+        when(mockStrategy.applyStrategy(90)).thenAnswer(invocation -> Flux.just("Pass"));
+        when(mockStrategy.applyStrategy(40)).thenAnswer(invocation -> Flux.just("Fail"));
 
         // Create the processor with the mock strategy
         StudentGradeProcessor processor = new StudentGradeProcessor(mockStrategy);

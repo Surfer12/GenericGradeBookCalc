@@ -21,7 +21,7 @@ class SimpleStudentRegistryTest {
 
     @Test
     void testAddStudent() {
-        Student student = new Student("John Doe", 90);
+        Student student = new Student();
         registry.addStudent(student);
         assertEquals(1, registry.countStudents());
         assertTrue(registry.getStudent("John Doe").isPresent());

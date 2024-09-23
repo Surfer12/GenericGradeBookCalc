@@ -21,9 +21,7 @@ public class LetterGradeStrategy implements GradeStrategy {
         else
             return "F";
     }
-
-    @Override
-    public Object calculateGrade(int i) {
-        return convertToLetterGrade(i);
-    }
+public Mono<String> calculateGrade(int i) {
+    return Mono.just(convertToLetterGrade(i));
+}
 }

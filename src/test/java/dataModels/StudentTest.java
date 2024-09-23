@@ -32,8 +32,8 @@ class StudentTest {
 
     @Test
     void testConstructorWithNameAndGrades() {
-        List<Integer> grades = Arrays.asList(90, 80, 70);
-        Student<Integer> studentWithGrades = new Student<>("Jane Doe", grades);
+List<Integer> grades = java.util.Arrays.asList(90, 80, 70);
+Student<Integer> studentWithGrades = new Student<>("Jane Doe", grades);
         assertEquals("Jane Doe", studentWithGrades.getName());
         assertEquals(grades, studentWithGrades.getGrades());
     }
