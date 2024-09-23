@@ -1,10 +1,12 @@
 package dataManipulators;
 
-import dataModels.Student;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.Arrays;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
+
+import dataModels.Student;
 
 class ClassAverageCalculatorTest {
 
@@ -16,7 +18,7 @@ class ClassAverageCalculatorTest {
       }
 
       @Override
-      public Double getScore() {
+      public double getScore() {
          return score;
       }
    }

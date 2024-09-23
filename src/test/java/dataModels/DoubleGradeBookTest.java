@@ -9,12 +9,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import dataManipulators.ClassAverageCalculatorImpl;
-import dataModels.Student;
-import dataModels.StudentRegistry;
-import inputHandlers.InputHandler;
-import validators.GradeCalculator;
-import validators.GradebookDisplay;
-import validators.GradeEntrySystem;
+import dataManipulators.ClassAverageCalculator;
+import Displays.GradebookDisplay;
+import handlers.GradeEntrySystem;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 public class DoubleGradeBookTest {
 

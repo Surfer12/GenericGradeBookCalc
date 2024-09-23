@@ -18,7 +18,8 @@ class ClassAverageCalculatorImplTest {
          this.average = average;
       }
 
-      public Double getAverage() {
+      @Override
+      public double getAverage() {
          return average;
       }
    }

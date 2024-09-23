@@ -83,6 +83,12 @@ public class Student<G extends Number> {
                 .sum();
     }
 
+    public double getScore() {
+        return grades.stream()
+                .mapToDouble(Number::doubleValue)
+                .sum();
+    }
+
     private void updateAverage() {
         if (grades.isEmpty()) {
             average = 0.0;

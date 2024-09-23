@@ -1,8 +1,5 @@
 package dataModels;
 
-import dataModels.AbstractGradeBook;
-import dataModels.Student;
-import dataModels.StudentRegistry;
 import handlers.InputHandler;
 import handlers.GradeEntrySystem;
 import dataManipulators.GradeCalculator;
