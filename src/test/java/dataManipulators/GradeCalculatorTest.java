@@ -11,10 +11,8 @@ import java.util.Collections;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import java.util.List;
-import java.util.ArrayList;
-class GradeCalculatorTest {
-private List<Integer> grades = new ArrayList<Integer>();
 
+class GradeCalculatorTest {
    @Mock
    private Student<Integer> studentMock;
 
@@ -30,54 +28,55 @@ private List<Integer> grades = new ArrayList<Integer>();
 
    @Test
    void testCalculateAverage() {
-      List<Integer> grades = Arrays.asList(90, 80, 70);
-      Student<Integer> student = new Student<>(grades);
+      Student<Integer> student = new Student<>("Test Student", Arrays.asList(90, 80, 70));
       double average = gradeCalculator.calculateAverage(student);
       assertEquals(80.0, average, 0.01);
-      
-      Student<Integer> student2 = new Student<Integer>(Arrays.asList(95, 82, 67, 54, 88));
+
+
+      List<Integer> grades2 = Arrays.asList(75, 72, 73, 74, 71);
+      Student<Integer> student2 = new Student<>("Test Student 2", grades2);
       double average2 = gradeCalculator.calculateAverage(student2);
-      assertEquals(71.6, average2, 0.01);
+      assertEquals(72.8, average2, 0.01);
    }
 
    @Test
    void testCalculateAverageWithEmptyGrades() {
-      Student<Integer> student = new Student<Integer>(Collections.emptyList());
+      Student<Integer> student = new Student<Integer>("Test Student", Collections.emptyList());
       double average = gradeCalculator.calculateAverage(student);
       assertEquals(0.0, average, 0.01);
    }     
 
    @Test
    void testCalculateAverageWithNullGrades() {
-      Student<Integer> student = new Student(null);
+      Student<Integer> student = new Student<Integer>("Test Student", null);
       double average = gradeCalculator.calculateAverage(student);
       assertEquals(0.0, average, 0.01);
    }
 
    @Test
    void testCalculateAverageWithNegativeGrades() {
-      Student<Integer> student = new Student(Arrays.asList(-10, 20, -30, 40, -50));
+      Student<Integer> student = new Student<Integer>("Test Student", Arrays.asList(-10, 20, -30, 40, -50));
       double average = gradeCalculator.calculateAverage(student);
       assertEquals(10.0, average, 0.01);
    }
 
    @Test
    void testCalculateAverageWithLargeGrades() {
-      Student<Integer> student = new Student(Arrays.asList(100, 99, 98, 97, 96));
+      Student<Integer> student = new Student<Integer>("Test Student", Arrays.asList(100, 99, 98, 97, 96));
       double average = gradeCalculator.calculateAverage(student);
       assertEquals(97.6, average, 0.01);
    }
 
    @Test
    void testCalculateAverageWithSingleGrade() {
-      Student<Integer> student = new Student(Arrays.asList(75));   
+      Student<Integer> student = new Student<Integer>("Test Student", Arrays.asList(75));   
       double average = gradeCalculator.calculateAverage(student);
       assertEquals(75.0, average, 0.01);
    }
 
    @Test
    void testCalculateAverageWithMultipleGrades() {
-      Student<Integer> student = new Student(Arrays.asList(85, 90, 88, 92, 87));
+      Student<Integer> student = new Student<Integer>("Test Student",Arrays.asList(85, 90, 88, 92, 87));
       double average = gradeCalculator.calculateAverage(student);
       assertEquals(86.4, average, 0.01);
    }
