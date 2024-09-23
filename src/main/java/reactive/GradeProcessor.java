@@ -1,15 +1,27 @@
 package reactive;
 
-import java.util.Arrays;    
+import dataModels.Student;
+import reactive.PassFailStrategy;
+import java.util.Arrays;
 import java.util.List;
 
-import dataModels.Student;
 public class GradeProcessor {
 
     private final GradeStrategy gradeStrategy;
 
-    public GradeProcessor(GradeStrategy gradeStrategy) {
+    public GradeProcessor(GradeStrategy gradeStrategy, GradeStrategy passFailStrategy) {
         this.gradeStrategy = gradeStrategy;
+    }
+
+    public static void main(String[] args) {
+        GradeStrategy strategy = new LetterGradeStrategy();
+
+        GradeProcessor gradeProcessor = new GradeProcessor(strategy, PassFailStrategy.getInstance());
+
+        Student<Integer> student = new Student<>("Test Student", Arrays.asList(95, 82, 67, 54, 88));
+
+        double average = gradeProcessor.calculateAverage(student);
+        System.out.println("Average Grade: " + average);
     }
 
     public double calculateAverage(Student<Integer> student) {
@@ -21,16 +33,5 @@ public class GradeProcessor {
                 .mapToDouble(Number::doubleValue)
                 .sum();
         return sum / grades.size();
-    }
-
-    public static void main(String[] args) {
-        GradeStrategy strategy = new LetterGradeStrategy();
-
-        GradeProcessor gradeProcessor = new GradeProcessor(strategy);
-
-        Student<Integer> student = new Student<>("Test Student", Arrays.asList(95, 82, 67, 54, 88));
-
-        double average = gradeProcessor.calculateAverage(student);
-        System.out.println("Average Grade: " + average);
     }
 }

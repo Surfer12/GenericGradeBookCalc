@@ -21,4 +21,9 @@ public class LetterGradeStrategy implements GradeStrategy {
         else
             return "F";
     }
+
+    @Override
+    public Object calculateGrade(int i) {
+        return convertToLetterGrade(i);
+    }
 }

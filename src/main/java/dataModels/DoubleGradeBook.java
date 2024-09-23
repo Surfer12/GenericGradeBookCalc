@@ -71,6 +71,10 @@ public class DoubleGradeBook extends AbstractGradeBook<Student<Double>, Double> 
         System.out.println("Class Average: " + classAverageCalculator.calculateAverage(new ArrayList<>(studentRegistry.getAllStudents().values())));
     }
 
+    StudentRegistry<Student<Double>, Double>  getRegistry() {
+        return studentRegistry;
+    }
+
     public void addStudent(Student<Double> student) {
         // Logic to add student to the registry
     }

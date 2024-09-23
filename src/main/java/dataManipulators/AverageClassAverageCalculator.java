@@ -36,7 +36,7 @@ public class AverageClassAverageCalculator<S extends Student<?>> implements Clas
         // Iterate over each student to sum up their grades and count the number of
         // grades
         for (S student : students) {
-            total += student.getGrades().stream().mapToDouble(g -> ((Number) g).doubleValue()).sum();
+            total += student.getGrades().stream().mapToDouble(g -> g.doubleValue()).sum();
             count += student.getGrades().size();
         }
 

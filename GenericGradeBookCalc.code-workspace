@@ -13,6 +13,7 @@
 		"java.project.sourcePaths": [
 			"src\\main\\java"
 		],
-		"java.project.referencedLibraries": []
+		"java.project.referencedLibraries": [],
+		"java.compile.nullAnalysis.mode": "automatic"
 	}
 }
