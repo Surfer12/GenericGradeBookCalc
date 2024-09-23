@@ -1,8 +1,9 @@
 package reactive;
 
-import dataModels.Student;
+import java.util.Arrays;    
 import java.util.List;
 
+import dataModels.Student;
 public class GradeProcessor {
 
     private final GradeStrategy gradeStrategy;
@@ -11,7 +12,7 @@ public class GradeProcessor {
         this.gradeStrategy = gradeStrategy;
     }
 
-    public double calculateAverage(Student student) {
+    public double calculateAverage(Student<Integer> student) {
         List<Integer> grades = student.getGrades();
         if (grades.isEmpty()) {
             return 0.0;
@@ -27,7 +28,7 @@ public class GradeProcessor {
 
         GradeProcessor gradeProcessor = new GradeProcessor(strategy);
 
-        Student student = new Student("Test Student", Arrays.asList(95, 82, 67, 54, 88));
+        Student<Integer> student = new Student<>("Test Student", Arrays.asList(95, 82, 67, 54, 88));
 
         double average = gradeProcessor.calculateAverage(student);
         System.out.println("Average Grade: " + average);
