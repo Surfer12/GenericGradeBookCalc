@@ -9,8 +9,6 @@ import static org.mockito.Mockito.when;
 
 import dataModels.Student;
 
-
-
 class GradeEntrySystemTest {
 
    private GradeEntrySystem<Student<Double>, Double> gradeEntrySystem;

@@ -1,4 +1,7 @@
 package dataModels; // Correct package declaration
+package dataModels;
+
+import java.beans.Transient;
 
 import org.junit.jupiter.api.BeforeEach; // Necessary imports
 import org.mockito.Mockito;
@@ -13,5 +16,6 @@ class StudentRegistryImplTest {
         student = Mockito.mock(Student.class);
     }
 
-    // ... rest of the test methods
+    // Add tests here
+
 }

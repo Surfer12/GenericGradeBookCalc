@@ -12,7 +12,22 @@ import handlers.GradebookDisplay; // Updated import
 import handlers.StudentRegistry; // Updated import
 import dataManipulators.ClassAverageCalculator;
 import dataModels.Student;
-   
+
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.function.Supplier;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import dataManipulators.ClassAverageCalculatorImpl;
+import dataManipulators.ClassAverageCalculator;
+import Displays.GradebookDisplay;
+import handlers.GradeEntrySystem;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
+
 public class DoubleGradeBookTest {
 
    private DoubleGradeBook doubleGradeBook;
@@ -45,4 +60,11 @@ public class DoubleGradeBookTest {
             classAverageCalculator, studentFactory, uniqueNames);
    }
 
+   @Test
+   public void testCalculateAverageWithEmptyList() {
+      ClassAverageCalculatorImpl<TestStudent> calculator = new ClassAverageCalculatorImpl<>();
+      List<TestStudent> students = Collections.emptyList();
+      double result = calculator.calculateAverage(students);
+      assertEquals(0, result, "The average of an empty list should be 0");
+   }
 }

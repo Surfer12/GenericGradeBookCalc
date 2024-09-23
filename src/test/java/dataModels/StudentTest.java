@@ -56,3 +56,4 @@ class StudentTest {
       assertEquals(85, grades.get(0));
    }
 }
+}

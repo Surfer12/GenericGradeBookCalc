@@ -1,14 +1,36 @@
 package reactive;
 
-import reactor.core.publisher.Flux;
+import java.util.Arrays;    
+import java.util.List;
 
+import dataModels.Student;
 public class GradeProcessor {
+
+    private final GradeStrategy gradeStrategy;
+
+    public GradeProcessor(GradeStrategy gradeStrategy) {
+        this.gradeStrategy = gradeStrategy;
+    }
+
+    public double calculateAverage(Student<Integer> student) {
+        List<Integer> grades = student.getGrades();
+        if (grades.isEmpty()) {
+            return 0.0;
+        }
+        double sum = grades.stream()
+                .mapToDouble(Number::doubleValue)
+                .sum();
+        return sum / grades.size();
+    }
+
     public static void main(String[] args) {
         GradeStrategy strategy = new LetterGradeStrategy();
 
-        Flux<Integer> grades = Flux.just(95, 82, 67, 54, 88);
+        GradeProcessor gradeProcessor = new GradeProcessor(strategy);
 
-        grades.flatMap(strategy::applyStrategy)
-                .subscribe(letterGrade -> System.out.println("Letter Grade: " + letterGrade));
+        Student<Integer> student = new Student<>("Test Student", Arrays.asList(95, 82, 67, 54, 88));
+
+        double average = gradeProcessor.calculateAverage(student);
+        System.out.println("Average Grade: " + average);
     }
 }

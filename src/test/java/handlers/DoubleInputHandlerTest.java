@@ -1,21 +1,12 @@
 package handlers;
 
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
-import validators.InputValidator;
-import java.util.Scanner;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.mock;
 
+import validators.InputValidator;
 
 public class DoubleInputHandlerTest {
-
-   private DoubleInputHandler doubleInputHandler;
-   private Scanner mockScanner;
-   private InputValidator<Double> mockInputValidator;
-
    @BeforeEach
    public void setUp() {
       mockScanner = mock(Scanner.class);

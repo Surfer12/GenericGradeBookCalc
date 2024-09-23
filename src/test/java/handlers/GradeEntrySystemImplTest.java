@@ -11,7 +11,6 @@ import org.mockito.MockitoAnnotations;
 
 import dataModels.Student;
 
-
 class GradeEntrySystemImplTest {
 
    @Mock
