@@ -11,22 +11,25 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ClassAverageCalculatorImplTest {
 
-    @Test
-    void testCalculateAverageWithEmptyList() {
-        ClassAverageCalculatorImpl<TestStudent> calculator = new ClassAverageCalculatorImpl<>();
-        List<TestStudent> students = Collections.emptyList();
-        double result = calculator.calculateAverage(students);
-        assertEquals(0, result, "The average of an empty list should be 0");
-    }
-
-      public TestStudent(double average) {
-         this.average = average;
+    private double average;
+    
+        @Test
+        void testCalculateAverageWithEmptyList() {
+            ClassAverageCalculatorImpl<TestStudent> calculator = new ClassAverageCalculatorImpl<>();
+            List<TestStudent> students = Collections.emptyList();
+            double result = calculator.calculateAverage(students);
+            assertEquals(0, result, "The average of an empty list should be 0");
+        }
+    
+          public double TestStudent(double average) {
+             this.average = average;
+         return average;
+         
       }
-      @Override
       public double getAverage() {
          return average;
       }
-   }
+   
     @Test
     void testCalculateAverageWithSingleStudent() {
         ClassAverageCalculatorImpl<TestStudent> calculator = new ClassAverageCalculatorImpl<>();

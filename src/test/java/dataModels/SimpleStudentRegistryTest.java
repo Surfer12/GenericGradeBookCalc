@@ -1,83 +1,46 @@
-package dataModels; // Ensure this is correct
+package dataModels;
 
-import dataModels.StudentImpl; // Ensure this class exists
-import java.util.Optional; // Import Optional
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*; // Import assertions
-import java.util.Optional;
+import static org.junit.jupiter.api.Assertions.*;
 
-import dataModels.StudentRegistryImpl;
-import dataModels.SimpleStudentRegistry;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+class SimpleStudentRegistryTest {
+    private SimpleStudentRegistry<Student<Integer>, Integer> registry;
 
-import java.util.Optional;
+    @BeforeEach
+    void setUp() {
+        registry = new SimpleStudentRegistry<>();
+    }
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+    @Test
+    void testAddStudent() {
+        Student<Integer> student = new Student<>("John Doe");
+        registry.addStudent(student);
+        assertEquals(1, registry.countStudents());
+        assertTrue(registry.getStudent("John Doe").isPresent());
+    }
 
-public class SimpleStudentRegistryTest {
-    private SimpleStudentRegistry<StudentImpl, Integer> registry; // Ensure this class exists
+    @Test
+    void testRemoveStudent() {
+        Student<Integer> student = new Student<>("Jane Doe", 85);
+        registry.addStudent(student);
+        Optional<Student<Integer>> removedStudent = registry.removeStudent("Jane Doe");
+        assertTrue(removedStudent.isPresent());
+        assertEquals("Jane Doe", removedStudent.get().getName());
+        assertEquals(0, registry.countStudents());
+    }
 
-    class SimpleStudentRegistryTest {
-
-        private SimpleStudentRegistry<Student<Integer>, Integer> registry;
-
-        @BeforeEach
-        public void setUp() {
-            registry = new SimpleStudentRegistry<>();
-        }
-
-        @Test
-        public void testAddStudent() {
-            StudentImpl student = new StudentImpl("John Doe", 90); // Ensure this class exists
-            registry.addStudent(student);
-            assertEquals(1, registry.countStudents());
-            assertTrue(registry.getStudent("John Doe").isPresent());
-        }
-
-        @BeforeEach
-        void setUp() {
-            registry = new SimpleStudentRegistry<>();
-        }
-
-        @Test
-        void testAddStudent() {
-            Student student = new Student();
-            registry.addStudent(student);
-            assertEquals(1, registry.countStudents());
-            assertTrue(registry.getStudent("John Doe").isPresent());
-        }
-
-        @Test
-        void testRemoveStudent() {
-            Student student = new Student("Jane Doe", 85);
-            registry.addStudent(student);
-            Optional<Student> removedStudent = registry.removeStudent("Jane Doe");
-            assertTrue(removedStudent.isPresent());
-            assertEquals("Jane Doe", removedStudent.get().getName());
-            assertEquals(0, registry.countStudents());
-        }
-
-        @Test
-        void testGetStudent() {
-            Student student = new Student("Alice", 95);
-            registry.addStudent(student);
-            Optional<Student> foundStudent = registry.getStudent("Alice");
-            assertTrue(foundStudent.isPresent());
-            assertEquals("Alice", foundStudent.get().getName());
-        }
-
-        <<<<<<<HEAD
-
-        @Test
-        void testCountStudents() {
-            assertEquals(0, registry.countStudents());
-        }=======
+    @Test
+    void testGetStudent() {
+        Student<Integer> student = new Student<>("Alice", 95);
+        registry.addStudent(student);
+        Optional<Student<Integer>> foundStudent = registry.getStudent("Alice");
+        assertTrue(foundStudent.isPresent());
+        assertEquals("Alice", foundStudent.get().getName());
+    }
 
     @Test
     void testCountStudents() {
         assertEquals(0, registry.countStudents());
-    }>>>>>>>491d 2 bcae0ee67f538c43b91d98fc1d715301e17
+    }
 }

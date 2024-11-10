@@ -101,6 +101,6 @@ public class Student<G extends Number> {
     }
 
     public double getGradeValue() {
-        return grades.getFirst().doubleValue();
+        return grades.isEmpty() ? 0.0 : grades.get(0).doubleValue();
     }
 }
